@@ -103,6 +103,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        //dismiss viewcontroller
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
