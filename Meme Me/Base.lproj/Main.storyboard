@@ -40,7 +40,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="2jx-Yr-Pe2"/>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="TOP" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="BQw-fc-qX4">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="TOP" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="BQw-fc-qX4">
                                 <rect key="frame" x="284" y="94" width="32" height="17"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
@@ -61,9 +61,9 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="BOTTOM" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="izL-r0-Xhe">
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="BOTTOM" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="izL-r0-Xhe">
                                 <rect key="frame" x="269" y="489" width="63" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
                         </subviews>
@@ -85,8 +85,16 @@
                             <constraint firstItem="BQw-fc-qX4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gSb-tD-ZlI"/>
                             <constraint firstItem="7DO-2f-baa" firstAttribute="top" secondItem="FtX-y7-svG" secondAttribute="bottom" id="ihi-26-G4P"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FtX-y7-svG" secondAttribute="trailing" constant="-20" id="jKk-ST-vE0"/>
+                            <constraint firstItem="BQw-fc-qX4" firstAttribute="centerX" secondItem="7DO-2f-baa" secondAttribute="centerX" id="lY7-07-K0D"/>
+                            <constraint firstItem="izL-r0-Xhe" firstAttribute="centerX" secondItem="7DO-2f-baa" secondAttribute="centerX" id="xqE-hy-X1g"/>
                             <constraint firstItem="7DO-2f-baa" firstAttribute="trailing" secondItem="FtX-y7-svG" secondAttribute="trailing" id="xzv-cQ-sXk"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="lY7-07-K0D"/>
+                                <exclude reference="xqE-hy-X1g"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="bottomText" destination="izL-r0-Xhe" id="grM-pM-Alf"/>

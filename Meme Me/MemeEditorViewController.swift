@@ -41,7 +41,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         ]
         
         for textField in textFields{
+            print(textField.text)
         //Configure and position the top textfield
+            
             textField.textAlignment = .Center
             textField.delegate = self
             textField.defaultTextAttributes = memeTextAttributes
@@ -133,14 +135,17 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         self.view.endEditing(true)
     }
     
-    //slide the view up when keyboard appears, using notifications:
+    
     func keyboardWillShow(notification: NSNotification) {
+        //slide the view up when keyboard appears, using notifications:
         if selectedTextField == bottomText && self.view.frame.origin.y == 0.0 {
             self.view.frame.origin.y -= getKeyboardHeight(notification)
         }
+        
     }
     
     func keyboardWillHide(notification: NSNotification) {
+        //Reset view origin when keyboard hides:
         if -self.view.frame.origin.y > 0 {
             self.view.frame.origin.y = 0
         }
@@ -178,7 +183,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         //render view to an image:
         UIGraphicsBeginImageContext(self.view.frame.size)
         self.view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
-        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        memedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
         //TODO: Show toolbars and navbars:
