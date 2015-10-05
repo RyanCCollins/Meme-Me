@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum ButtonState {
+    case Cancel
+    case Save
+    case Editing
+}
+
 class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var imageView: UIImageView!
@@ -16,20 +22,34 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var bottomText: UITextField!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var topToolbar: UIToolbar!
+    @IBOutlet weak var bottomToolbar: UIToolbar!
+    
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     
     var imagePickerController: UIImagePickerController!
     var memedImage: UIImage!
     var selectedTextField: UITextField!
+    var editMeme: Meme?
+    var userIsEditing = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Set the meme to edit if there is an editMeme:
+        if let editMeme = editMeme {
+            topText.text = editMeme.topText
+            bottomText.text = editMeme.bottomText
+            imageView.image = editMeme.originalImage
+            userIsEditing = true
+        }
+        
+        //Congifure the UI
         let textFieldArray = [topText, bottomText]
         configureTextFields(textFieldArray)
-
-        //Disable the Share button:
-        shareButton.enabled = false
-        cancelButton.enabled = false
+        shareButton.enabled = userIsEditing
+        cancelButton.enabled = userIsEditing
+        saveButton.enabled = userIsEditing
     }
     
     func configureTextFields(textFields: [UITextField!]){
@@ -37,16 +57,14 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             NSStrokeColorAttributeName: UIColor.blackColor(),
             NSForegroundColorAttributeName: UIColor.whiteColor(),
             NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-            NSStrokeWidthAttributeName : 4.0
+            NSStrokeWidthAttributeName : -4.0
         ]
         
         for textField in textFields{
-            print(textField.text)
-        //Configure and position the top textfield
-            
-            textField.textAlignment = .Center
+        //Configure and position the textFields:
             textField.delegate = self
             textField.defaultTextAttributes = memeTextAttributes
+            textField.textAlignment = .Center
         }
     }
     
@@ -85,8 +103,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         }
     }
     
-    //Select an image from the camera:
+
     @IBAction func pickImageFromCamera(sender: AnyObject) {
+        //Select an image from the camera:
         imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
@@ -99,10 +118,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         imageView.image = image
         
         //Enable share & cancel buttons once image is returned:
-        shareButton.enabled = true
+        shareButton.enabled = userCanSave()
+        saveButton.enabled = userCanSave()
         cancelButton.enabled = true
     }
-    
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         //dismiss viewcontroller
@@ -112,20 +131,23 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     //UITextFieldDelegate Methods:
     func textFieldDidBeginEditing(textField: UITextField) {
         selectedTextField = textField
-        textField.clearsOnBeginEditing = true
+        
+        //Center the cursor when editing:
+        textField.placeholder = nil
+        textField.text = ""
     }
     
-    //sets the TextField size:
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {
-        UIView.animateWithDuration(0.1, animations: {
-            textField.invalidateIntrinsicContentSize()
-        })
         return true
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         selectedTextField = nil
         configureTextFields([textField])
+        
+        //Enable save button if fields are filled:
+        saveButton.enabled = userCanSave()
+        
         textField.resignFirstResponder()
         return true
     }
@@ -133,6 +155,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     //Hide keyboard when view is tapped:
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
+        //Enable save button if fields are filled:
+        saveButton.enabled = userCanSave()
     }
     
     
@@ -170,42 +194,99 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         return keyboardSize.CGRectValue().height
     }
     
+    //Alert the user:
+    func alertUser(title: String! = "Title", message: String?, actions: [UIAlertAction]) {
+        let ac = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        for action in actions {
+            ac.addAction(action)
+        }
+        presentViewController(ac, animated: true, completion: nil)
+    }
+    
+    func clearMeme() {
+        imageView.image = nil
+        topText.text = nil
+        bottomText.text = nil
+    }
+    
     //Save the meme:
-    func save() {
+    @IBAction func save(sender: AnyObject) -> Void {
         //Create the meme and save it to our Meme Model:
         //TODO: setup checks to make sure that no objects are nil
-        let meme = Meme(topText: topText.text!, bottomText: bottomText.text!, originalImage: imageView.image, memedImage: memedImage)
-        print(meme.bottomText)
+        
+        //If all items are filled out:
+        if userCanSave() {
+            //If you are editing a meme, update it, if new, save it:
+            if userIsEditing {
+                if let editMeme = editMeme {
+                    editMeme.updateMeme(topText.text!, bottomText: bottomText.text!, originalImage: imageView.image!, memedImage: generateMemedImage())
+                }
+            } else {
+                let meme = Meme(topText: topText.text!, bottomText: bottomText.text!, originalImage: imageView.image!, memedImage: generateMemedImage())
+                meme.saveMeme()
+            }
+        } else {
+            let okAction = UIAlertAction(title: "Save", style: .Default, handler: { Void in
+                self.topText.text = ""
+                self.bottomText.text = ""
+                return
+            })
+            let editAction = UIAlertAction(title: "Edit", style: .Default, handler: nil)
+            
+            alertUser(message: "Your meme is missing something.", actions: [okAction, editAction])
+        }
+
+        // Add meme to Meme's array in the AppDelegate:
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func userCanSave() -> Bool {
+        if topText.text == nil || bottomText.text == nil || imageView.image == nil {
+            return false
+        } else {
+            return true
+        }
     }
     
     func generateMemedImage() -> UIImage {
-        //TODO: hide toolbars & Navbars
+        //Hide everything but the image:
+        navItemsHidden(areHidden: true)
+        
         //render view to an image:
         UIGraphicsBeginImageContext(self.view.frame.size)
         self.view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
         memedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        //TODO: Show toolbars and navbars:
+        //Show all views that were hidden:
+        navItemsHidden(areHidden: false)
         
         return memedImage
     }
     
-    @IBAction func shareTapped(sender: UIBarButtonItem) {
-        //TODO: provide share code
-        let imageToShare = generateMemedImage()
-        let activityItems = [imageToShare]
-        let ac = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-        
-        presentViewController(ac, animated: true, completion: {
-            self.save()
-            //self.dismissViewControllerAnimated(true, completion: nil)
-        })
-        
+    private func navItemsHidden(areHidden hide: Bool){
+        navigationController?.setNavigationBarHidden(hide, animated: false)
+        topToolbar.hidden = hide
+        bottomToolbar.hidden = hide
     }
     
-    @IBAction func cancelTapped(sender: UIBarButtonItem) {
-        //TODO: cancel sharing
+    @IBAction func didTapShare(sender: UIBarButtonItem) {
+        //Present the ActivityViewController Programmatically:
+        let ac = UIActivityViewController(activityItems: [generateMemedImage()], applicationActivities: nil)
+        ac.completionWithItemsHandler = { activity, success, items, error in
+            if success {
+                self.save(self)
+            }
+        }
+        presentViewController(ac, animated: true, completion: nil)
+    }
+    
+    @IBAction func didTapCancel(sender: UIBarButtonItem) {
+        if Meme.countMemes() == 0 {
+            clearMeme()
+        }else {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
     
 }
