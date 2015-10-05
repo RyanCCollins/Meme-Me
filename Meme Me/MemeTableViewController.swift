@@ -13,6 +13,7 @@ class MemeTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Add edit button
         navigationItem.leftBarButtonItem = editButtonItem()
     }
     
