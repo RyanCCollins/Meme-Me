@@ -99,7 +99,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             imagePickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
             imagePickerController.allowsEditing = false
             
-            self.presentViewController(imagePickerController, animated: true, completion: nil)
+            presentViewController(imagePickerController, animated: true, completion: nil)
         }
     }
     
@@ -109,12 +109,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
-        self.presentViewController(imagePickerController, animated: true, completion: nil)
+        presentViewController(imagePickerController, animated: true, completion: nil)
     }
     
     //UIImagePickerDelegate methods:
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
         imageView.image = image
         
         //Enable share & cancel buttons once image is returned:
@@ -125,7 +125,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         //dismiss viewcontroller
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     //UITextFieldDelegate Methods:
@@ -154,7 +154,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     //Hide keyboard when view is tapped:
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        self.view.endEditing(true)
+        view.endEditing(true)
         //Enable save button if fields are filled:
         saveButton.enabled = userCanSave()
     }
@@ -162,16 +162,16 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     func keyboardWillShow(notification: NSNotification) {
         //slide the view up when keyboard appears, using notifications:
-        if selectedTextField == bottomText && self.view.frame.origin.y == 0.0 {
-            self.view.frame.origin.y -= getKeyboardHeight(notification)
+        if selectedTextField == bottomText && view.frame.origin.y == 0.0 {
+            view.frame.origin.y -= getKeyboardHeight(notification)
         }
         
     }
     
     func keyboardWillHide(notification: NSNotification) {
         //Reset view origin when keyboard hides:
-        if -self.view.frame.origin.y > 0 {
-            self.view.frame.origin.y = 0
+        if -view.frame.origin.y > 0 {
+            view.frame.origin.y = 0
         }
     }
     
@@ -237,7 +237,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         }
 
         // Add meme to Meme's array in the AppDelegate:
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     func userCanSave() -> Bool {
@@ -253,8 +253,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         navItemsHidden(areHidden: true)
         
         //render view to an image:
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        self.view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.drawViewHierarchyInRect(view.frame, afterScreenUpdates: true)
         memedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
@@ -285,7 +285,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         if Meme.countMemes() == 0 {
             clearMeme()
         }else {
-            self.dismissViewControllerAnimated(true, completion: nil)
+            dismissViewControllerAnimated(true, completion: nil)
         }
     }
     
