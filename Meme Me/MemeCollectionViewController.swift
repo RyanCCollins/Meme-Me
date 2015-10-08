@@ -19,7 +19,7 @@ class MemeCollectionViewController: UICollectionViewController {
         
         //Define control flow characteristics:
         let space: CGFloat = 3.0
-        let dimension = (self.view.frame.size.width - (2 * space)) / 3.0
+        let dimension = (view.frame.size.width - (2 * space)) / 3.0
         
         //Set up CollectionView Control flow properties:
         flowLayout.minimumInteritemSpacing = space
@@ -41,9 +41,9 @@ class MemeCollectionViewController: UICollectionViewController {
     }
     
     @IBAction func didPressAdd(sender: AnyObject){
-        let object: AnyObject = self.storyboard!.instantiateViewControllerWithIdentifier("MemeEditorViewController")
+        let object: AnyObject = storyboard!.instantiateViewControllerWithIdentifier("MemeEditorViewController")
         let editMemeVC = object as! MemeEditorViewController
-        self.presentViewController(editMemeVC, animated: true, completion: {
+        presentViewController(editMemeVC, animated: true, completion: {
             editMemeVC.cancelButton.enabled = true
             editMemeVC.shareButton.enabled = true
         })
