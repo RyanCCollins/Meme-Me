@@ -95,14 +95,7 @@ class MemeTableViewController: UITableViewController {
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showDetail" {
-            let destinationVC = segue.destinationViewController as! MemeDetailViewController
-            if let meme = Meme.getMemeAtIndex(selectedIndex) {
-                destinationVC.meme = meme
-            }
-        }
-    }
+
     
     //Methods for editing the tableView:
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -118,6 +111,15 @@ class MemeTableViewController: UITableViewController {
         //Switch bar button item between Edit and Done:
         if !tableView.editing {
             tableView.setEditing(editing, animated: animated)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showDetail" {
+            let destinationVC = segue.destinationViewController as! MemeDetailViewController
+            if let meme = Meme.getMemeAtIndex(selectedIndex) {
+                destinationVC.meme = meme
+            }
         }
     }
 }
