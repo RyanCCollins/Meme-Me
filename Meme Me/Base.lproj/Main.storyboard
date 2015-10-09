@@ -423,10 +423,10 @@
             </objects>
             <point key="canvasLocation" x="352" y="932"/>
         </scene>
-        <!--View Controller-->
+        <!--Text Size Popover View Controller-->
         <scene sceneID="wdw-kI-p5k">
             <objects>
-                <viewController id="U5h-im-qY5" sceneMemberID="viewController">
+                <viewController id="U5h-im-qY5" customClass="TextSizePopoverViewController" customModule="Meme_Me" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HRD-Qb-QNn"/>
                         <viewControllerLayoutGuide type="bottom" id="G25-Pv-cPv"/>

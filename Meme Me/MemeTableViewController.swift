@@ -21,8 +21,9 @@ class MemeTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         //If there are no saved memes, present the meme creator:
         if Meme.countMemes() == 0 {
-            let object: AnyObject = storyboard!.instantiateViewControllerWithIdentifier("MemeEditorViewController")
+            let object: AnyObject = self.storyboard!.instantiateViewControllerWithIdentifier("MemeEditorViewController")
             let memeCreatorVC = object as! MemeEditorViewController
+            memeCreatorVC.userIsEditing = false
             presentViewController(memeCreatorVC, animated: false, completion: nil)
         }
         navigationItem.leftBarButtonItem?.enabled = Meme.countMemes() > 0
@@ -33,7 +34,7 @@ class MemeTableViewController: UITableViewController {
     //Present the meme editor empty:
     @IBAction func didPressAdd(sender: AnyObject) {
         //Segue to the new meme view programmatically:
-        let object: AnyObject = storyboard!.instantiateViewControllerWithIdentifier("MemeEditorViewController")
+        let object: AnyObject = self.storyboard!.instantiateViewControllerWithIdentifier("MemeEditorViewController")
         let newMemeVC = object as! MemeEditorViewController
         presentViewController(newMemeVC, animated: true, completion: {
             newMemeVC.cancelButton.enabled = true

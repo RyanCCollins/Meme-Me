@@ -31,11 +31,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     var imagePickerController: UIImagePickerController!
     var memedImage: UIImage!
     var editMeme: Meme?
-    var selectedTextField: UITextField!
+    var selectedTextField: UITextField?
     var userIsEditing = false
-    
-
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
