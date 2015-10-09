@@ -24,14 +24,18 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var topToolbar: UIToolbar!
     @IBOutlet weak var bottomToolbar: UIToolbar!
-    
     @IBOutlet weak var saveButton: UIBarButtonItem!
+
     
+    //Define Global Vars:
     var imagePickerController: UIImagePickerController!
     var memedImage: UIImage!
-    var selectedTextField: UITextField!
     var editMeme: Meme?
+    var selectedTextField: UITextField!
     var userIsEditing = false
+    
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
