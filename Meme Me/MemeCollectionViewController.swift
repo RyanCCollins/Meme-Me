@@ -25,6 +25,13 @@ class MemeCollectionViewController: UICollectionViewController {
         flowLayout.minimumInteritemSpacing = space
         flowLayout.minimumLineSpacing = space
         flowLayout.itemSize = CGSizeMake(dimension, dimension)
+        
+        //If there are no saved memes, present the meme creator:
+        if Meme.countMemes() == 0 {
+            let object: AnyObject = self.storyboard!.instantiateViewControllerWithIdentifier("MemeEditorViewController")
+            let memeCreatorVC = object as! MemeEditorViewController
+            presentViewController(memeCreatorVC, animated: false, completion: nil)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {

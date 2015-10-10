@@ -14,7 +14,7 @@ enum ButtonState {
     case Editing
 }
 
-class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UIPopoverPresentationControllerDelegate {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
@@ -25,7 +25,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var topToolbar: UIToolbar!
     @IBOutlet weak var bottomToolbar: UIToolbar!
     @IBOutlet weak var saveButton: UIBarButtonItem!
-
     
     //Define Global Vars:
     var imagePickerController: UIImagePickerController!
@@ -288,6 +287,19 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         }else {
             dismissViewControllerAnimated(true, completion: nil)
         }
+    }
+    
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "popoverSegue" {
+            let popoverVC = segue.destinationViewController as! TextSizePopoverViewController
+            popoverVC.modalPresentationStyle = UIModalPresentationStyle.Popover
+            popoverVC.popoverPresentationController!.delegate = self
+        }
+    }
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.None
     }
     
 }

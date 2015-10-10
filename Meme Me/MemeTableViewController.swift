@@ -23,7 +23,6 @@ class MemeTableViewController: UITableViewController {
         if Meme.countMemes() == 0 {
             let object: AnyObject = self.storyboard!.instantiateViewControllerWithIdentifier("MemeEditorViewController")
             let memeCreatorVC = object as! MemeEditorViewController
-            memeCreatorVC.userIsEditing = false
             presentViewController(memeCreatorVC, animated: false, completion: nil)
         }
         navigationItem.leftBarButtonItem?.enabled = Meme.countMemes() > 0
@@ -92,7 +91,7 @@ class MemeTableViewController: UITableViewController {
         if !tableView.editing {
             selectedIndex = indexPath.row
             print(selectedIndex)
-            performSegueWithIdentifier("showDetail", sender: self)
+            self.performSegueWithIdentifier("showDetail", sender: self)
         }
     }
     

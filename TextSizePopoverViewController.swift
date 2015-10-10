@@ -2,16 +2,17 @@
 //  TextSizePopoverViewController.swift
 //  Meme Me
 //
-//  Created by Ryan Collins on 10/9/15.
+//  Created by Ryan Collins on 10/10/15.
 //  Copyright © 2015 Tech Rapport. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 class TextSizePopoverViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    @IBOutlet weak var textSizeLabel: UILabel!
     
+    @IBAction func didChangeTextSize(sender: AnyObject) {
+    }
     
 }
