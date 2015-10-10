@@ -368,9 +368,22 @@
                                     </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="ccn-xf-jjZ"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="2jx-Yr-Pe2"/>
+                                    <barButtonItem style="plain" id="vwj-oC-vYb">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wJt-WB-mAo">
+                                            <rect key="frame" x="483" y="-10" width="64" height="64"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
+                                            <state key="normal" image="colorPicker"/>
+                                        </button>
+                                        <connections>
+                                            <segue destination="lCi-1O-blO" kind="popoverPresentation" identifier="colorPickerPopoverSegue" popoverAnchorBarButtonItem="vwj-oC-vYb" id="Ypm-bF-htE">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem title="AA" id="xUj-zm-YJ5">
                                         <connections>
-                                            <segue destination="U5h-im-qY5" kind="popoverPresentation" identifier="popoverSegue" popoverAnchorBarButtonItem="xUj-zm-YJ5" id="FFs-UW-xS8">
+                                            <segue destination="U5h-im-qY5" kind="popoverPresentation" identifier="fontPopoverSegue" popoverAnchorBarButtonItem="xUj-zm-YJ5" id="FFs-UW-xS8">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                             </segue>
                                         </connections>
@@ -432,7 +445,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="150" height="70"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="40" minimumValue="12" maximumValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="rSn-R3-xT5">
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="40" minimumValue="12" maximumValue="80" translatesAutoresizingMaskIntoConstraints="NO" id="rSn-R3-xT5">
                                 <rect key="frame" x="28" y="21" width="94" height="29"/>
                                 <animations/>
                                 <connections>
@@ -483,9 +496,34 @@
             </objects>
             <point key="canvasLocation" x="352" y="1590"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="YLc-Q5-41y">
+            <objects>
+                <viewController autoresizesArchivedViewToFullSize="NO" id="lCi-1O-blO" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2U8-8Z-1Wq"/>
+                        <viewControllerLayoutGuide type="bottom" id="iNf-Su-uw4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Qwu-eH-iyH">
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="150" height="150"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="150" height="150"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5dB-tn-ZfK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="722" y="1526"/>
+        </scene>
     </scenes>
     <resources>
         <image name="collection" width="30" height="30"/>
+        <image name="colorPicker" width="50" height="50"/>
         <image name="minus" width="44" height="48"/>
         <image name="table" width="30" height="30"/>
     </resources>

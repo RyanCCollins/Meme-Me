@@ -45,7 +45,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             bottomText.text = editMeme.bottomText
             imageView.image = editMeme.originalImage
             userIsEditing = true
-            configureTextFields(textFieldArray, fontColor: editMeme.fontAttributes.fontColor, fontSize: editMeme.fontAttributes.fontSize)
+            fontAttributes = editMeme.fontAttributes
+            configureTextFields(textFieldArray, fontColor: editMeme.fontAttributes.fontColor, fontSize:fontAttributes.fontSize)
         } else {
             fontAttributes = FontAttributes()
             configureTextFields(textFieldArray)
@@ -307,8 +308,15 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     //# -- Mark: present various popover Views:
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "popoverSegue" {
+        if segue.identifier == "fontPopoverSegue" {
             let popoverVC = segue.destinationViewController as! TextSizePopoverViewController
+            popoverVC.modalPresentationStyle = UIModalPresentationStyle.Popover
+            popoverVC.popoverPresentationController!.delegate = self
+            popoverVC.fontAttributes = fontAttributes
+        }
+        
+        if segue.identifier == "colorPickerPopoverSegue" {
+            let popoverVC = segue.destinationViewController as! ColorPickerPopoverViewController
             popoverVC.modalPresentationStyle = UIModalPresentationStyle.Popover
             popoverVC.popoverPresentationController!.delegate = self
             popoverVC.fontAttributes = fontAttributes

@@ -6,7 +6,6 @@
 //  Copyright © 2015 Tech Rapport. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 class TextSizePopoverViewController: UIViewController {
@@ -17,12 +16,12 @@ class TextSizePopoverViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //Set textSizeLabel:
-        textSizeLabel.text? = String(fontAttributes.fontSize)
+        textSizeLabel.text = String(fontAttributes.fontSize)
     }
     
     @IBAction func didChangeTextSize(sender: UIStepper) {
         let fontSize = CGFloat(sender.value)
-        print(fontSize)
+        fontAttributes.fontSize = fontSize
         textSizeLabel.text = String(fontAttributes.fontSize)
         let parent = self.presentingViewController as! MemeEditorViewController
         parent.fontAttributes.fontSize = fontSize
