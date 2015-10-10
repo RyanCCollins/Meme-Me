@@ -423,7 +423,6 @@
         <!--Text Size Popover View Controller-->
         <scene sceneID="wdw-kI-p5k">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8fO-6g-LQ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController autoresizesArchivedViewToFullSize="NO" modalTransitionStyle="crossDissolve" modalPresentationStyle="formSheet" id="U5h-im-qY5" customClass="TextSizePopoverViewController" customModule="Meme_Me" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HRD-Qb-QNn"/>
@@ -480,6 +479,7 @@
                         <outlet property="textSizeLabel" destination="WMJ-qn-Mcn" id="tWe-q8-ics"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8fO-6g-LQ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="352" y="1590"/>
         </scene>

@@ -13,12 +13,20 @@ class Meme: NSObject {
     var bottomText: String!
     var originalImage: UIImage!
     var memedImage: UIImage!
+    var fontAttributes: FontAttributes!
     
-    init(topText: String, bottomText: String, originalImage: UIImage, memedImage: UIImage) {
+//    var fontSize: CGFloat!
+//    var fontColor: UIColor!
+//    var borderColor: UIColor!
+    
+    init(topText: String, bottomText: String, originalImage: UIImage, memedImage: UIImage, fontAttributes: FontAttributes) {
         self.topText = topText
         self.bottomText = bottomText
         self.originalImage = originalImage
         self.memedImage = memedImage
+        
+        //Define font attributes:
+        self.fontAttributes = fontAttributes
     }
     
     //Function to save the meme:
@@ -27,11 +35,19 @@ class Meme: NSObject {
     }
     
     //Function to update an existing meme:
-    func updateMeme(topText: String, bottomText: String, originalImage:UIImage, memedImage: UIImage) {
+    func updateMeme(topText: String, bottomText: String, originalImage:UIImage, memedImage: UIImage, fontAttributes: FontAttributes) {
         self.topText = topText
         self.bottomText = bottomText
         self.originalImage = originalImage
         self.memedImage = memedImage
+        
+        self.fontAttributes = fontAttributes
+    }
+    
+    //Update font traits:
+    func changeFont(fontSize: CGFloat, fontColor: UIColor) {
+        fontAttributes.fontColor = fontColor
+        fontAttributes.fontSize = fontSize
     }
     
     //Collect all memes into an array:
@@ -60,5 +76,19 @@ class Meme: NSObject {
         if index >= 0 {
             Meme.getMemeStorage().memes.removeAtIndex(index)
         }
+    }
+}
+
+struct FontAttributes {
+    var fontSize: CGFloat!
+    var fontName: String!
+    var fontColor: UIColor
+    var borderColor: UIColor!
+
+    init(fontSize: CGFloat = 40.0, fontName: String = "HelveticaNeue-CondensedBlack", fontColor: UIColor = UIColor.whiteColor(), borderColor: UIColor = UIColor.blackColor()) {
+        self.fontSize = fontSize
+        self.fontName = fontName
+        self.fontColor = fontColor
+        self.borderColor = borderColor
     }
 }

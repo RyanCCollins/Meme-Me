@@ -32,11 +32,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     var editMeme: Meme?
     var selectedTextField: UITextField?
     var userIsEditing = false
-    var textSize = 40
-    var memeTextAttributes: [String:AnyObject]
+    var fontAttributes: FontAttributes!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Congifure the UI
+        let textFieldArray = [topText, bottomText]
         
         //Set the meme to edit if there is an editMeme:
         if let editMeme = editMeme {
@@ -44,29 +45,41 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             bottomText.text = editMeme.bottomText
             imageView.image = editMeme.originalImage
             userIsEditing = true
+            configureTextFields(textFieldArray, fontColor: editMeme.fontAttributes.fontColor, fontSize: editMeme.fontAttributes.fontSize)
+        } else {
+            fontAttributes = FontAttributes()
+            configureTextFields(textFieldArray)
         }
         
-        //Congifure the UI
-        let textFieldArray = [topText, bottomText]
-        //Define Default Text Attributes:
-        memeTextAttributes = [
-            NSStrokeColorAttributeName: UIColor.blackColor(),
-            NSForegroundColorAttributeName: UIColor.whiteColor(),
-            NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-            NSStrokeWidthAttributeName : -4.0
-        ]
-        configureTextFields(textFieldArray, textAttributes: memeTextAttributes)
+        //Hide/Show the buttons:
         shareButton.enabled = userIsEditing
         cancelButton.enabled = userIsEditing
         saveButton.enabled = userIsEditing
     }
     
-    func configureTextFields(textFields: [UITextField!], textAttributes: [String:AnyObject]){
+    func changeTextFieldFont() {
+        //Configure font of text field
+        topText.textColor = fontAttributes.fontColor
+        bottomText.textColor = fontAttributes.fontColor
+        topText.font?.fontWithSize(fontAttributes.fontSize)
+        bottomText.font?.fontWithSize(fontAttributes.fontSize)
+    }
+    
+    func configureTextFields(textFields: [UITextField!], fontColor: UIColor = UIColor.whiteColor(), fontSize: CGFloat = 40.0){
         for textField in textFields{
         //Configure and position the textFields:
             textField.delegate = self
-            textField.defaultTextAttributes = memeTextAttributes
+            //textField.defaultTextAttributes = memeTextAttributes
             textField.textAlignment = .Center
+            //Define Default Text Attributes:
+            
+            let memeTextAttributes = [
+                NSStrokeColorAttributeName: UIColor.blackColor(),
+                NSForegroundColorAttributeName: fontColor,
+                NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: fontSize)!,
+                NSStrokeWidthAttributeName : -4.0
+            ]
+            textField.defaultTextAttributes = memeTextAttributes
         }
     }
     
@@ -221,10 +234,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             //If you are editing a meme, update it, if new, save it:
             if userIsEditing {
                 if let editMeme = editMeme {
-                    editMeme.updateMeme(topText.text!, bottomText: bottomText.text!, originalImage: imageView.image!, memedImage: generateMemedImage())
+                    editMeme.updateMeme(topText.text!, bottomText: bottomText.text!, originalImage: imageView.image!, memedImage: generateMemedImage(), fontAttributes: fontAttributes)
                 }
             } else {
-                let meme = Meme(topText: topText.text!, bottomText: bottomText.text!, originalImage: imageView.image!, memedImage: generateMemedImage())
+                let meme = Meme(topText: topText.text!, bottomText: bottomText.text!, originalImage: imageView.image!, memedImage: generateMemedImage(), fontAttributes: fontAttributes)
                 meme.saveMeme()
             }
         } else {
@@ -298,18 +311,14 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             let popoverVC = segue.destinationViewController as! TextSizePopoverViewController
             popoverVC.modalPresentationStyle = UIModalPresentationStyle.Popover
             popoverVC.popoverPresentationController!.delegate = self
-            popoverVC.textSize = textSize
+            popoverVC.fontAttributes = fontAttributes
         }
     }
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.None
     }
-    
-    //Update the font size of both text fields:
-    func updateFont(toSize: ) {
-        
-    }
+
     
 }
 
