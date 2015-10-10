@@ -32,6 +32,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     var editMeme: Meme?
     var selectedTextField: UITextField?
     var userIsEditing = false
+    var textSize = 40
+    var memeTextAttributes: [String:AnyObject]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,20 +48,20 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         //Congifure the UI
         let textFieldArray = [topText, bottomText]
-        configureTextFields(textFieldArray)
-        shareButton.enabled = userIsEditing
-        cancelButton.enabled = userIsEditing
-        saveButton.enabled = userIsEditing
-    }
-    
-    func configureTextFields(textFields: [UITextField!]){
-        let memeTextAttributes = [
+        //Define Default Text Attributes:
+        memeTextAttributes = [
             NSStrokeColorAttributeName: UIColor.blackColor(),
             NSForegroundColorAttributeName: UIColor.whiteColor(),
             NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
             NSStrokeWidthAttributeName : -4.0
         ]
-        
+        configureTextFields(textFieldArray, textAttributes: memeTextAttributes)
+        shareButton.enabled = userIsEditing
+        cancelButton.enabled = userIsEditing
+        saveButton.enabled = userIsEditing
+    }
+    
+    func configureTextFields(textFields: [UITextField!], textAttributes: [String:AnyObject]){
         for textField in textFields{
         //Configure and position the textFields:
             textField.delegate = self
@@ -289,17 +291,24 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         }
     }
     
-    
+    //# -- Mark: present various popover Views:
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "popoverSegue" {
             let popoverVC = segue.destinationViewController as! TextSizePopoverViewController
             popoverVC.modalPresentationStyle = UIModalPresentationStyle.Popover
             popoverVC.popoverPresentationController!.delegate = self
+            popoverVC.textSize = textSize
         }
     }
+    
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.None
+    }
+    
+    //Update the font size of both text fields:
+    func updateFont(toSize: ) {
+        
     }
     
 }

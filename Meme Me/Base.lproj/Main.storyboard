@@ -476,6 +476,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="150" height="70"/>
                     <connections>
+                        <outlet property="stepper" destination="rSn-R3-xT5" id="4hE-7s-ibS"/>
                         <outlet property="textSizeLabel" destination="WMJ-qn-Mcn" id="tWe-q8-ics"/>
                     </connections>
                 </viewController>
