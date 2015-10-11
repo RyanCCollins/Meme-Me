@@ -313,7 +313,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         if segue.identifier == "colorPickerPopoverSegue" {
             //TODO: Add color picker:
-                        print("Pressed")
+
             let popoverVC = segue.destinationViewController as! SwiftColorPickerViewController
             popoverVC.delegate = self
             popoverVC.modalPresentationStyle = UIModalPresentationStyle.Popover

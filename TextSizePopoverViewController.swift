@@ -18,11 +18,11 @@ class TextSizePopoverViewController: UIViewController, UIPickerViewDataSource, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         //Fill array with font names:
         for family in fontFamily {
             pickerData.appendContentsOf((UIFont.fontNamesForFamilyName(family)))
         }
-        print(pickerData)
         
         //Set initial slider value:
         fontSizeSlider.value = Float(fontAttributes.fontSize)
@@ -35,6 +35,23 @@ class TextSizePopoverViewController: UIViewController, UIPickerViewDataSource, U
         let index = pickerData.indexOf(fontAttributes.fontName)
         if let index = index {
             fontPicker.selectRow(index, inComponent: 0, animated: true)
+        }
+    }
+    
+    //Set as first responder:
+    override func viewDidAppear(animated: Bool) {
+        becomeFirstResponder()
+    }
+    
+    override func canBecomeFirstResponder() -> Bool {
+        return true
+    }
+    
+    //Handle motion events:
+    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
+        if motion == UIEventSubtype.MotionShake {
+            NSNotificationCenter.defaultCenter().postNotificationName("shake", object: self)
+            print("shake!")
         }
     }
     
