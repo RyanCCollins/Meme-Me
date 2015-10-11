@@ -39,6 +39,11 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         //Congifure the UI
         let textFieldArray = [topText, bottomText]
         
+        //Set delegate of text fields:
+        for textField in textFieldArray {
+            textField.delegate = self
+        }
+        
         //Set the meme to edit if there is an editMeme:
         if let editMeme = editMeme {
             topText.text = editMeme.topText
@@ -60,22 +65,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         saveButton.enabled = userIsEditing
     }
     
-    func changeTextFieldFont() {
-        //Configure font of text field
-        topText.textColor = fontAttributes.fontColor
-        bottomText.textColor = fontAttributes.fontColor
-        topText.font?.fontWithSize(fontAttributes.fontSize)
-        bottomText.font?.fontWithSize(fontAttributes.fontSize)
-    }
-    
     func configureTextFields(textFields: [UITextField!]){
         for textField in textFields{
-        //Configure and position the textFields:
-            textField.delegate = self
-            //textField.defaultTextAttributes = memeTextAttributes
-            textField.textAlignment = .Center
-            //Define Default Text Attributes:
             
+            //Define Default Text Attributes:
             let memeTextAttributes = [
                 NSStrokeColorAttributeName: UIColor.blackColor(),
                 NSForegroundColorAttributeName: fontAttributes.fontColor,
@@ -83,6 +76,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
                 NSStrokeWidthAttributeName : -4.0
             ]
             textField.defaultTextAttributes = memeTextAttributes
+            textField.textAlignment = .Center
         }
     }
     
@@ -175,6 +169,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         view.endEditing(true)
         //Enable save button if fields are filled:
         saveButton.enabled = userCanSave()
+        configureTextFields([topText, bottomText])
     }
     
     
@@ -335,7 +330,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     //# -- Mark: SwiftColorPickerDelegate function:
     func colorSelectionChanged(selectedColor color: UIColor) {
         fontAttributes.fontColor = color
-        changeTextFieldFont()
+        configureTextFields([topText, bottomText])
     }
 }
 
