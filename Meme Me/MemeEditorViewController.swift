@@ -124,7 +124,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         presentViewController(imagePickerController, animated: true, completion: nil)
     }
     
-    //UIImagePickerDelegate methods:
+    //# -- MARK: UIImagePickerDelegate methods:
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         dismissViewControllerAnimated(true, completion: nil)
         imageView.image = image
@@ -140,13 +140,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    //UITextFieldDelegate Methods:
+    //# -- MARK: UITextFieldDelegate Methods:
     func textFieldDidBeginEditing(textField: UITextField) {
         selectedTextField = textField
-        
-        //Center the cursor when editing:
-        textField.placeholder = nil
-        textField.text = ""
     }
     
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {
