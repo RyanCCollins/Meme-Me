@@ -86,8 +86,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(.Camera)
         
-        //Subscribe to keyboard notifications:
+        //Subscribe to keyboard & shake notifications:
         subscribeToKeyboardNotification()
+        subscribeToShakeNotifications()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -95,6 +96,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         //unsubscribe to keyboard notification:
         unsubsribeToKeyboardNotification()
+        unsubsribeToShakeNotification()
     }
     
     override func didReceiveMemoryWarning() {
@@ -330,6 +332,54 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     func colorSelectionChanged(selectedColor color: UIColor) {
         fontAttributes.fontColor = color
         configureTextFields([topText, bottomText])
+    }
+    
+    //#--MARK: Respond to shake notification:
+    func alertForReset() {
+        let ac = UIAlertController(title: "Reset?", message: "Are you sure you want to reset the font size and type?", preferredStyle: .Alert)
+        let resetAction = UIAlertAction(title: "Reset", style: .Default, handler: { Void in
+            //Reset to default values and update the Meme's font:
+            self.setFontAttributeDefaults(40.0, fontName: "HelveticaNeue-CondensedBlack", fontColor: UIColor.whiteColor())
+            self.updateMemeFont()
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        ac.addAction(resetAction)
+        ac.addAction(cancelAction)
+        presentViewController(ac, animated: true, completion: nil)
+    }
+    
+    func updateMemeFont(){
+        //update the MemeEditor font and reconfigure the view:
+        configureTextFields([topText, bottomText])
+    }
+    
+    func setFontAttributeDefaults(fontSize: CGFloat = 40.0, fontName: String = "HelveticaNeue-CondensedBlack", fontColor: UIColor = UIColor.whiteColor()){
+        fontAttributes.fontSize = CGFloat(fontSize)
+        fontAttributes.fontName = fontName
+        fontAttributes.fontColor = fontColor
+    }
+}
+
+extension UIViewController {
+    //#--MARK: Subsribe to shake notifications:
+    func subscribeToShakeNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "alertForReset", name: "shake", object: nil)
+    }
+    
+    func unsubsribeToShakeNotification() {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "shake", object: nil)
+    }
+    
+    override public func canBecomeFirstResponder() -> Bool {
+        return true
+    }
+    
+    //Handle motion events:
+    override public func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
+        if motion == UIEventSubtype.MotionShake {
+            NSNotificationCenter.defaultCenter().postNotificationName("shake", object: self)
+        }
     }
 }
 

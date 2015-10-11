@@ -19,9 +19,6 @@ class TextSizePopoverViewController: UIViewController, UIPickerViewDataSource, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Subscribe to shake notification:
-        subscribeToShakeNotifications()
-        
         //Fill array with font names:
         for family in fontFamily {
             pickerData.appendContentsOf((UIFont.fontNamesForFamilyName(family)))
@@ -32,18 +29,15 @@ class TextSizePopoverViewController: UIViewController, UIPickerViewDataSource, U
         fontPicker.delegate = self
         
         //Set default row selection of picker:
-        setDefaultValues(Float(fontAttributes.fontSize), fontName: fontAttributes.fontName)
+        setFontAttributeDefaults(fontAttributes.fontSize, fontName: fontAttributes.fontName, fontColor: fontAttributes.fontColor)
+        setValuesOfUIElementsForFontAttributes()
     }
     
-    func setDefaultValues(fontSize: Float, fontName: String){
-        fontSizeSlider.value = fontSize
-        fontAttributes.fontSize = CGFloat(fontSize)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
-        fontAttributes.fontName = fontName
-        let index = pickerData.indexOf(fontAttributes.fontName)
-        if let index = index {
-            fontPicker.selectRow(index, inComponent: 0, animated: true)
-        }
+        //Subscribe to shake notification:
+        subscribeToShakeNotifications()
     }
     
     //Set as first responder:
@@ -56,33 +50,13 @@ class TextSizePopoverViewController: UIViewController, UIPickerViewDataSource, U
         unsubsribeToShakeNotification()
     }
     
-    //#--MARK: Subsribe to shake notifications:
-    func subscribeToShakeNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "alertForReset", name: "shake", object: nil)
-    }
-    
-    func unsubsribeToShakeNotification() {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "shake", object: nil)
-    }
-    
-    override func canBecomeFirstResponder() -> Bool {
-        return true
-    }
-    
-    //Handle motion events:
-    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
-        if motion == UIEventSubtype.MotionShake {
-            NSNotificationCenter.defaultCenter().postNotificationName("shake", object: self)
-            print("shake!")
-        
-        }
-    }
-    
+    //#--MARK: Alert and reset the UI if user selects reset:
     func alertForReset() {
         let ac = UIAlertController(title: "Reset?", message: "Are you sure you want to reset the font size and type?", preferredStyle: .Alert)
         let resetAction = UIAlertAction(title: "Reset", style: .Default, handler: { Void in
             //Reset to default values and update the Meme's font:
-            self.setDefaultValues(40.0, fontName: "HelveticaNeue-CondensedBlack")
+            self.setFontAttributeDefaults(40.0, fontName: "HelveticaNeue-CondensedBlack")
+            self.setValuesOfUIElementsForFontAttributes()
             self.updateMemeFont()
         })
         
@@ -91,7 +65,31 @@ class TextSizePopoverViewController: UIViewController, UIPickerViewDataSource, U
         ac.addAction(cancelAction)
         presentViewController(ac, animated: true, completion: nil)
     }
+    
+    func setFontAttributeDefaults(fontSize: CGFloat = 40.0, fontName: String = "HelveticaNeue-CondensedBlack", fontColor: UIColor = UIColor.whiteColor()){
+        fontAttributes.fontSize = fontSize
+        fontAttributes.fontName = fontName
+        fontAttributes.fontColor = fontColor
+    }
+    
+    func setValuesOfUIElementsForFontAttributes() {
+        //Set Slider:
+        fontSizeSlider.value = Float(fontAttributes.fontSize)
+        
+        //Set picker:
+        let index = pickerData.indexOf(fontAttributes.fontName)
+        if let index = index {
+            fontPicker.selectRow(index, inComponent: 0, animated: true)
+        }
+    }
 
+    func updateMemeFont(){
+        //update the MemeEditor font and reconfigure the view:
+        let parent = presentingViewController as! MemeEditorViewController
+        parent.fontAttributes.fontSize = fontAttributes.fontSize
+        parent.fontAttributes.fontName = fontAttributes.fontName
+        parent.configureTextFields([parent.topText, parent.bottomText])
+    }
     
     @IBAction func didChangeSlider(sender: UISlider) {
         //Cast value of font slider to CGFloat:
@@ -99,14 +97,6 @@ class TextSizePopoverViewController: UIViewController, UIPickerViewDataSource, U
         fontAttributes.fontSize = fontSize
         
         updateMemeFont()
-    }
-    
-    func updateMemeFont(){
-        //update the MemeEditor font and reconfigure the view:
-        let parent = presentingViewController as! MemeEditorViewController
-        parent.fontAttributes.fontSize = fontAttributes.fontSize
-        parent.fontAttributes.fontName = fontAttributes.fontName
-        parent.configureTextFields([parent.topText, parent.bottomText])
     }
     
     //#-- MARK: Picker Delegate and Data Source methods:
