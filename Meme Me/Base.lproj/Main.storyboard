@@ -378,14 +378,14 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="d94-pi-5TG"/>
-                                    <barButtonItem title="Item" systemItem="save" id="lDG-it-A6p">
-                                        <connections>
-                                            <action selector="save:" destination="BYZ-38-t0r" id="645-x3-4Qe"/>
-                                        </connections>
-                                    </barButtonItem>
                                     <barButtonItem systemItem="cancel" id="vZX-Pm-MrN">
                                         <connections>
                                             <action selector="didTapCancel:" destination="BYZ-38-t0r" id="TyU-To-d5s"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Item" systemItem="save" id="lDG-it-A6p">
+                                        <connections>
+                                            <action selector="save:" destination="BYZ-38-t0r" id="645-x3-4Qe"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -442,53 +442,69 @@
                         <viewControllerLayoutGuide type="bottom" id="G25-Pv-cPv"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="45O-RG-T4s">
-                        <rect key="frame" x="0.0" y="0.0" width="150" height="70"/>
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="40" minimumValue="12" maximumValue="80" translatesAutoresizingMaskIntoConstraints="NO" id="rSn-R3-xT5">
-                                <rect key="frame" x="28" y="21" width="94" height="29"/>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dA6-0K-l9b">
+                                <rect key="frame" x="16" y="8" width="268" height="236"/>
                                 <animations/>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UF9-96-s0K">
+                                <rect key="frame" x="0.0" y="252" width="26" height="40"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="40" minValue="12" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="jGb-kw-eaa">
+                                <rect key="frame" x="32" y="247" width="236" height="41"/>
+                                <animations/>
+                                <color key="minimumTrackTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="maximumTrackTintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="thumbTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <action selector="didChangeTextSize:" destination="U5h-im-qY5" eventType="valueChanged" id="jxh-MP-NFa"/>
+                                    <action selector="didChangeSlider:" destination="U5h-im-qY5" eventType="valueChanged" id="N5u-SO-NaU"/>
                                 </connections>
-                            </stepper>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zlu-ar-Gi0">
-                                <rect key="frame" x="28" y="0.0" width="95" height="21"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text Size:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tqR-ms-30B">
-                                        <rect key="frame" x="0.0" y="0.0" width="74" height="21"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="40" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WMJ-qn-Mcn">
-                                        <rect key="frame" x="74" y="0.0" width="21" height="21"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcA-mt-2Af">
+                                <rect key="frame" x="274" y="252" width="26" height="40"/>
                                 <animations/>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="3F6-SZ-Eyg"/>
+                                    <constraint firstAttribute="width" constant="26" id="cv3-lE-QS1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="30"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <constraints>
-                            <constraint firstItem="zlu-ar-Gi0" firstAttribute="centerX" secondItem="45O-RG-T4s" secondAttribute="centerX" id="22Y-jn-Mbx"/>
-                            <constraint firstItem="rSn-R3-xT5" firstAttribute="centerY" secondItem="45O-RG-T4s" secondAttribute="centerY" id="SV0-6X-gQD"/>
-                            <constraint firstItem="zlu-ar-Gi0" firstAttribute="top" secondItem="HRD-Qb-QNn" secondAttribute="bottom" id="UKe-PX-AEv"/>
-                            <constraint firstItem="rSn-R3-xT5" firstAttribute="centerX" secondItem="45O-RG-T4s" secondAttribute="centerX" id="wwg-0M-mMb"/>
+                            <constraint firstItem="G25-Pv-cPv" firstAttribute="top" secondItem="UF9-96-s0K" secondAttribute="bottom" constant="8" id="7qQ-RW-RWy"/>
+                            <constraint firstItem="G25-Pv-cPv" firstAttribute="top" secondItem="jGb-kw-eaa" secondAttribute="bottom" constant="13" id="AGh-E7-4yT"/>
+                            <constraint firstItem="UF9-96-s0K" firstAttribute="leading" secondItem="45O-RG-T4s" secondAttribute="leading" id="Bh7-11-hBI"/>
+                            <constraint firstItem="dA6-0K-l9b" firstAttribute="top" secondItem="HRD-Qb-QNn" secondAttribute="bottom" constant="8" id="E6L-8E-X5E"/>
+                            <constraint firstItem="UF9-96-s0K" firstAttribute="height" secondItem="jGb-kw-eaa" secondAttribute="height" id="HoZ-X6-HPC"/>
+                            <constraint firstItem="PcA-mt-2Af" firstAttribute="height" secondItem="jGb-kw-eaa" secondAttribute="height" id="RiY-XK-R41"/>
+                            <constraint firstItem="G25-Pv-cPv" firstAttribute="top" secondItem="PcA-mt-2Af" secondAttribute="bottom" constant="8" id="W2c-it-rhV"/>
+                            <constraint firstItem="dA6-0K-l9b" firstAttribute="centerX" secondItem="45O-RG-T4s" secondAttribute="centerX" id="bcd-Vs-E5U"/>
+                            <constraint firstItem="jGb-kw-eaa" firstAttribute="centerX" secondItem="45O-RG-T4s" secondAttribute="centerX" id="c0g-Lt-doz"/>
+                            <constraint firstItem="PcA-mt-2Af" firstAttribute="top" secondItem="dA6-0K-l9b" secondAttribute="bottom" constant="8" symbolic="YES" id="nRD-yv-xb0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dA6-0K-l9b" secondAttribute="trailing" id="sGF-ra-jfh"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="dA6-0K-l9b" secondAttribute="leading" id="sZ0-9L-38P"/>
+                            <constraint firstItem="jGb-kw-eaa" firstAttribute="leading" secondItem="UF9-96-s0K" secondAttribute="trailing" constant="8" symbolic="YES" id="vuf-tM-b8l"/>
+                            <constraint firstAttribute="trailing" secondItem="PcA-mt-2Af" secondAttribute="trailing" id="xys-Ud-Eka"/>
+                            <constraint firstItem="PcA-mt-2Af" firstAttribute="leading" secondItem="jGb-kw-eaa" secondAttribute="trailing" constant="8" symbolic="YES" id="zrz-Rg-peI"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <value key="contentSizeForViewInPopover" type="size" width="150" height="70"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="300" height="300"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="150" height="70"/>
+                    <size key="freeformSize" width="300" height="300"/>
                     <connections>
-                        <outlet property="stepper" destination="rSn-R3-xT5" id="4hE-7s-ibS"/>
-                        <outlet property="textSizeLabel" destination="WMJ-qn-Mcn" id="tWe-q8-ics"/>
+                        <outlet property="fontPicker" destination="dA6-0K-l9b" id="Zcf-cD-KDE"/>
+                        <outlet property="fontSizeSlider" destination="jGb-kw-eaa" id="4Sg-5o-M7N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8fO-6g-LQ2" userLabel="First Responder" sceneMemberID="firstResponder"/>

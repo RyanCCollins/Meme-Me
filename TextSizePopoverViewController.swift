@@ -8,30 +8,66 @@
 
 import UIKit
 
-class TextSizePopoverViewController: UIViewController {
-    @IBOutlet weak var stepper: UIStepper!
-    @IBOutlet weak var textSizeLabel: UILabel!
+class TextSizePopoverViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+    @IBOutlet weak var fontSizeSlider: UISlider!
+    @IBOutlet weak var fontPicker: UIPickerView!
+
     var fontAttributes: FontAttributes!
+    var pickerData = [String]()
+    let fontFamily = UIFont.familyNames()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Set textSizeLabel:
-        textSizeLabel.text = String(fontAttributes.fontSize)
-        stepper.value = Double(fontAttributes.fontSize)
+        //Fill array with font names:
+        for family in fontFamily {
+            pickerData.appendContentsOf((UIFont.fontNamesForFamilyName(family)))
+        }
+        print(pickerData)
+        
+        //Set initial slider value:
+        fontSizeSlider.value = Float(fontAttributes.fontSize)
+        
+        //Set picker data source and delegate:
+        fontPicker.dataSource = self
+        fontPicker.delegate = self
+        
+        //Set default row selection of picker:
+        let index = pickerData.indexOf(fontAttributes.fontName)
+        if let index = index {
+            fontPicker.selectRow(index, inComponent: 0, animated: true)
+        }
     }
     
-    @IBAction func didChangeTextSize(sender: UIStepper) {
-        //Cast font size to float and set the fontAttributes object's font size:
-        let fontSize = CGFloat(sender.value)
-        fontAttributes.fontSize = fontSize
+    @IBAction func didChangeSlider(sender: UISlider) {
+        //Cast value of font slider to CGFloat:
+        let fontSize = CGFloat(fontSizeSlider.value)
         
-        //Set label when value changes:
-        textSizeLabel.text = String(fontAttributes.fontSize)
-        
-        //Update MemeEditor text size value:
-        let parent = self.presentingViewController as! MemeEditorViewController
+        //Update meme editor text size value:
+        let parent = presentingViewController as! MemeEditorViewController
         parent.fontAttributes.fontSize = fontSize
         parent.configureTextFields([parent.topText, parent.bottomText])
+    }
+    
+    //#-- MARK: Picker Delegate and Data Source methods:
+    //# -- MARK: Data Sources:
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerData.count
+    }
+    
+    //# -- MARK: Delegate Methods:
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerData[row]
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let parent = presentingViewController as! MemeEditorViewController
+        parent.fontAttributes.fontName = pickerData[row]
+        parent.configureTextFields([parent.topText, parent.bottomText])
+        fontAttributes.fontName = pickerData[row]
     }
     
 }

@@ -56,6 +56,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             fontAttributes = FontAttributes()
             fontAttributes.fontColor = UIColor.whiteColor()
             fontAttributes.fontSize = 40.0
+            fontAttributes.fontName = "HelveticaNeue-CondensedBlack"
             configureTextFields(textFieldArray)
         }
         
@@ -72,7 +73,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             let memeTextAttributes = [
                 NSStrokeColorAttributeName: UIColor.blackColor(),
                 NSForegroundColorAttributeName: fontAttributes.fontColor,
-                NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: fontAttributes.fontSize)!,
+                NSFontAttributeName: UIFont(name: fontAttributes.fontName, size: fontAttributes.fontSize)!,
                 NSStrokeWidthAttributeName : -4.0
             ]
             textField.defaultTextAttributes = memeTextAttributes
@@ -224,7 +225,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     //Save the meme:
     @IBAction func save(sender: AnyObject) -> Void {
         //Create the meme and save it to our Meme Model:
-        //TODO: setup checks to make sure that no objects are nil
         
         //If all items are filled out:
         if userCanSave() {
