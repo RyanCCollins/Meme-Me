@@ -374,12 +374,12 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <animations/>
                                             <state key="normal" image="colorPicker"/>
+                                            <connections>
+                                                <segue destination="lCi-1O-blO" kind="popoverPresentation" identifier="colorPickerPopoverSegue" popoverAnchorView="wJt-WB-mAo" id="4x2-hp-f8G">
+                                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                                </segue>
+                                            </connections>
                                         </button>
-                                        <connections>
-                                            <segue destination="lCi-1O-blO" kind="popoverPresentation" identifier="colorPickerPopoverSegue" popoverAnchorBarButtonItem="vwj-oC-vYb" id="Ypm-bF-htE">
-                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                            </segue>
-                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem title="AA" id="xUj-zm-YJ5">
                                         <connections>
@@ -496,15 +496,15 @@
             </objects>
             <point key="canvasLocation" x="352" y="1590"/>
         </scene>
-        <!--View Controller-->
+        <!--Swift Color Picker View Controller-->
         <scene sceneID="YLc-Q5-41y">
             <objects>
-                <viewController autoresizesArchivedViewToFullSize="NO" id="lCi-1O-blO" sceneMemberID="viewController">
+                <viewController autoresizesArchivedViewToFullSize="NO" modalTransitionStyle="crossDissolve" modalPresentationStyle="formSheet" id="lCi-1O-blO" customClass="SwiftColorPickerViewController" customModule="Meme_Me" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2U8-8Z-1Wq"/>
                         <viewControllerLayoutGuide type="bottom" id="iNf-Su-uw4"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Qwu-eH-iyH">
+                    <view key="view" contentMode="scaleToFill" id="Qwu-eH-iyH" customClass="SwiftColorView" customModule="Meme_Me" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>

@@ -14,7 +14,7 @@ enum ButtonState {
     case Editing
 }
 
-class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UIPopoverPresentationControllerDelegate {
+class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UIPopoverPresentationControllerDelegate, SwiftColorPickerDelegate {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
@@ -46,9 +46,11 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             imageView.image = editMeme.originalImage
             userIsEditing = true
             fontAttributes = editMeme.fontAttributes
-            configureTextFields(textFieldArray, fontColor: editMeme.fontAttributes.fontColor, fontSize:fontAttributes.fontSize)
+            configureTextFields(textFieldArray)
         } else {
             fontAttributes = FontAttributes()
+            fontAttributes.fontColor = UIColor.whiteColor()
+            fontAttributes.fontSize = 40.0
             configureTextFields(textFieldArray)
         }
         
@@ -66,7 +68,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         bottomText.font?.fontWithSize(fontAttributes.fontSize)
     }
     
-    func configureTextFields(textFields: [UITextField!], fontColor: UIColor = UIColor.whiteColor(), fontSize: CGFloat = 40.0){
+    func configureTextFields(textFields: [UITextField!]){
         for textField in textFields{
         //Configure and position the textFields:
             textField.delegate = self
@@ -76,8 +78,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             
             let memeTextAttributes = [
                 NSStrokeColorAttributeName: UIColor.blackColor(),
-                NSForegroundColorAttributeName: fontColor,
-                NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: fontSize)!,
+                NSForegroundColorAttributeName: fontAttributes.fontColor,
+                NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: fontAttributes.fontSize)!,
                 NSStrokeWidthAttributeName : -4.0
             ]
             textField.defaultTextAttributes = memeTextAttributes
@@ -316,17 +318,24 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         }
         
         if segue.identifier == "colorPickerPopoverSegue" {
-            let popoverVC = segue.destinationViewController as! ColorPickerPopoverViewController
+            //TODO: Add color picker:
+                        print("Pressed")
+            let popoverVC = segue.destinationViewController as! SwiftColorPickerViewController
+            popoverVC.delegate = self
             popoverVC.modalPresentationStyle = UIModalPresentationStyle.Popover
             popoverVC.popoverPresentationController!.delegate = self
-            popoverVC.fontAttributes = fontAttributes
         }
     }
     
+    //# -- Mark: Popover delegate func
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.None
     }
 
-    
+    //# -- Mark: SwiftColorPickerDelegate function:
+    func colorSelectionChanged(selectedColor color: UIColor) {
+        fontAttributes.fontColor = color
+        changeTextFieldFont()
+    }
 }
 

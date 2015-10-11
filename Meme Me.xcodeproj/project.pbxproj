@@ -22,6 +22,7 @@
 		1F5A09A11BBB0B9700B74044 /* ImagePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5A09A01BBB0B9700B74044 /* ImagePickerDelegate.swift */; settings = {ASSET_TAGS = (); }; };
 		1F5A09A31BBB4FC900B74044 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5A09A21BBB4FC900B74044 /* Meme.swift */; settings = {ASSET_TAGS = (); }; };
 		1FBDDCE41BC9C6A800CDAAD4 /* ColorPickerPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBDDCE31BC9C6A800CDAAD4 /* ColorPickerPopoverViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		1FBDDCE61BC9E35500CDAAD4 /* SwiftColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBDDCE51BC9E35500CDAAD4 /* SwiftColorPickerViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		1FC149D61BC955C800987A78 /* TextSizePopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC149D51BC955C800987A78 /* TextSizePopoverViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,7 @@
 		1F5A09A01BBB0B9700B74044 /* ImagePickerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerDelegate.swift; sourceTree = "<group>"; };
 		1F5A09A21BBB4FC900B74044 /* Meme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
 		1FBDDCE31BC9C6A800CDAAD4 /* ColorPickerPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerPopoverViewController.swift; sourceTree = "<group>"; };
+		1FBDDCE51BC9E35500CDAAD4 /* SwiftColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftColorPickerViewController.swift; sourceTree = "<group>"; };
 		1FC149D51BC955C800987A78 /* TextSizePopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextSizePopoverViewController.swift; path = ../TextSizePopoverViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -172,6 +174,7 @@
 				1F230CE41BBF6CD9007B6B74 /* MemeDetailViewController.swift */,
 				1FC149D51BC955C800987A78 /* TextSizePopoverViewController.swift */,
 				1FBDDCE31BC9C6A800CDAAD4 /* ColorPickerPopoverViewController.swift */,
+				1FBDDCE51BC9E35500CDAAD4 /* SwiftColorPickerViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FBDDCE61BC9E35500CDAAD4 /* SwiftColorPickerViewController.swift in Sources */,
 				1FC149D61BC955C800987A78 /* TextSizePopoverViewController.swift in Sources */,
 				1FBDDCE41BC9C6A800CDAAD4 /* ColorPickerPopoverViewController.swift in Sources */,
 				1F5A09A11BBB0B9700B74044 /* ImagePickerDelegate.swift in Sources */,
