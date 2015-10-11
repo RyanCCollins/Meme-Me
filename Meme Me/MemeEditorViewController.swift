@@ -173,14 +173,17 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         //slide the view up when keyboard appears, using notifications:
         if selectedTextField == bottomText && view.frame.origin.y == 0.0 {
             view.frame.origin.y -= getKeyboardHeight(notification)
+            //Save button disabled:
+            saveButton.enabled = false
         }
-        
     }
     
     func keyboardWillHide(notification: NSNotification) {
         //Reset view origin when keyboard hides:
         if -view.frame.origin.y > 0 {
             view.frame.origin.y = 0
+            //Enable savebutton if userCanSave:
+            saveButton.enabled = userCanSave()
         }
     }
     
