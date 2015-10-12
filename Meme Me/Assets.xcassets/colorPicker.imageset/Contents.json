@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "colorpicker.png",
+      "filename" : "colorPicker_original.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "colorpicker@2x.png",
+      "filename" : "Editing-Color-Dropper-icon.png",
       "scale" : "2x"
     },
     {
