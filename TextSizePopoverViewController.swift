@@ -55,9 +55,10 @@ class TextSizePopoverViewController: UIViewController, UIPickerViewDataSource, U
         let ac = UIAlertController(title: "Reset?", message: "Are you sure you want to reset the font size and type?", preferredStyle: .Alert)
         let resetAction = UIAlertAction(title: "Reset", style: .Default, handler: { Void in
             //Reset to default values and update the Meme's font:
-            self.setFontAttributeDefaults(40.0, fontName: "HelveticaNeue-CondensedBlack")
+            self.setFontAttributeDefaults(40.0, fontName: "HelveticaNeue-CondensedBlack", fontColor: UIColor.whiteColor())
             self.setValuesOfUIElementsForFontAttributes()
             self.updateMemeFont()
+            self.dismissViewControllerAnimated(true, completion: nil)
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
