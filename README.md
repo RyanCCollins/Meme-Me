@@ -16,7 +16,7 @@ The app offers the following features:
 See the extra credit features and what I intend to add next below. 
 
 ####Technologies and best practices used
-Some of the more notable technologies and best practices I used in this app are shown below. I also wrote about some of these subjects in [my blog](http://TechRapport.com/blog/) in the Swift development section. 
+Some of the more notable technologies and best practices I used in this app are shown below. I also wrote about some of these subjects in [my blog](http://TechRapport.com/blog/) in the Swift development section.
 - UIKit
   - UINavigationControllers
   - UITableViews
@@ -28,6 +28,9 @@ Some of the more notable technologies and best practices I used in this app are 
 - Extensions
 
 As I stated above, I developed this application using several important design paradigms and best practices. Most notably, I used Model View Controller (MVC) extensively. I created a Model object for storing and processing Memes, several View Controllers for controlling navigation, writing to the model and updating the display. I also utilized extensions, [NSNotifications](http://techrapport.com/blog/), the delegate design pattern and more. I really enjoyed using Swift 2.0 and found that I was able to add a lot of functionality very easily using extensions. 
+
+###Git & GitHub
+although, I have been using Git and other version control systems for many years, I have never used github professionally because my professional work has been private. I used best practices when using Git and github. I used separate branches for the two versions, wrote commit messages that were clear and concise, used Git to debug and I commit at logical points. 
 
 ###Extra Credit
 In order to receive extra credit and to receive Exceeds Specifications, I added additional functionality to v2.0 of Meme-Me. Some of the functionality that I added are shown below:
