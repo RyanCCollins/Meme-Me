@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Meme-Me - Udacity iOS Developer Nanodegree by Tech Rapport : Meme-Me - Udacity iOS Developer Nanodegree - Tech Rapport">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Meme-Me - Udacity iOS Developer Nanodegree by Tech Rapport</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/TechRapport/Meme-Me">View on GitHub</a>
+
+          <h1 id="project_title">Meme-Me - Udacity iOS Developer Nanodegree by Tech Rapport</h1>
+          <h2 id="project_tagline">Meme-Me - Udacity iOS Developer Nanodegree - Tech Rapport</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/TechRapport/Meme-Me/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/TechRapport/Meme-Me/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="meme-me" class="anchor" href="#meme-me" aria-hidden="true"><span class="octicon octicon-link"></span></a>Meme-Me</h1>
+
+<p>Meme v2.0 - Udacity iOS nanodegree
+by TechRapport -<a href="http://TechRapport.com">http://TechRapport.com</a></p>
+
+<p>This app was created as a project for the Udacity iOS Nanodegree. Before taking the course, I took a month long course on UIKit Fundamentals through Udacity. This course firmed up my working knowledge of Apple's UIKit framework, which is used extensively for UI design, control and navigation. </p>
+
+<p>The app offers the following features:</p>
+
+<ul>
+<li>Create a Meme by taking or selecting a photo</li>
+<li>Add text to the top and bottom</li>
+<li>Change the color, font and size of the text</li>
+<li>Share and Save your Meme</li>
+<li>View saved Memes in a UITableView and a UICollectionView</li>
+<li>View a saved Meme</li>
+<li>Edit a saved Meme</li>
+</ul>
+
+<p>See the extra credit features and what I intend to add next below. </p>
+
+<h4>
+<a id="technologies-and-best-practices-used" class="anchor" href="#technologies-and-best-practices-used" aria-hidden="true"><span class="octicon octicon-link"></span></a>Technologies and best practices used</h4>
+
+<p>Some of the more notable technologies and best practices I used in this app are shown below. I also wrote about some of these subjects in <a href="http://TechRapport.com/blog/">my blog</a> in the Swift development section.</p>
+
+<ul>
+<li>UIKit
+
+<ul>
+<li>UINavigationControllers</li>
+<li>UITableViews</li>
+<li>UICollectionViews</li>
+</ul>
+</li>
+<li>MotionKit</li>
+<li>Delegation</li>
+<li>MVC</li>
+<li>NSNotifications</li>
+<li>Extensions</li>
+</ul>
+
+<p>As I stated above, I developed this application using several important design paradigms and best practices. Most notably, I used Model View Controller (MVC) extensively. I created a Model object for storing and processing Memes, several View Controllers for controlling navigation, writing to the model and updating the display. I also utilized extensions, <a href="http://techrapport.com/blog/">NSNotifications</a>, the delegate design pattern and more. I really enjoyed using Swift 2.0 and found that I was able to add a lot of functionality very easily using extensions. </p>
+
+<h3>
+<a id="git--github" class="anchor" href="#git--github" aria-hidden="true"><span class="octicon octicon-link"></span></a>Git &amp; GitHub</h3>
+
+<p>although, I have been using Git and other version control systems for many years, I have never used github professionally because my professional work has been private. I used best practices when using Git and github. I used separate branches for the two versions, wrote commit messages that were clear and concise, used Git to debug and I commit at logical points. </p>
+
+<h3>
+<a id="extra-credit" class="anchor" href="#extra-credit" aria-hidden="true"><span class="octicon octicon-link"></span></a>Extra Credit</h3>
+
+<p>In order to receive extra credit and to receive Exceeds Specifications, I added additional functionality to v2.0 of Meme-Me. Some of the functionality that I added are shown below:</p>
+
+<h4>
+<a id="color-and-font-picker-which-both-show-as-uipopoverviews" class="anchor" href="#color-and-font-picker-which-both-show-as-uipopoverviews" aria-hidden="true"><span class="octicon octicon-link"></span></a>Color and font picker, which both show as UIPopoverViews.</h4>
+
+<p>The color picker is really great and allows the user to select a color by gliding their finger over a group of colors, each of which shows up inside of a magnifying glass, showing the user which color they selected. As the color is picked, the font is updated in the view and the color/font attributes are stored with that instance of the Meme, so the user can edit the meme at a later time. </p>
+
+<h4>
+<a id="shake-to-reset" class="anchor" href="#shake-to-reset" aria-hidden="true"><span class="octicon octicon-link"></span></a>Shake to reset</h4>
+
+<p>I added a shake to reset feature, which greatly improved the experience by allowing the user to shake the phone to reset the font back to default. I did this using a single extension, which extends UIViewController. </p>
+
+<h4>
+<a id="extensions-for-delegates" class="anchor" href="#extensions-for-delegates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Extensions for delegates</h4>
+
+<p>As I was developing this app, I realized that my code was getting a bit complex, especially after I added delegate functions for the text fields, UITableViews, UICollectionViews, and other UIKit compononents. In order to make the code more readable and manageable, I once again used UIViewController extensions in order to add the delegate functions. I find that this is good practice as long as you contain the extensions in one file, preferably in the same file of the view controller that utilizes them. I would recommend utilizing extensions for basic delegate functionality that will be shared throughout your app. </p>
+
+<h4>
+<a id="more-features" class="anchor" href="#more-features" aria-hidden="true"><span class="octicon octicon-link"></span></a>More features</h4>
+
+<p>Well, you'd think that I would be done with this app, but I am not. In the next iteration, I will be including Flickr images and randomly generated Memes. Keep a watch out for the next revision. </p>
+
+<p>A special thanks goes to: "Christian Zimmermann" who wrote the code for the SwiftColorPicker. You can view his GitHub page here: <a href="https://github.com/Christian1313/iOS_Swift_ColorPicker">https://github.com/Christian1313/iOS_Swift_ColorPicker</a>.</p>
+
+<p>Please take a look at my blog to learn about how Udacity has helped me succeed: <a href="http://TechRapport.com/blog/">Tech Rapport's Blog</a></p>
+
+<p>&amp;copy Tech Rapport 2015 - <a href="http://TechRapport.com">http://TechRapport.com</a></p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Meme-Me - Udacity iOS Developer Nanodegree by Tech Rapport maintained by <a href="https://github.com/TechRapport">TechRapport</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-68833574-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
