@@ -355,12 +355,15 @@
                                     </barButtonItem>
                                     <barButtonItem title="AA" id="xUj-zm-YJ5">
                                         <connections>
-                                            <segue destination="U5h-im-qY5" kind="popoverPresentation" identifier="fontPopoverSegue" popoverAnchorBarButtonItem="xUj-zm-YJ5" id="FFs-UW-xS8">
+                                            <segue destination="U5h-im-qY5" kind="popoverPresentation" identifier="fontPopoverSegue" popoverAnchorBarButtonItem="xUj-zm-YJ5" id="cWp-at-fH0">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                             </segue>
                                         </connections>
                                     </barButtonItem>
                                 </items>
+                                <connections>
+                                    <outlet property="delegate" destination="xUj-zm-YJ5" id="l4K-hw-JnJ"/>
+                                </connections>
                             </toolbar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" placeholder="TOP" textAlignment="center" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="ci5-EG-EQG">
                                 <rect key="frame" x="0.0" y="114" width="600" height="48"/>
@@ -522,6 +525,16 @@
                     <view key="view" contentMode="scaleToFill" id="Qwu-eH-iyH" customClass="SwiftColorView" customModule="Meme_Me" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="300" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="804-pJ-bQT">
+                                <rect key="frame" x="95" y="372" width="111" height="29"/>
+                                <animations/>
+                                <segments>
+                                    <segment title="Font"/>
+                                    <segment title="Border"/>
+                                </segments>
+                            </segmentedControl>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
