@@ -53,6 +53,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             fontAttributes = editMeme.fontAttributes
             configureTextFields(textFieldArray)
         } else {
+            //Set default text/font attributes if new meme:
             fontAttributes = FontAttributes()
             fontAttributes.fontColor = UIColor.whiteColor()
             fontAttributes.fontSize = 40.0
@@ -117,7 +118,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             presentViewController(imagePickerController, animated: true, completion: nil)
         }
     }
-    
 
     @IBAction func pickImageFromCamera(sender: AnyObject) {
         //Select an image from the camera:
@@ -125,69 +125,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         imagePickerController.delegate = self
         imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
         presentViewController(imagePickerController, animated: true, completion: nil)
-    }
-    
-    //# -- MARK: UIImagePickerDelegate methods:
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        dismissViewControllerAnimated(true, completion: nil)
-        imageView.image = image
-        
-        //Enable share & cancel buttons once image is returned:
-        shareButton.enabled = userCanSave()
-        saveButton.enabled = userCanSave()
-        cancelButton.enabled = true
-    }
-    
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        //dismiss viewcontroller
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    //# -- MARK: UITextFieldDelegate Methods:
-    func textFieldDidBeginEditing(textField: UITextField) {
-        selectedTextField = textField
-    }
-    
-    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
-        return true
-    }
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        selectedTextField = nil
-        configureTextFields([textField])
-        
-        //Enable save button if fields are filled:
-        saveButton.enabled = userCanSave()
-        
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    //Hide keyboard when view is tapped:
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        view.endEditing(true)
-        //Enable save button if fields are filled:
-        saveButton.enabled = userCanSave()
-        configureTextFields([topText, bottomText])
-    }
-    
-    
-    func keyboardWillShow(notification: NSNotification) {
-        //slide the view up when keyboard appears, using notifications:
-        if selectedTextField == bottomText && view.frame.origin.y == 0.0 {
-            view.frame.origin.y -= getKeyboardHeight(notification)
-            //Save button disabled:
-            saveButton.enabled = false
-        }
-    }
-    
-    func keyboardWillHide(notification: NSNotification) {
-        //Reset view origin when keyboard hides:
-        if -view.frame.origin.y > 0 {
-            view.frame.origin.y = 0
-            //Enable savebutton if userCanSave:
-            saveButton.enabled = userCanSave()
-        }
     }
     
     //Suscribe the view controller to the UIKeyboardWillShowNotification:
@@ -360,6 +297,76 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         fontAttributes.fontColor = fontColor
     }
 }
+
+//#-- Extend UIImagePickerDelegate Methods
+extension MemeEditorViewController {
+    //# -- MARK: UIImagePickerDelegate methods:
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        dismissViewControllerAnimated(true, completion: nil)
+        imageView.image = image
+        
+        //Enable share & cancel buttons once image is returned:
+        shareButton.enabled = userCanSave()
+        saveButton.enabled = userCanSave()
+        cancelButton.enabled = true
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        //dismiss viewcontroller
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+}
+
+//#-- Extend the UITextFieldDelegate Methods for MemeEditorViewController
+extension MemeEditorViewController {
+    //# -- MARK: UITextFieldDelegate Methods:
+    func textFieldDidBeginEditing(textField: UITextField) {
+        selectedTextField = textField
+    }
+    
+    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+        return true
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        selectedTextField = nil
+        configureTextFields([textField])
+        
+        //Enable save button if fields are filled:
+        saveButton.enabled = userCanSave()
+        
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    //Hide keyboard when view is tapped:
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        view.endEditing(true)
+        //Enable save button if fields are filled:
+        saveButton.enabled = userCanSave()
+        configureTextFields([topText, bottomText])
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        //slide the view up when keyboard appears, using notifications:
+        if selectedTextField == bottomText && view.frame.origin.y == 0.0 {
+            view.frame.origin.y -= getKeyboardHeight(notification)
+            //Save button disabled:
+            saveButton.enabled = false
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        //Reset view origin when keyboard hides:
+        if -view.frame.origin.y > 0 {
+            view.frame.origin.y = 0
+            //Enable savebutton if userCanSave:
+            saveButton.enabled = userCanSave()
+        }
+    }
+}
+
+
 //#--Shake to reset Extension:
 extension UIViewController {
     //#--MARK: Subsribe to shake notifications:
