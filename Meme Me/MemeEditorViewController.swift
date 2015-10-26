@@ -360,7 +360,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         fontAttributes.fontColor = fontColor
     }
 }
-
+//#--Shake to reset Extension:
 extension UIViewController {
     //#--MARK: Subsribe to shake notifications:
     func subscribeToShakeNotifications() {

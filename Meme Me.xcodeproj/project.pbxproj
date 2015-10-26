@@ -14,15 +14,15 @@
 		1F2052971BB9EEC700776F0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F2052951BB9EEC700776F0A /* LaunchScreen.storyboard */; };
 		1F2052A21BB9EEC700776F0A /* Meme_MeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2052A11BB9EEC700776F0A /* Meme_MeTests.swift */; };
 		1F2052AD1BB9EEC700776F0A /* Meme_MeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2052AC1BB9EEC700776F0A /* Meme_MeUITests.swift */; };
-		1F230CDD1BBF0CD7007B6B74 /* MemeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F230CDC1BBF0CD7007B6B74 /* MemeCollectionViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		1F230CDF1BBF0CF9007B6B74 /* MemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F230CDE1BBF0CF9007B6B74 /* MemeTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		1F230CE11BBF4995007B6B74 /* MemeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F230CE01BBF4995007B6B74 /* MemeCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
-		1F230CE51BBF6CD9007B6B74 /* MemeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F230CE41BBF6CD9007B6B74 /* MemeDetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		1F230CE71BC0567F007B6B74 /* MemeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F230CE61BC0567F007B6B74 /* MemeTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
-		1F5A09A11BBB0B9700B74044 /* ImagePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5A09A01BBB0B9700B74044 /* ImagePickerDelegate.swift */; settings = {ASSET_TAGS = (); }; };
-		1F5A09A31BBB4FC900B74044 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5A09A21BBB4FC900B74044 /* Meme.swift */; settings = {ASSET_TAGS = (); }; };
-		1FBDDCE61BC9E35500CDAAD4 /* SwiftColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBDDCE51BC9E35500CDAAD4 /* SwiftColorPickerViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		1FC149D61BC955C800987A78 /* TextSizePopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC149D51BC955C800987A78 /* TextSizePopoverViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		1F230CDD1BBF0CD7007B6B74 /* MemeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F230CDC1BBF0CD7007B6B74 /* MemeCollectionViewController.swift */; };
+		1F230CDF1BBF0CF9007B6B74 /* MemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F230CDE1BBF0CF9007B6B74 /* MemeTableViewController.swift */; };
+		1F230CE11BBF4995007B6B74 /* MemeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F230CE01BBF4995007B6B74 /* MemeCollectionViewCell.swift */; };
+		1F230CE51BBF6CD9007B6B74 /* MemeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F230CE41BBF6CD9007B6B74 /* MemeDetailViewController.swift */; };
+		1F230CE71BC0567F007B6B74 /* MemeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F230CE61BC0567F007B6B74 /* MemeTableViewCell.swift */; };
+		1F5A09A11BBB0B9700B74044 /* ImagePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5A09A01BBB0B9700B74044 /* ImagePickerDelegate.swift */; };
+		1F5A09A31BBB4FC900B74044 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5A09A21BBB4FC900B74044 /* Meme.swift */; };
+		1FBDDCE61BC9E35500CDAAD4 /* SwiftColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBDDCE51BC9E35500CDAAD4 /* SwiftColorPickerViewController.swift */; };
+		1FC149D61BC955C800987A78 /* TextSizePopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC149D51BC955C800987A78 /* TextSizePopoverViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
