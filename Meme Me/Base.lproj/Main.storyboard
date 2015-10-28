@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="YJa-bF-Bjv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="YJa-bF-Bjv">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -308,28 +308,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FtX-y7-svG">
-                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                                <animations/>
-                                <items>
-                                    <barButtonItem systemItem="action" id="a4F-pf-HvI">
-                                        <connections>
-                                            <action selector="didTapShare:" destination="BYZ-38-t0r" id="wH7-IX-jCN"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="d94-pi-5TG"/>
-                                    <barButtonItem systemItem="cancel" id="vZX-Pm-MrN">
-                                        <connections>
-                                            <action selector="didTapCancel:" destination="BYZ-38-t0r" id="TyU-To-d5s"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem title="Item" systemItem="save" id="lDG-it-A6p">
-                                        <connections>
-                                            <action selector="save:" destination="BYZ-38-t0r" id="645-x3-4Qe"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DQD-bs-Tit">
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <animations/>
@@ -379,44 +357,66 @@
                                 </connections>
                             </toolbar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" placeholder="TOP" textAlignment="center" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="bVa-a6-CXI">
-                                <rect key="frame" x="0.0" y="114" width="600" height="48"/>
+                                <rect key="frame" x="0.0" y="94" width="600" height="48"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" placeholder="BOTTOM" textAlignment="center" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="UrU-mU-Nks">
-                                <rect key="frame" x="0.0" y="459" width="600" height="47"/>
+                                <rect key="frame" x="0.0" y="479" width="600" height="47"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FtX-y7-svG">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <animations/>
+                                <items>
+                                    <barButtonItem systemItem="action" id="a4F-pf-HvI">
+                                        <connections>
+                                            <action selector="didTapShare:" destination="BYZ-38-t0r" id="wH7-IX-jCN"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="d94-pi-5TG"/>
+                                    <barButtonItem systemItem="cancel" id="vZX-Pm-MrN">
+                                        <connections>
+                                            <action selector="didTapCancel:" destination="BYZ-38-t0r" id="TyU-To-d5s"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Item" systemItem="save" id="lDG-it-A6p">
+                                        <connections>
+                                            <action selector="save:" destination="BYZ-38-t0r" id="645-x3-4Qe"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="kGB-gM-iRK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1mU-LQ-Q2d"/>
                             <constraint firstItem="kGB-gM-iRK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="3Ly-FN-mAB"/>
-                            <constraint firstItem="FtX-y7-svG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4QE-FA-u4p"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DQD-bs-Tit" secondAttribute="trailing" constant="-20" id="4xL-52-CJM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="FtX-y7-svG" secondAttribute="trailing" constant="-20" id="5XB-D5-DBa"/>
                             <constraint firstItem="FtX-y7-svG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="5ZK-U1-OgC"/>
-                            <constraint firstItem="DQD-bs-Tit" firstAttribute="top" secondItem="bVa-a6-CXI" secondAttribute="top" constant="-50" id="72e-nw-1fX"/>
+                            <constraint firstItem="DQD-bs-Tit" firstAttribute="top" secondItem="bVa-a6-CXI" secondAttribute="top" constant="-30" id="72e-nw-1fX"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kGB-gM-iRK" secondAttribute="bottom" id="8Ka-Rj-jUA"/>
+                            <constraint firstItem="kGB-gM-iRK" firstAttribute="top" secondItem="DQD-bs-Tit" secondAttribute="bottom" id="9fo-F9-cvF"/>
                             <constraint firstItem="DQD-bs-Tit" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="C0w-Zd-GXk"/>
                             <constraint firstItem="UrU-mU-Nks" firstAttribute="centerX" secondItem="DQD-bs-Tit" secondAttribute="centerX" id="M8W-Ob-5hB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kGB-gM-iRK" secondAttribute="trailing" constant="-20" id="MDx-8R-jPN"/>
                             <constraint firstItem="DQD-bs-Tit" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SB3-Ix-YNH"/>
-                            <constraint firstItem="FtX-y7-svG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Yp1-LQ-REt"/>
+                            <constraint firstItem="FtX-y7-svG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="SlB-VK-LUq"/>
                             <constraint firstItem="kGB-gM-iRK" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="bDb-tC-wak"/>
-                            <constraint firstItem="FtX-y7-svG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="cmp-jb-rSn"/>
+                            <constraint firstItem="FtX-y7-svG" firstAttribute="bottom" secondItem="DQD-bs-Tit" secondAttribute="top" id="cIs-2B-tZn"/>
                             <constraint firstItem="DQD-bs-Tit" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="gG3-Nq-55a"/>
                             <constraint firstItem="bVa-a6-CXI" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="hhO-Qf-Ktz"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="FtX-y7-svG" secondAttribute="trailing" constant="-20" id="jKk-ST-vE0"/>
-                            <constraint firstItem="UrU-mU-Nks" firstAttribute="bottom" secondItem="DQD-bs-Tit" secondAttribute="bottom" constant="-50" id="k0V-eF-SJ9"/>
+                            <constraint firstItem="FtX-y7-svG" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="jEe-Zl-0Ki"/>
+                            <constraint firstItem="UrU-mU-Nks" firstAttribute="bottom" secondItem="DQD-bs-Tit" secondAttribute="bottom" constant="-30" id="k0V-eF-SJ9"/>
                             <constraint firstItem="UrU-mU-Nks" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="mGs-5o-kNK"/>
                             <constraint firstItem="bVa-a6-CXI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nee-j5-JeW"/>
                             <constraint firstItem="kGB-gM-iRK" firstAttribute="top" secondItem="DQD-bs-Tit" secondAttribute="bottom" id="owj-L1-5uu"/>
                             <constraint firstItem="bVa-a6-CXI" firstAttribute="centerX" secondItem="DQD-bs-Tit" secondAttribute="centerX" id="yNo-y4-r9f"/>
-                            <constraint firstItem="DQD-bs-Tit" firstAttribute="top" secondItem="FtX-y7-svG" secondAttribute="bottom" id="zAJ-j0-UFT"/>
                         </constraints>
                     </view>
                     <connections>

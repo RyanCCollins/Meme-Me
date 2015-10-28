@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Meme: NSObject {
+struct Meme {
     var topText: String!
     var bottomText: String!
     var originalImage: UIImage!
@@ -35,7 +35,7 @@ class Meme: NSObject {
     }
     
     //Function to update an existing meme:
-    func updateMeme(topText: String, bottomText: String, originalImage:UIImage, memedImage: UIImage, fontAttributes: FontAttributes) {
+    mutating func updateMeme(topText: String, bottomText: String, originalImage:UIImage, memedImage: UIImage, fontAttributes: FontAttributes) {
         self.topText = topText
         self.bottomText = bottomText
         self.originalImage = originalImage
@@ -45,34 +45,34 @@ class Meme: NSObject {
     }
     
     //Update font traits:
-    func changeFont(fontSize: CGFloat, fontColor: UIColor) {
+    mutating func changeFont(fontSize: CGFloat, fontColor: UIColor) {
         fontAttributes.fontColor = fontColor
         fontAttributes.fontSize = fontSize
     }
     
     //Collect all memes into an array:
-    class func getAll() -> [Meme] {
+    static func getAll() -> [Meme] {
         return Meme.getMemeStorage().memes
     }
     
     //Return the location of our appdelegate meme object:
-    class func getMemeStorage() -> AppDelegate {
+    static func getMemeStorage() -> AppDelegate {
         let object = UIApplication.sharedApplication().delegate
         return object as! AppDelegate
     }
     
-    class func countMemes() -> Int {
+    static func countMemes() -> Int {
         return Meme.getMemeStorage().memes.count
     }
     
-    class func getMemeAtIndex(index: Int) -> Meme? {
+    static func getMemeAtIndex(index: Int) -> Meme? {
         if Meme.getMemeStorage().memes.count > index {
             return Meme.getMemeStorage().memes[index]
         }
         return nil
     }
     
-    class func removeMemeAtIndex(index: Int) {
+    static func removeMemeAtIndex(index: Int) {
         if index >= 0 {
             Meme.getMemeStorage().memes.removeAtIndex(index)
         }

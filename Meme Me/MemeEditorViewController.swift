@@ -169,7 +169,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         if userCanSave() {
             //If you are editing a meme, update it, if new, save it:
             if userIsEditing {
-                if let editMeme = editMeme {
+                if var editMeme = editMeme {
                     editMeme.updateMeme(topText.text!, bottomText: bottomText.text!, originalImage: imageView.image!, memedImage: generateMemedImage(), fontAttributes: fontAttributes)
                 }
             } else {
