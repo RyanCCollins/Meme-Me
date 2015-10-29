@@ -429,9 +429,11 @@
                         <outlet property="shareButton" destination="a4F-pf-HvI" id="zMZ-L1-tEz"/>
                         <outlet property="topText" destination="bVa-a6-CXI" id="wpx-y1-grY"/>
                         <outlet property="topToolbar" destination="FtX-y7-svG" id="M5N-01-ADR"/>
+                        <segue destination="vnK-cw-Jme" kind="unwind" identifier="unwindMemeEditor" unwindAction="unwindMemeEditor:" id="aq6-4R-qDh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="vnK-cw-Jme" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="352" y="932"/>
         </scene>
