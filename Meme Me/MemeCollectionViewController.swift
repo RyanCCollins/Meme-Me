@@ -89,7 +89,6 @@ class MemeCollectionViewController: UICollectionViewController {
                 
                 //Pass the data from the selected row to the detailVC:
                 detailVC.meme = MemeCollection.allMemes[indexPath.row]
-                detailVC.memeIndex = indexPath.row
                 //Present the view controller:
                 navigationController!.pushViewController(detailVC, animated: true)
         }

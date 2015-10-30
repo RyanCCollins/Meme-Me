@@ -11,15 +11,14 @@ import UIKit
 class MemeDetailViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     
-    var memeIndex: Int?
     var meme: Meme?
     
+    //# - MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let index = memeIndex {
-            meme = MemeCollection.allMemes[index]
-            imageView.image = meme!.memedImage
+        if let meme = meme {
+            imageView.image = meme.memedImage
         }
     }
 
@@ -27,7 +26,7 @@ class MemeDetailViewController: UIViewController {
         if segue.identifier == "showMemeEditor" {
             let editVC = segue.destinationViewController as! MemeEditorViewController
             editVC.editMeme = meme
-            editVC.editMemeIndex = memeIndex
+
             editVC.userIsEditing = true
         }
     }

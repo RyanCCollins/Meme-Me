@@ -24,7 +24,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     var imagePickerController: UIImagePickerController!
     var memedImage: UIImage!
     var editMeme: Meme?
-    var editMemeIndex: Int?
 
     var fontAttributes: FontAttributes!
     
@@ -177,7 +176,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     func generateMemedImage() -> UIImage {
         //Hide everything but the image:
-        navItemsHidden(areHidden: true)
+        hideNavItems(true)
         
         //render view to an image:
         UIGraphicsBeginImageContext(view.frame.size)
@@ -186,12 +185,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         UIGraphicsEndImageContext()
         
         //Show all views that were hidden:
-        navItemsHidden(areHidden: false)
+        hideNavItems(false)
         
         return memedImage
     }
     
-    private func navItemsHidden(areHidden hide: Bool){
+    private func hideNavItems(hide: Bool){
         navigationController?.setNavigationBarHidden(hide, animated: false)
         topToolbar.hidden = hide
         bottomToolbar.hidden = hide
@@ -246,6 +245,32 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     func unsubsribeToKeyboardNotification(){
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+    }
+    //Hide keyboard when view is tapped:
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        view.endEditing(true)
+        //Enable save button if fields are filled:
+        saveButton.enabled = userCanSave()
+        configureTextFields([topText, bottomText])
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        //slide the view up when keyboard appears, using notifications:
+        if selectedTextField == bottomText && view.frame.origin.y == 0.0 {
+            view.frame.origin.y -= getKeyboardHeight(notification)
+            //Save button disabled:
+            saveButton.enabled = false
+
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        //Reset view origin when keyboard hides:
+        if -view.frame.origin.y > 0 {
+            view.frame.origin.y = 0
+            //Enable savebutton if userCanSave:
+            saveButton.enabled = userCanSave()
+        }
     }
     
     //Get the height of the keyboard from the userinfo dictionary:
@@ -334,31 +359,6 @@ extension MemeEditorViewController {
         return true
     }
     
-    //Hide keyboard when view is tapped:
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        view.endEditing(true)
-        //Enable save button if fields are filled:
-        saveButton.enabled = userCanSave()
-        configureTextFields([topText, bottomText])
-    }
-    
-    func keyboardWillShow(notification: NSNotification) {
-        //slide the view up when keyboard appears, using notifications:
-        if selectedTextField == bottomText && view.frame.origin.y == 0.0 {
-            view.frame.origin.y -= getKeyboardHeight(notification)
-            //Save button disabled:
-            saveButton.enabled = false
-        }
-    }
-    
-    func keyboardWillHide(notification: NSNotification) {
-        //Reset view origin when keyboard hides:
-        if -view.frame.origin.y > 0 {
-            view.frame.origin.y = 0
-            //Enable savebutton if userCanSave:
-            saveButton.enabled = userCanSave()
-        }
-    }
 }
 
 

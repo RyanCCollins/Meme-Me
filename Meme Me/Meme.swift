@@ -15,7 +15,13 @@ struct Meme {
     var originalImage: UIImage!
     var memedImage: UIImage!
     var fontAttributes: FontAttributes!
+    
+}
 
+extension Meme: Equatable {}
+
+func ==(lhs: Meme, rhs: Meme) -> Bool {
+    return lhs.memedImage == rhs.memedImage
 }
 
 struct MemeCollection {
@@ -29,7 +35,8 @@ struct MemeCollection {
     }
     
     static func indexOf(meme: Meme) -> Int {
-        if let index = allMemes.indexOf({$0.memedImage == meme.memedImage}) {
+        //If the meme is in the collection, return first index, otherwise return count.
+        if let index = allMemes.indexOf({$0 == meme}) {
             return Int(index)
         } else {
             print(allMemes.count)
