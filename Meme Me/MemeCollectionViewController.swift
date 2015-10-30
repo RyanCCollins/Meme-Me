@@ -11,22 +11,22 @@ import UIKit
 class MemeCollectionViewController: UICollectionViewController {
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
-    
     @IBOutlet weak var editButton: UIBarButtonItem!
+    @IBOutlet weak var memeCollectionView: UICollectionView!
+    
+    @IBOutlet weak var addOrDeleteButton: UIBarButtonItem!
+    var selectedMemes = Set<NSIndexPath>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Define control flow characteristics:
-        let space: CGFloat = 3.0
-        let dimension = (view.frame.size.width - (2 * space)) / 3.0
+        setControllFlowLayout()
         
-        //Set up CollectionView Control flow properties:
-        flowLayout.minimumInteritemSpacing = space
-        flowLayout.minimumLineSpacing = space
-        flowLayout.itemSize = CGSizeMake(dimension, dimension)
+        
         
         //If there are no saved memes, present the meme creator:
         if MemeCollection.allMemes.count == 0 {
+            editButton.enabled = false
             let object: AnyObject = self.storyboard!.instantiateViewControllerWithIdentifier("MemeEditorViewController")
             let memeCreatorVC = object as! MemeEditorViewController
             presentViewController(memeCreatorVC, animated: false, completion: nil)
@@ -41,8 +41,19 @@ class MemeCollectionViewController: UICollectionViewController {
         navigationItem.leftBarButtonItem?.enabled = MemeCollection.allMemes.count > 0
     }
     
+    func setControllFlowLayout() {
+        //Define control flow characteristics:
+        let space: CGFloat = 3.0
+        let dimension = (view.frame.size.width - (2 * space)) / 3.0
+        
+        //Set up CollectionView Control flow properties:
+        flowLayout.minimumInteritemSpacing = space
+        flowLayout.minimumLineSpacing = space
+        flowLayout.itemSize = CGSizeMake(dimension, dimension)
+    }
+    
     @IBAction func didTapEdit(sender: UIBarButtonItem) {
-        setE
+        setEditing(true, animated: true)
     }
     
     override func setEditing(editing: Bool, animated: Bool) {
@@ -59,13 +70,13 @@ class MemeCollectionViewController: UICollectionViewController {
         })
     }
     
-    @IBAction func didPressDelete(sender: UIButton) {
-        let cell = sender.superview!.superview! as! MemeCollectionViewCell
-        let indexPath = collectionView!.indexPathForCell(cell)!
-        MemeCollection.remove(atIndex: indexPath.row)
-        collectionView!.deleteItemsAtIndexPaths([indexPath])
-        navigationItem.leftBarButtonItem?.enabled = MemeCollection.allMemes.count > 0
-    }
+//    @IBAction func didPressDelete(sender: UIButton) {
+//        let cell = sender.superview! as! MemeCollectionViewCell
+//        let indexPath = collectionView!.indexPathForCell(cell)!
+//        MemeCollection.remove(atIndex: indexPath.row)
+//        collectionView!.deleteItemsAtIndexPaths([indexPath])
+//        navigationItem.leftBarButtonItem?.enabled = MemeCollection.allMemes.count > 0
+//    }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //Return number of items in memes array:
@@ -96,6 +107,8 @@ class MemeCollectionViewController: UICollectionViewController {
                 detailVC.meme = MemeCollection.allMemes[indexPath.row]
                 //Present the view controller:
                 navigationController!.pushViewController(detailVC, animated: true)
+            } else {
+   
         }
     }
 

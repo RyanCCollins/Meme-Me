@@ -201,18 +201,6 @@
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="krU-Aw-FHb">
-                                            <rect key="frame" x="82" y="8" width="22" height="24"/>
-                                            <animations/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="22" id="Yro-dv-Vme"/>
-                                                <constraint firstAttribute="height" constant="24" id="u8D-Ux-cpf"/>
-                                            </constraints>
-                                            <state key="normal" image="minus"/>
-                                            <connections>
-                                                <action selector="didPressDelete:" destination="oOe-Nq-55D" eventType="touchUpInside" id="WTX-72-Bur"/>
-                                            </connections>
-                                        </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WZ0-fi-cah">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                             <animations/>
@@ -226,11 +214,9 @@
                                 </view>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="trailingMargin" secondItem="krU-Aw-FHb" secondAttribute="trailing" id="NlO-19-Ora"/>
                                     <constraint firstItem="IKV-zD-bAw" firstAttribute="top" secondItem="gbG-Rv-q7h" secondAttribute="topMargin" id="XnH-Sf-CCc"/>
                                     <constraint firstItem="IKV-zD-bAw" firstAttribute="bottom" secondItem="gbG-Rv-q7h" secondAttribute="bottomMargin" id="ZwH-JJ-PsD"/>
                                     <constraint firstItem="IKV-zD-bAw" firstAttribute="leading" secondItem="gbG-Rv-q7h" secondAttribute="leadingMargin" id="lno-ZT-CHh"/>
-                                    <constraint firstAttribute="topMargin" secondItem="krU-Aw-FHb" secondAttribute="top" id="onu-qs-yfz"/>
                                     <constraint firstItem="IKV-zD-bAw" firstAttribute="trailing" secondItem="gbG-Rv-q7h" secondAttribute="trailingMargin" id="tHD-yK-yVi"/>
                                 </constraints>
                                 <size key="customSize" width="112" height="112"/>
@@ -246,7 +232,6 @@
                                 </variation>
                                 <connections>
                                     <outlet property="bottomLabel" destination="vPS-zx-uX4" id="AHn-fm-HKa"/>
-                                    <outlet property="deleteButton" destination="krU-Aw-FHb" id="fMr-uF-GVZ"/>
                                     <outlet property="memeImageView" destination="IKV-zD-bAw" id="Sf8-Z9-yZA"/>
                                     <outlet property="topLabel" destination="6Nn-J7-o2u" id="d9x-d2-U4R"/>
                                 </connections>
@@ -270,8 +255,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addOrDeleteButton" destination="S2t-Sf-XVA" id="6BM-n7-oWi"/>
                         <outlet property="editButton" destination="97l-U3-kbm" id="5cX-wb-8Dc"/>
                         <outlet property="flowLayout" destination="FqR-H5-h0s" id="TxJ-ti-CnG"/>
+                        <outlet property="memeCollectionView" destination="YW3-CD-kIM" id="XtT-iZ-d4v"/>
                         <segue destination="Y8j-wr-PfF" kind="show" identifier="showMemeDetail" id="VwV-01-jR1"/>
                     </connections>
                 </collectionViewController>
@@ -552,7 +539,6 @@
         <image name="collection" width="30" height="30"/>
         <image name="colorPicker" width="22" height="22"/>
         <image name="fontSize" width="22" height="22"/>
-        <image name="minus" width="44" height="48"/>
         <image name="photoAlbum" width="22" height="22"/>
         <image name="table" width="30" height="30"/>
     </resources>
