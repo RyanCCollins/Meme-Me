@@ -147,10 +147,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             //If you are editing a meme, update it, if new, save it:
             let meme = Meme(topText: topText.text, bottomText: bottomText.text, originalImage: imageView.image, memedImage: generateMemedImage(), fontAttributes: fontAttributes)
             if userIsEditing {
-                Meme.updateMeme(atIndex: (editMemeIndex)!, withMeme: meme)
+                if let editMeme = editMeme {
+                        MemeCollection.update(atIndex: MemeCollection.indexOf(editMeme), withMeme: meme)
+                    }
                 performSegueWithIdentifier("unwindMemeEditor", sender: sender)
             } else {
-                Meme.add(meme)
+                MemeCollection.add(meme)
                 dismissViewControllerAnimated(true, completion: nil)
             }
         } else {
@@ -208,7 +210,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     //If no memes, clear the view, otherwise dismiss the view:
     @IBAction func didTapCancel(sender: UIBarButtonItem) {
-        if Meme.allMemes.count == 0 {
+        if MemeCollection.allMemes.count == 0 {
             clearView()
         }else {
             dismissViewControllerAnimated(true, completion: nil)

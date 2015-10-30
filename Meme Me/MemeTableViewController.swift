@@ -19,12 +19,12 @@ class MemeTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         //If there are no saved memes, present the meme creator:
-        if Meme.count() == 0 {
+        if MemeCollection.count() == 0 {
             let object: AnyObject = storyboard!.instantiateViewControllerWithIdentifier("MemeEditorViewController")
             let memeCreatorVC = object as! MemeEditorViewController
             presentViewController(memeCreatorVC, animated: false, completion: nil)
         }
-        navigationItem.leftBarButtonItem?.enabled = Meme.count() > 0
+        navigationItem.leftBarButtonItem?.enabled = MemeCollection.count() > 0
         tableView!.reloadData()
     }
     
@@ -53,7 +53,7 @@ class MemeTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //Return the number of objects in the meme array:
-        return Meme.count()
+        return MemeCollection.count()
     }
 
 
@@ -61,7 +61,7 @@ class MemeTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("MemeTableCell", forIndexPath: indexPath)
         
         //Configure Tableview Cell
-        let meme = Meme.allMemes[indexPath.row]
+        let meme = MemeCollection.allMemes[indexPath.row]
         cell.textLabel!.text = "\(meme.topText) \(meme.bottomText)"
         cell.imageView!.image = meme.originalImage
 
@@ -75,7 +75,7 @@ class MemeTableViewController: UITableViewController {
         //Delete selected Meme:
         switch editingStyle {
         case .Delete:
-            Meme.remove(atIndex: indexPath.row)
+            MemeCollection.remove(atIndex: indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         default:
             return
@@ -91,7 +91,7 @@ class MemeTableViewController: UITableViewController {
             let detailVC = object as! MemeDetailViewController
             
             //Pass the data from the selected row to the detailVC:
-            detailVC.meme = Meme.allMemes[indexPath.row]
+            detailVC.meme = MemeCollection.allMemes[indexPath.row]
             detailVC.memeIndex = indexPath.row
             
             //Present the view controller:

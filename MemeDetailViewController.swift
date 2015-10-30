@@ -18,7 +18,7 @@ class MemeDetailViewController: UIViewController {
         super.viewDidLoad()
 
         if let index = memeIndex {
-            meme = Meme.allMemes[index]
+            meme = MemeCollection.allMemes[index]
             imageView.image = meme!.memedImage
         }
     }

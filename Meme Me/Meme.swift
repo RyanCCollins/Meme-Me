@@ -15,19 +15,34 @@ struct Meme {
     var originalImage: UIImage!
     var memedImage: UIImage!
     var fontAttributes: FontAttributes!
+
 }
 
-extension Meme {
+struct MemeCollection {
+
     static var allMemes: [Meme] {
         return getMemeStorage().memes
+    }
+    
+    static func getMeme(atIndex index: Int) -> Meme {
+        return allMemes[index]
+    }
+    
+    static func indexOf(meme: Meme) -> Int {
+        if let index = allMemes.indexOf({$0.memedImage == meme.memedImage}) {
+            return Int(index)
+        } else {
+            print(allMemes.count)
+            return allMemes.count
+        }
     }
     
     static func add(meme: Meme) {
         getMemeStorage().memes.append(meme)
     }
     
-    static func update(meme: Meme, withMeme: Meme) {
-        getMemeStorage().memes.
+    static func update(atIndex index: Int, withMeme meme: Meme) {
+        getMemeStorage().memes[index] = meme
     }
     
     static func remove(atIndex index: Int) {
@@ -45,11 +60,6 @@ extension Meme {
     }
 }
 
-struct MemeCollection {
-    var allMemes: [Memes] {
-        return ge
-    }
-}
 
 //Stores font attributes for a meme:
 struct FontAttributes {
