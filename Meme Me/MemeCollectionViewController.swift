@@ -12,6 +12,7 @@ class MemeCollectionViewController: UICollectionViewController {
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
+    @IBOutlet weak var editButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,6 +39,10 @@ class MemeCollectionViewController: UICollectionViewController {
         collectionView!.reloadData()
         
         navigationItem.leftBarButtonItem?.enabled = MemeCollection.allMemes.count > 0
+    }
+    
+    @IBAction func didTapEdit(sender: UIBarButtonItem) {
+        setE
     }
     
     override func setEditing(editing: Bool, animated: Bool) {

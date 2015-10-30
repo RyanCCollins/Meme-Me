@@ -258,6 +258,11 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="lTs-tt-EC4">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="97l-U3-kbm">
+                            <connections>
+                                <action selector="didTapEdit:" destination="oOe-Nq-55D" id="6JC-bG-UtY"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="S2t-Sf-XVA">
                             <connections>
                                 <action selector="didPressAdd:" destination="oOe-Nq-55D" id="z40-vB-WV8"/>
@@ -265,6 +270,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="editButton" destination="97l-U3-kbm" id="5cX-wb-8Dc"/>
                         <outlet property="flowLayout" destination="FqR-H5-h0s" id="TxJ-ti-CnG"/>
                         <segue destination="Y8j-wr-PfF" kind="show" identifier="showMemeDetail" id="VwV-01-jR1"/>
                     </connections>
@@ -308,7 +314,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DQD-bs-Tit">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DQD-bs-Tit">
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <animations/>
                             </imageView>
@@ -356,7 +362,7 @@
                                     <outlet property="delegate" destination="xUj-zm-YJ5" id="l4K-hw-JnJ"/>
                                 </connections>
                             </toolbar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" placeholder="TOP" textAlignment="center" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="bVa-a6-CXI">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" placeholder="TOP" textAlignment="center" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="bVa-a6-CXI">
                                 <rect key="frame" x="0.0" y="94" width="600" height="48"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
@@ -368,7 +374,7 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FtX-y7-svG">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FtX-y7-svG">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <animations/>
                                 <items>
@@ -419,6 +425,7 @@
                             <constraint firstItem="bVa-a6-CXI" firstAttribute="centerX" secondItem="DQD-bs-Tit" secondAttribute="centerX" id="yNo-y4-r9f"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="bottomText" destination="UrU-mU-Nks" id="XfS-gT-Q47"/>
                         <outlet property="bottomToolbar" destination="kGB-gM-iRK" id="Xi9-mD-xWr"/>
@@ -550,6 +557,6 @@
         <image name="table" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="q5a-pj-PpB"/>
+        <segue reference="VwV-01-jR1"/>
     </inferredMetricsTieBreakers>
 </document>

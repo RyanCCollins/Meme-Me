@@ -37,6 +37,11 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         initUIState()
     }
     
+    //Hide status bar to avoid bug where status bar shows when imageview pushed up by keyboard
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     func initUIState() {
         
         //Create an array of text fields for configurations
