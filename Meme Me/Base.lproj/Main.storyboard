@@ -243,9 +243,9 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="lTs-tt-EC4">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="97l-U3-kbm">
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="97l-U3-kbm">
                             <connections>
-                                <action selector="didTapEdit:" destination="oOe-Nq-55D" id="6JC-bG-UtY"/>
+                                <action selector="didTapEdit:" destination="oOe-Nq-55D" id="7Y7-7c-61r"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="S2t-Sf-XVA">
