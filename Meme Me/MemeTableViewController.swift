@@ -9,7 +9,6 @@
 import UIKit
 
 class MemeTableViewController: UITableViewController {
-    var selectedIndex: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,12 +19,12 @@ class MemeTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         //If there are no saved memes, present the meme creator:
-        if Meme.countMemes() == 0 {
-            let object: AnyObject = self.storyboard!.instantiateViewControllerWithIdentifier("MemeEditorViewController")
+        if Meme.count() == 0 {
+            let object: AnyObject = storyboard!.instantiateViewControllerWithIdentifier("MemeEditorViewController")
             let memeCreatorVC = object as! MemeEditorViewController
             presentViewController(memeCreatorVC, animated: false, completion: nil)
         }
-        navigationItem.leftBarButtonItem?.enabled = Meme.countMemes() > 0
+        navigationItem.leftBarButtonItem?.enabled = Meme.count() > 0
         tableView!.reloadData()
     }
     
@@ -33,7 +32,7 @@ class MemeTableViewController: UITableViewController {
     //Present the meme editor empty:
     @IBAction func didPressAdd(sender: AnyObject) {
         //Segue to the new meme view programmatically:
-        let object: AnyObject = self.storyboard!.instantiateViewControllerWithIdentifier("MemeEditorViewController")
+        let object: AnyObject = storyboard!.instantiateViewControllerWithIdentifier("MemeEditorViewController")
         let newMemeVC = object as! MemeEditorViewController
         presentViewController(newMemeVC, animated: true, completion: {
             newMemeVC.cancelButton.enabled = true
@@ -54,7 +53,7 @@ class MemeTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //Return the number of objects in the meme array:
-        return Meme.countMemes()
+        return Meme.count()
     }
 
 
@@ -62,10 +61,10 @@ class MemeTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("MemeTableCell", forIndexPath: indexPath)
         
         //Configure Tableview Cell
-        if let meme = Meme.getMemeAtIndex(indexPath.row) {
-            cell.textLabel!.text = "\(meme.topText) \(meme.bottomText)"
-            cell.imageView!.image = meme.originalImage
-        }
+        let meme = Meme.allMemes[indexPath.row]
+        cell.textLabel!.text = "\(meme.topText) \(meme.bottomText)"
+        cell.imageView!.image = meme.originalImage
+
         return cell
     }
     
@@ -76,9 +75,8 @@ class MemeTableViewController: UITableViewController {
         //Delete selected Meme:
         switch editingStyle {
         case .Delete:
-            Meme.removeMemeAtIndex(indexPath.row)
+            Meme.remove(atIndex: indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-            
         default:
             return
         }
@@ -89,13 +87,21 @@ class MemeTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //If not editing, perform segue defined in storyboard:
         if !tableView.editing {
-            selectedIndex = indexPath.row
-            print(selectedIndex)
-            self.performSegueWithIdentifier("showDetail", sender: self)
+            let object: AnyObject = storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController")
+            let detailVC = object as! MemeDetailViewController
+            
+            //Pass the data from the selected row to the detailVC:
+            detailVC.meme = Meme.allMemes[indexPath.row]
+            detailVC.memeIndex = indexPath.row
+            
+            //Present the view controller:
+            navigationController!.pushViewController(detailVC, animated: true)
         }
     }
     
-
+    @IBAction func unwindMemeEditor(segue: UIStoryboardSegue) {
+        tableView!.reloadData()
+    }
     
     //Methods for editing the tableView:
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -111,15 +117,6 @@ class MemeTableViewController: UITableViewController {
         //Switch bar button item between Edit and Done:
         if !tableView.editing {
             tableView.setEditing(editing, animated: animated)
-        }
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showDetail" {
-            let destinationVC = segue.destinationViewController as! MemeDetailViewController
-            if let meme = Meme.getMemeAtIndex(selectedIndex) {
-                destinationVC.meme = meme
-            }
         }
     }
 }

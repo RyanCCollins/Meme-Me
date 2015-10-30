@@ -20,7 +20,6 @@ extension Meme {
     static var allMemes: [Meme] {
         return getMemeStorage().memes
     }
-
     
     static func add(meme: Meme) {
         getMemeStorage().memes.append(meme)
@@ -32,6 +31,10 @@ extension Meme {
     
     static func remove(atIndex index: Int) {
         getMemeStorage().memes.removeAtIndex(index)
+    }
+    
+    static func count() -> Int {
+        return getMemeStorage().memes.count
     }
     
     //Locate the meme storage location

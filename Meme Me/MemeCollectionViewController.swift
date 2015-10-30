@@ -9,8 +9,6 @@
 import UIKit
 
 class MemeCollectionViewController: UICollectionViewController {
-
-    var memes = (UIApplication.sharedApplication().delegate as! AppDelegate).memes
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
@@ -27,7 +25,7 @@ class MemeCollectionViewController: UICollectionViewController {
         flowLayout.itemSize = CGSizeMake(dimension, dimension)
         
         //If there are no saved memes, present the meme creator:
-        if Meme.countMemes() == 0 {
+        if Meme.allMemes.count == 0 {
             let object: AnyObject = self.storyboard!.instantiateViewControllerWithIdentifier("MemeEditorViewController")
             let memeCreatorVC = object as! MemeEditorViewController
             presentViewController(memeCreatorVC, animated: false, completion: nil)
@@ -39,7 +37,7 @@ class MemeCollectionViewController: UICollectionViewController {
         
         collectionView!.reloadData()
         
-        navigationItem.leftBarButtonItem?.enabled = Meme.countMemes() > 0
+        navigationItem.leftBarButtonItem?.enabled = Meme.allMemes.count > 0
     }
     
     override func setEditing(editing: Bool, animated: Bool) {
@@ -59,25 +57,25 @@ class MemeCollectionViewController: UICollectionViewController {
     @IBAction func didPressDelete(sender: UIButton) {
         let cell = sender.superview!.superview! as! MemeCollectionViewCell
         let indexPath = collectionView!.indexPathForCell(cell)!
-        Meme.removeMemeAtIndex(indexPath.row)
+        Meme.remove(atIndex: indexPath.row)
         collectionView!.deleteItemsAtIndexPaths([indexPath])
-        navigationItem.leftBarButtonItem?.enabled = Meme.countMemes() > 0
+        navigationItem.leftBarButtonItem?.enabled = Meme.allMemes.count > 0
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //Return number of items in memes array:
-        return Meme.countMemes()
+        return Meme.allMemes.count
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         //Configure cell and return it:
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MemeCollectionCell", forIndexPath: indexPath) as! MemeCollectionViewCell
         
-        if let meme = Meme.getMemeAtIndex(indexPath.row) {
-            cell.topLabel?.text = meme.topText
-            cell.bottomLabel?.text = meme.bottomText
-            cell.memeImageView?.image = meme.originalImage
-        }
+        let meme = Meme.allMemes[indexPath.row]
+        cell.topLabel?.text = meme.topText
+        cell.bottomLabel?.text = meme.bottomText
+        cell.memeImageView?.image = meme.originalImage
+        
         cell.deleteButton.hidden = !editing
         cell.deleteButton.addTarget(self, action: "didPressDelete:", forControlEvents: .TouchUpInside)
         return cell
@@ -90,8 +88,8 @@ class MemeCollectionViewController: UICollectionViewController {
                 let detailVC = object as! MemeDetailViewController
                 
                 //Pass the data from the selected row to the detailVC:
-                detailVC.meme = Meme.getMemeAtIndex(indexPath.row)
-                
+                detailVC.meme = Meme.allMemes[indexPath.row]
+                detailVC.memeIndex = indexPath.row
                 //Present the view controller:
                 navigationController!.pushViewController(detailVC, animated: true)
         }
