@@ -12,5 +12,9 @@ class MemeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var memeImageView: UIImageView!
     @IBOutlet weak var topLabel: UILabel!
     @IBOutlet weak var bottomLabel: UILabel!
-    @IBOutlet weak var deleteButton: UIButton!
+    
+    func isSelected(selected: Bool) {
+        
+    }
+    
 }

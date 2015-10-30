@@ -15,30 +15,40 @@ class MemeCollectionViewController: UICollectionViewController {
     @IBOutlet weak var memeCollectionView: UICollectionView!
     
     @IBOutlet weak var addOrDeleteButton: UIBarButtonItem!
-    var selectedMemes = Set<NSIndexPath>()
+    var selectedMemes = [Int]()
+    var userEditing = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setControllFlowLayout()
         
-        
-        
-        //If there are no saved memes, present the meme creator:
-        if MemeCollection.allMemes.count == 0 {
-            editButton.enabled = false
-            let object: AnyObject = self.storyboard!.instantiateViewControllerWithIdentifier("MemeEditorViewController")
-            let memeCreatorVC = object as! MemeEditorViewController
-            presentViewController(memeCreatorVC, animated: false, completion: nil)
-        }
+        memeCollectionView.allowsMultipleSelection = true
     }
+    
+
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
         collectionView!.reloadData()
-        
+        initUI()
+    }
+
+    func initUI () {
         navigationItem.leftBarButtonItem?.enabled = MemeCollection.allMemes.count > 0
+        //If there are no saved memes, present the meme creator:
+        if MemeCollection.allMemes.count == 0 {
+            editButton.enabled = false
+            setEditing(false, animated: true)
+            launchEditor()
+        }
+    }
+
+    func launchEditor () {
+        let object: AnyObject = self.storyboard!.instantiateViewControllerWithIdentifier("MemeEditorViewController")
+        let memeCreatorVC = object as! MemeEditorViewController
+        presentViewController(memeCreatorVC, animated: false, completion: nil)
     }
     
     func setControllFlowLayout() {
@@ -53,7 +63,51 @@ class MemeCollectionViewController: UICollectionViewController {
     }
     
     @IBAction func didTapEdit(sender: UIBarButtonItem) {
-        setEditing(true, animated: true)
+        userEditing = !userEditing
+        if userEditing {
+            editButton.title = "Done"
+            
+            let deleteButton = UIBarButtonItem(barButtonSystemItem: .Trash, target: self, action: "deleteSelectedMemes")
+            
+            navigationItem.rightBarButtonItem = deleteButton
+            
+        } else {
+            
+        }
+    }
+    
+    func deleteSelectedMemes(sender: AnyObject) {
+        if selectedMemes.count > 0 {
+            let sortedMemes = selectedMemes.sort{
+                return $0 > $1
+            }
+            
+            for index in sortedMemes {
+                MemeCollection.remove(atIndex: index)
+            }
+            
+            selectedMemes.removeAll()
+            
+            setEditing(false, animated: true)
+        }
+    }
+    
+    func alertBeforeDeleting(sender: AnyObject) {
+        let ac = UIAlertController(title: "Delete Selected Memes", message: "Are you SURE that you want to delete the selected Memes?", preferredStyle: .Alert)
+        let deleteAction = UIAlertAction(title: "Delete!", style: .Destructive, handler: {
+                action in self.deleteSelectedMemes(sender)
+        })
+        
+        let stopAction = UIAlertAction(title: "Keep Them", style: .Default, handler: {
+            action in self.dismissViewControllerAnimated(true, completion: {
+                self.initUI()
+            })
+        })
+        
+        ac.addAction(deleteAction)
+        ac.addAction(stopAction)
+        
+        presentViewController(ac, animated: true, completion: nil)
     }
     
     override func setEditing(editing: Bool, animated: Bool) {
@@ -70,14 +124,6 @@ class MemeCollectionViewController: UICollectionViewController {
         })
     }
     
-//    @IBAction func didPressDelete(sender: UIButton) {
-//        let cell = sender.superview! as! MemeCollectionViewCell
-//        let indexPath = collectionView!.indexPathForCell(cell)!
-//        MemeCollection.remove(atIndex: indexPath.row)
-//        collectionView!.deleteItemsAtIndexPaths([indexPath])
-//        navigationItem.leftBarButtonItem?.enabled = MemeCollection.allMemes.count > 0
-//    }
-    
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //Return number of items in memes array:
         return MemeCollection.allMemes.count
@@ -87,13 +133,16 @@ class MemeCollectionViewController: UICollectionViewController {
         //Configure cell and return it:
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MemeCollectionCell", forIndexPath: indexPath) as! MemeCollectionViewCell
         
-        let meme = MemeCollection.allMemes[indexPath.row]
+        let meme = MemeCollection.allMemes[indexPath.item]
         cell.topLabel?.text = meme.topText
         cell.bottomLabel?.text = meme.bottomText
         cell.memeImageView?.image = meme.originalImage
         
-        cell.deleteButton.hidden = !editing
-        cell.deleteButton.addTarget(self, action: "didPressDelete:", forControlEvents: .TouchUpInside)
+        if selectedMemes.contains(indexPath.item) {
+            cell.isSelected(true)
+        } else {
+            cell.isSelected(false)
+        }
         return cell
     }
     
@@ -104,11 +153,15 @@ class MemeCollectionViewController: UICollectionViewController {
                 let detailVC = object as! MemeDetailViewController
                 
                 //Pass the data from the selected row to the detailVC:
-                detailVC.meme = MemeCollection.allMemes[indexPath.row]
+                detailVC.meme = MemeCollection.allMemes[indexPath.item]
                 //Present the view controller:
                 navigationController!.pushViewController(detailVC, animated: true)
             } else {
-   
+                addOrDeleteButton.enabled = true
+                let cell = collectionView.cellForItemAtIndexPath(indexPath)
+                cell?.selected = true
+                let index = indexPath.item
+                selectedMemes.append(index)
         }
     }
 
