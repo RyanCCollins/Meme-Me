@@ -8,12 +8,6 @@
 
 import UIKit
 
-enum ButtonState {
-    case Cancel
-    case Save
-    case Editing
-}
-
 class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UIPopoverPresentationControllerDelegate, SwiftColorPickerDelegate {
     
     @IBOutlet weak var imageView: UIImageView!
@@ -31,6 +25,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     var memedImage: UIImage!
     var editMeme: Meme?
     var editMemeIndex: Int?
+
     var fontAttributes: FontAttributes!
     
     var selectedTextField: UITextField?
@@ -152,7 +147,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             //If you are editing a meme, update it, if new, save it:
             let meme = Meme(topText: topText.text, bottomText: bottomText.text, originalImage: imageView.image, memedImage: generateMemedImage(), fontAttributes: fontAttributes)
             if userIsEditing {
-                Meme.updateMeme(atIndex: editMemeIndex!, withMeme: meme)
+                Meme.updateMeme(atIndex: (editMemeIndex)!, withMeme: meme)
                 performSegueWithIdentifier("unwindMemeEditor", sender: sender)
             } else {
                 Meme.add(meme)
@@ -230,17 +225,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         }
         
         if segue.identifier == "colorPickerPopoverSegue" {
-            //TODO: Add color picker:
-            
+            //Launch color picker in popover view:
             let popoverVC = segue.destinationViewController as! SwiftColorPickerViewController
             popoverVC.delegate = self
             popoverVC.modalPresentationStyle = UIModalPresentationStyle.Popover
             popoverVC.popoverPresentationController!.delegate = self
         }
         
-        if segue.identifier == "unwindMemeEditor" {
-//            Meme.updateMeme(atIndex: editMemeIndex, withMeme: edi)
-        }
     }
     
     //Suscribe the view controller to the UIKeyboardWillShowNotification:
