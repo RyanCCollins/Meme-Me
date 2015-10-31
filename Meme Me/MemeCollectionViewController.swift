@@ -10,7 +10,6 @@ import UIKit
 
 class MemeCollectionViewController: UICollectionViewController {
     
-    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var memeCollectionView: UICollectionView!
     let minimumSpacing: CGFloat = 5.0
     let sectionInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
@@ -42,7 +41,7 @@ class MemeCollectionViewController: UICollectionViewController {
         navigationItem.leftBarButtonItem?.enabled = MemeCollection.allMemes.count > 0
         
         //Set the layout based on number of items:
-        setControlFlowLayout()
+        //setControlFlowLayout()
         
         //Cycle through each cell and index in selectMemes array to deselect and reinitialize:
         for index in selectedMemes {
@@ -63,25 +62,6 @@ class MemeCollectionViewController: UICollectionViewController {
             editButton.enabled = true
         }
     }
-    
-//    func setControlFlowLayout() {
-//        //Set container spacing so that margins are included:
-//        let xSpace = sectionInsets.left + sectionInsets.right
-//        let ySpace = sectionInsets.top + sectionInsets.bottom
-//        
-//        //Calculate veiwable height by excluding navigationbar and tabbar:
-//        let viewableHeight = view.frame.size.height - (navigationController?.navigationBar.frame.height)! - tabBarController!.tabBar.frame.height
-//        let viewWidth = view.frame.size.width
-//        
-//        //Calculate x and y dimensions:
-//        let xDimension = (view.frame.size.width - xSpace) / 3.0
-//        let yDimension = (viewableHeight - ySpace) / 3.0
-//        
-//        flowLayout.minimumLineSpacing = minimumSpacing
-//        flowLayout.sectionInset = sectionInsets
-//        //Return size of each item:
-//        flowLayout.itemSize = CGSizeMake(xDimension, yDimension)
-//    }
     
     func didTapEdit(sender: UIBarButtonItem?) {
         editingMode = !editingMode
@@ -216,6 +196,7 @@ extension MemeCollectionViewController {
     
 }
 
+//#-MARK: Collection View Flow Layout Delegate Methods:
 extension MemeCollectionViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         //Set container spacing so that margins are included:
@@ -229,9 +210,7 @@ extension MemeCollectionViewController : UICollectionViewDelegateFlowLayout {
         let xDimension = (view.frame.size.width - xSpace) / 3.0
         let yDimension = (viewableHeight - ySpace) / 3.0
         
-//        flowLayout.minimumLineSpacing = minimumSpacing
-//        flowLayout.sectionInset = sectionInsets
-        //Return size of each item:
         return CGSize(width: xDimension, height: yDimension)
     }
+    
 }

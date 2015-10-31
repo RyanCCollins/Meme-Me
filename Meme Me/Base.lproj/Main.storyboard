@@ -238,12 +238,11 @@
                         </cells>
                         <connections>
                             <outlet property="dataSource" destination="oOe-Nq-55D" id="TNf-Cp-np7"/>
-                            <outlet property="delegate" destination="oOe-Nq-55D" id="CPL-ic-rSA"/>
+                            <outlet property="delegate" destination="Cfp-1H-H4Q" id="4w7-zW-CQI"/>
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="lTs-tt-EC4"/>
                     <connections>
-                        <outlet property="flowLayout" destination="Cfp-1H-H4Q" id="IFH-iv-HIS"/>
                         <outlet property="memeCollectionView" destination="YW3-CD-kIM" id="XtT-iZ-d4v"/>
                         <segue destination="Y8j-wr-PfF" kind="show" identifier="showMemeDetail" id="VwV-01-jR1"/>
                     </connections>
@@ -530,6 +529,6 @@
         <image name="table" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="q5a-pj-PpB"/>
+        <segue reference="VwV-01-jR1"/>
     </inferredMetricsTieBreakers>
 </document>
