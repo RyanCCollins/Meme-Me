@@ -1,8 +1,8 @@
 # Meme-Me
 Meme v2.0 - Udacity iOS nanodegree
-by TechRapport -[http://TechRapport.com](http://TechRapport.com)
+by Ryan Collins - [http://techrapport.com](http://TechRapport.com)
 
-This app was created as a project for the Udacity iOS Nanodegree. Before taking the course, I took a month long course on UIKit Fundamentals through Udacity. This course firmed up my working knowledge of Apple's UIKit framework, which is used extensively for UI design, control and navigation. 
+This app was created as a project for the Udacity iOS Nanodegree. Before creating this app, I took a month long course on UIKit Fundamentals through Udacity. This course firmed up my working knowledge of Apple's UIKit framework, which is used extensively for UI design, control and navigation. 
 
 The app offers the following features:
 - Create a Meme by taking or selecting a photo
@@ -12,6 +12,7 @@ The app offers the following features:
 - View saved Memes in a UITableView and a UICollectionView
 - View a saved Meme
 - Edit a saved Meme
+- Delete saved Memes
 
 See the extra credit features and what I intend to add next below. 
 
@@ -21,16 +22,21 @@ Some of the more notable technologies and best practices I used in this app are 
   - UINavigationControllers
   - UITableViews
   - UICollectionViews
+  	- UICollectionViewFlowLayout
+  	- UICollectionViewCell
+
 - MotionKit
 - Delegation
 - MVC
 - NSNotifications
 - Extensions
 
-As I stated above, I developed this application using several important design paradigms and best practices. Most notably, I used Model View Controller (MVC) extensively. I created a Model object for storing and processing Memes, several View Controllers for controlling navigation, writing to the model and updating the display. I also utilized extensions, [NSNotifications](http://techrapport.com/blog/), the delegate design pattern and more. I really enjoyed using Swift 2.0 and found that I was able to add a lot of functionality very easily using extensions. 
+As I stated above, I developed this application using several important design paradigms and best practices. Most notably, I used Model View Controller (MVC) extensively. I created a Meme struct model object, a font attributes struct model and a MemeCollection Struct Model for storing and processing Memes.  At this point, the app does not use Core Data to persist the data, but it will in the next version.
+
+I created several View Controllers for controlling navigation, writing to the model and updating the display. I also utilized extensions, [NSNotifications](http://techrapport.com/blog/), the delegate design pattern and more. I really enjoyed using Swift 2.0 and found that I was able to add a lot of functionality very easily using extensions. 
 
 ###Git & GitHub
-although, I have been using Git and other version control systems for many years, I have never used github professionally because my professional work has been private. I used best practices when using Git and github. I used separate branches for the two versions, wrote commit messages that were clear and concise, used Git to debug and I commit at logical points. 
+Although I have been using Git and other version control systems for many years, I have never used Github professionally because my professional work has been private. I used best practices when using Git and Github. I used separate branches for the two versions, wrote commit messages that were clear and concise, used Git to debug and I chose logical points to commit.
 
 ###Extra Credit
 In order to receive extra credit and to receive Exceeds Specifications, I added additional functionality to v2.0 of Meme-Me. Some of the functionality that I added are shown below:
@@ -43,13 +49,13 @@ The color picker is really great and allows the user to select a color by glidin
 
 I added a shake to reset feature, which greatly improved the experience by allowing the user to shake the phone to reset the font back to default. I did this using a single extension, which extends UIViewController. 
 
-####Extensions for delegates
+####Class extensions
 
-As I was developing this app, I realized that my code was getting a bit complex, especially after I added delegate functions for the text fields, UITableViews, UICollectionViews, and other UIKit compononents. In order to make the code more readable and manageable, I once again used UIViewController extensions in order to add the delegate functions. I find that this is good practice as long as you contain the extensions in one file, preferably in the same file of the view controller that utilizes them. I would recommend utilizing extensions for basic delegate functionality that will be shared throughout your app. 
+As I was developing this app, I realized that my code was getting a bit complex, especially after I added delegate functions for the text fields, UITableViews, UICollectionViews, and other UIKit compononents. In order to make the code more readable and manageable, I once again used UIViewController extensions in order to add the delegate functions for various UIKit components. I find that this is good practice as long as you contain the extensions in one file, preferably in the same file of the view controller that utilizes them. I would recommend utilizing extensions for basic delegate functionality that will be shared throughout your app. 
 
 ####More features
 
-Well, you'd think that I would be done with this app, but I am not. In the next iteration, I will be including Flickr images and randomly generated Memes. Keep a watch out for the next revision. 
+Well, you'd think that I would be done with this app, but I am not. In the next iteration, I will be including Core Data to persist data, Flickr images and randomly generated Memes. Keep a watch out for the next revision as I plan to release it to the App Store.
 
 A special thanks goes to: "Christian Zimmermann" who wrote the code for the SwiftColorPicker. You can view his GitHub page here: [https://github.com/Christian1313/iOS_Swift_ColorPicker](https://github.com/Christian1313/iOS_Swift_ColorPicker).
 
