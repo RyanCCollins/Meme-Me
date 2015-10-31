@@ -344,6 +344,9 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5fD-th-VvQ">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="CK4-fx-Y8Y"/>
+                                </constraints>
                                 <items>
                                     <navigationItem title="Meme Editor" id="aa0-ee-I3t">
                                         <barButtonItem key="leftBarButtonItem" systemItem="action" id="a4F-pf-HvI">
@@ -354,7 +357,7 @@
                                         <rightBarButtonItems>
                                             <barButtonItem title="Item" systemItem="save" id="lDG-it-A6p">
                                                 <connections>
-                                                    <action selector="save:" destination="BYZ-38-t0r" id="645-x3-4Qe"/>
+                                                    <action selector="saveMeme:" destination="BYZ-38-t0r" id="kov-MK-La8"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem systemItem="cancel" id="vZX-Pm-MrN">
@@ -385,6 +388,7 @@
                             <constraint firstItem="DQD-bs-Tit" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="C0w-Zd-GXk"/>
                             <constraint firstItem="UrU-mU-Nks" firstAttribute="centerX" secondItem="DQD-bs-Tit" secondAttribute="centerX" id="M8W-Ob-5hB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kGB-gM-iRK" secondAttribute="trailing" constant="-20" id="MDx-8R-jPN"/>
+                            <constraint firstItem="5fD-th-VvQ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="OZE-9M-rB8"/>
                             <constraint firstItem="DQD-bs-Tit" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SB3-Ix-YNH"/>
                             <constraint firstItem="5fD-th-VvQ" firstAttribute="centerX" secondItem="DQD-bs-Tit" secondAttribute="centerX" id="VSd-f1-ake"/>
                             <constraint firstItem="kGB-gM-iRK" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="bDb-tC-wak"/>
@@ -397,7 +401,6 @@
                             <constraint firstItem="bVa-a6-CXI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nee-j5-JeW"/>
                             <constraint firstItem="kGB-gM-iRK" firstAttribute="top" secondItem="DQD-bs-Tit" secondAttribute="bottom" id="owj-L1-5uu"/>
                             <constraint firstItem="5fD-th-VvQ" firstAttribute="width" secondItem="DQD-bs-Tit" secondAttribute="width" id="pwy-ZE-f2Y"/>
-                            <constraint firstItem="5fD-th-VvQ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="rlE-dY-ma0"/>
                             <constraint firstItem="DQD-bs-Tit" firstAttribute="top" secondItem="bVa-a6-CXI" secondAttribute="top" constant="-30" id="xUv-1K-hMo"/>
                             <constraint firstItem="bVa-a6-CXI" firstAttribute="centerX" secondItem="DQD-bs-Tit" secondAttribute="centerX" id="yNo-y4-r9f"/>
                         </constraints>

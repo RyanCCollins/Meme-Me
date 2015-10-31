@@ -19,7 +19,7 @@ class MemeCollectionViewController: UICollectionViewController {
     var editButton: UIBarButtonItem!
     var addDeleteButton: UIBarButtonItem!
     
-    //#-MARK: LifeCycle Methods:
+    //#-MARK: Lifecycle Methods:
     override func viewDidLoad() {
         super.viewDidLoad()
         //Allow for multiple selection:
@@ -28,10 +28,10 @@ class MemeCollectionViewController: UICollectionViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        configureUI()
+        setDefaultUIState()
     }
 
-    func configureUI () {
+    func setDefaultUIState () {
         //Initialize and add the edit/add buttons:
         editButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: "didTapEdit:")
         addDeleteButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "launchEditor:")
@@ -77,7 +77,7 @@ class MemeCollectionViewController: UICollectionViewController {
             navigationItem.rightBarButtonItem?.enabled = false
         } else {
             //If no longer editing, reitialize UI to base layout:
-            configureUI()
+            setDefaultUIState()
         }
     }
     
@@ -109,7 +109,7 @@ extension MemeCollectionViewController {
             for index in sortedMemes {
                 MemeCollection.remove(atIndex: index.item)
             }
-            configureUI()
+            setDefaultUIState()
         }
     }
     
@@ -123,7 +123,7 @@ extension MemeCollectionViewController {
         })
         
         let stopAction = UIAlertAction(title: "Keep Them", style: .Default, handler: {
-            action in self.configureUI()
+            action in self.setDefaultUIState()
         })
         
         //Add actions then present alert:

@@ -13,15 +13,16 @@ class MemeDetailViewController: UIViewController {
     
     var meme: Meme?
     
-    //# - MARK: Lifecycle
+    //# - MARK: Lifecycle Methods:
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //Unwrap meme and set the image view to the memed image:
         if let meme = meme {
             imageView.image = meme.memedImage
         }
     }
-
+    
+    //Set the editmeme when opening the meme editor:
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showMemeEditor" {
             let editVC = segue.destinationViewController as! MemeEditorViewController

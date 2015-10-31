@@ -33,13 +33,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     //#-MARK: Lifecycle methods:
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Congifure the UI
-        initUIState()
+        //Congifure the UI to its default state:
+        setDefaultUIState()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        
+        //Disable camera button if no camera is available:
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(.Camera)
         
         //Subscribe to keyboard & shake notifications:
@@ -50,7 +50,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(true)
         
-        //unsubscribe to keyboard notification:
+        //Unsubscribe to keyboard notification:
         unsubsribeToKeyboardNotification()
         unsubsribeToShakeNotification()
     }
@@ -60,8 +60,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         return true
     }
     
-    //Initialize the state of the User Interface:
-    func initUIState() {
+    //Set the state of the User Interface to editing or creating:
+    func setDefaultUIState() {
         
         //Set delegate of each text field:
         let textFieldArray = [topText, bottomText]
@@ -99,7 +99,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     func configureTextFields(textFields: [UITextField!]){
         for textField in textFields{
             
-            //Define Default Text Attributes:
+            //Define default Text Attributes:
             let memeTextAttributes = [
                 NSStrokeColorAttributeName: UIColor.blackColor(),
                 NSForegroundColorAttributeName: fontAttributes.fontColor,
@@ -115,7 +115,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBAction func selectImage(sender: AnyObject) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum) {
 
-            //initialize the imagepicker:
+            //Initialize and present the imagepicker:
             imagePickerController = UIImagePickerController()
             imagePickerController.delegate = self
             imagePickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
@@ -149,8 +149,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         bottomText.text = nil
     }
     
-    //Create the meme and save it to our Meme Model:
-    @IBAction func save(sender: AnyObject) -> Void {
+    //Create the meme and save it to the Meme Model:
+    @IBAction func saveMeme(sender: AnyObject) -> Void {
         
         //Check If all items are filled out:
         if userCanSave() {
@@ -161,21 +161,20 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             //If you are editing a meme, update it, if new, save it:
             if userIsEditing {
                 
-                //Update the meme if there is one to update:
+                //Unwrap then update the meme if there is one to update:
                 if let editMeme = editMeme {
                         MemeCollection.update(atIndex: MemeCollection.indexOf(editMeme), withMeme: meme)
                     }
                 //Unwind to table view once meme is updated:
                 performSegueWithIdentifier("unwindMemeEditor", sender: sender)
                 
-            //Add the Meme if user is not editing:
             } else {
+                //Add the Meme if user is not editing:
                 MemeCollection.add(meme)
                 dismissViewControllerAnimated(true, completion: nil)
             }
-        //Alert user if something is missing and you can't save:
         } else {
-            
+            //Alert user if something is missing and you can't save:
             let okAction = UIAlertAction(title: "Save", style: .Default, handler: { Void in
                 self.topText.text = ""
                 self.bottomText.text = ""
@@ -187,6 +186,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         }
     }
     
+    //Test to see whether the user can save or not:
     func userCanSave() -> Bool {
         if topText.text == nil || bottomText.text == nil || imageView.image == nil {
             return false
@@ -222,7 +222,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         let ac = UIActivityViewController(activityItems: [generateMemedImage()], applicationActivities: nil)
         ac.completionWithItemsHandler = { activity, success, items, error in
             if success {
-                self.save(self)
+                self.saveMeme(self)
             }
         }
         presentViewController(ac, animated: true, completion: nil)

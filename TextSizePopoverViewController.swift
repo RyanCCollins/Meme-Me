@@ -16,6 +16,7 @@ class TextSizePopoverViewController: UIViewController, UIPickerViewDataSource, U
     var pickerData = [String]()
     let fontFamily = UIFont.familyNames()
     
+    //#-MARK: Lifecycle Methods:
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,7 +41,7 @@ class TextSizePopoverViewController: UIViewController, UIPickerViewDataSource, U
         subscribeToShakeNotifications()
     }
     
-    //Set as first responder:
+    //Set view as first responder:
     override func viewDidAppear(animated: Bool) {
         becomeFirstResponder()
     }
@@ -67,31 +68,34 @@ class TextSizePopoverViewController: UIViewController, UIPickerViewDataSource, U
         presentViewController(ac, animated: true, completion: nil)
     }
     
+    //Set default font attibutes:
     func setFontAttributeDefaults(fontSize: CGFloat = 40.0, fontName: String = "HelveticaNeue-CondensedBlack", fontColor: UIColor = UIColor.whiteColor()){
         fontAttributes.fontSize = fontSize
         fontAttributes.fontName = fontName
         fontAttributes.fontColor = fontColor
     }
     
+    //#-MARK: Set UI Elements based on stored font attributes:
     func setValuesOfUIElementsForFontAttributes() {
-        //Set Slider:
+        //Set font slider's value to the font size:
         fontSizeSlider.value = Float(fontAttributes.fontSize)
         
-        //Set picker:
+        //Set picker to font:
         let index = pickerData.indexOf(fontAttributes.fontName)
         if let index = index {
             fontPicker.selectRow(index, inComponent: 0, animated: true)
         }
     }
-
+    
+    //update the MemeEditor font and reconfigure the view:
     func updateMemeFont(){
-        //update the MemeEditor font and reconfigure the view:
         let parent = presentingViewController as! MemeEditorViewController
         parent.fontAttributes.fontSize = fontAttributes.fontSize
         parent.fontAttributes.fontName = fontAttributes.fontName
         parent.configureTextFields([parent.topText, parent.bottomText])
     }
     
+    //Respond to changes in the font slider:
     @IBAction func didChangeSlider(sender: UISlider) {
         //Cast value of font slider to CGFloat:
         let fontSize = CGFloat(fontSizeSlider.value)
