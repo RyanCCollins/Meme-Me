@@ -40,9 +40,6 @@ class MemeCollectionViewController: UICollectionViewController {
         navigationItem.leftBarButtonItem = editButton
         navigationItem.leftBarButtonItem?.enabled = MemeCollection.allMemes.count > 0
         
-        //Set the layout based on number of items:
-        //setControlFlowLayout()
-        
         //Cycle through each cell and index in selectMemes array to deselect and reinitialize:
         for index in selectedMemes {
             memeCollectionView.deselectItemAtIndexPath(index, animated: true)
@@ -192,32 +189,6 @@ extension MemeCollectionViewController {
             cell.isSelected(false)
             
         }
-    }
-    
-}
-
-//#-MARK: Collection View Flow Layout Delegate Methods:
-extension MemeCollectionViewController : UICollectionViewDelegateFlowLayout {
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        //Set container spacing so that margins are included:
-        let xSpace = sectionInsets.left + sectionInsets.right
-        let ySpace = sectionInsets.top + sectionInsets.bottom
-        
-        //Calculate veiwable height by excluding navigationbar and tabbar:
-        let viewableHeight = view.frame.size.height - (navigationController?.navigationBar.frame.height)! - tabBarController!.tabBar.frame.height
-        
-        //Calculate x and y dimensions:
-        let xDimension = (view.frame.size.width - xSpace) / 3.0
-        let yDimension = (viewableHeight - ySpace) / 3.0
-        
-        return CGSize(width: xDimension, height: yDimension)
-    }
-    
-    //Set margins for collection view:
-    func collectionView(collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-            return sectionInsets
     }
     
 }

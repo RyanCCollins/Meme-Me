@@ -238,12 +238,12 @@
                         </cells>
                         <connections>
                             <outlet property="dataSource" destination="oOe-Nq-55D" id="TNf-Cp-np7"/>
-                            <outlet property="delegate" destination="Cfp-1H-H4Q" id="4w7-zW-CQI"/>
+                            <outlet property="delegate" destination="oOe-Nq-55D" id="MS9-rD-3g9"/>
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="lTs-tt-EC4"/>
                     <connections>
-                        <outlet property="memeCollectionView" destination="YW3-CD-kIM" id="XtT-iZ-d4v"/>
+                        <outlet property="memeCollectionView" destination="YW3-CD-kIM" id="gkH-ZE-PEZ"/>
                         <segue destination="Y8j-wr-PfF" kind="show" identifier="showMemeDetail" id="VwV-01-jR1"/>
                     </connections>
                 </collectionViewController>
