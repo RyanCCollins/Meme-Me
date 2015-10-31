@@ -10,7 +10,9 @@ import UIKit
 
 class MemeCollectionViewController: UICollectionViewController {
     
+    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var memeCollectionView: UICollectionView!
+    let minimumSpacing: CGFloat = 5.0
     let sectionInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
     
     var selectedMemes = [NSIndexPath]()
@@ -21,7 +23,7 @@ class MemeCollectionViewController: UICollectionViewController {
     //#-MARK: LifeCycle Methods:
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //Allow for multiple selection:
         memeCollectionView.allowsMultipleSelection = true
     }
     
@@ -39,6 +41,9 @@ class MemeCollectionViewController: UICollectionViewController {
         navigationItem.leftBarButtonItem = editButton
         navigationItem.leftBarButtonItem?.enabled = MemeCollection.allMemes.count > 0
         
+        //Set the layout based on number of items:
+        setControlFlowLayout()
+        
         //Cycle through each cell and index in selectMemes array to deselect and reinitialize:
         for index in selectedMemes {
             memeCollectionView.deselectItemAtIndexPath(index, animated: true)
@@ -49,7 +54,6 @@ class MemeCollectionViewController: UICollectionViewController {
         //Remove all items from the selected Memes array and reset layout:
         selectedMemes.removeAll()
         memeCollectionView.reloadData()
-//        setControllFlowLayout()
         
         //If there are no saved memes, present the meme creator:
         if MemeCollection.allMemes.count == 0 {
@@ -60,15 +64,28 @@ class MemeCollectionViewController: UICollectionViewController {
         }
     }
     
-//    func setControllFlowLayout() {
-//        sectionInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
-//    }
+    func setControlFlowLayout() {
+        //Set container spacing so that margins are included:
+        let xSpace = sectionInsets.left + sectionInsets.right
+        let ySpace = sectionInsets.top + sectionInsets.bottom
+        
+        //Calculate veiwable height by excluding navigationbar and tabbar:
+        let viewableHeight = view.frame.height - (navigationController?.navigationBar.frame.height)! - tabBarController!.tabBar.frame.height
+        
+        //Calculate x and y dimensions:
+        let xDimension = (view.frame.size.width - xSpace) / 3.0
+        let yDimension = (viewableHeight - ySpace) / 3.0
+        
+        flowLayout.minimumLineSpacing = minimumSpacing
+        flowLayout.sectionInset = sectionInsets
+        //Return size of each item:
+        flowLayout.itemSize = CGSizeMake(xDimension, yDimension)
+    }
     
     func didTapEdit(sender: UIBarButtonItem?) {
         editingMode = !editingMode
 
         if editingMode {
-            
             //If editing, change edit button to done and add button to trash:
             editButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "didTapEdit:")
             navigationItem.leftBarButtonItem = editButton
@@ -77,17 +94,14 @@ class MemeCollectionViewController: UICollectionViewController {
             addDeleteButton = UIBarButtonItem(barButtonSystemItem: .Trash, target: self, action: "alertBeforeDeleting:")
             navigationItem.rightBarButtonItem = addDeleteButton
             navigationItem.rightBarButtonItem?.enabled = false
-            
         } else {
-            
-            //If no longer editing, reitialize UI to base:
+            //If no longer editing, reitialize UI to base layout:
             configureUI()
         }
     }
     
     //Launch the Meme editor with cancel/share button enabled:
     func launchEditor(sender: AnyObject){
-        
         let object: AnyObject = storyboard!.instantiateViewControllerWithIdentifier("MemeEditorViewController")
         let editMemeVC = object as! MemeEditorViewController
         
@@ -96,23 +110,24 @@ class MemeCollectionViewController: UICollectionViewController {
             editMemeVC.shareButton.enabled = true
         })
     }
-    
 }
 
-//#-MARK: Delete Memes:
+//#-MARK: Delete Memes extension:
 extension MemeCollectionViewController {
     
-    //Delect selected Memes when prompted:
+    //Delete selected Memes when prompted:
     func deleteSelectedMemes(sender: AnyObject) {
         if selectedMemes.count > 0 {
-            let sortedMemes = selectedMemes.sort{
+            
+            //Sort the array of  selected Memes:
+            let sortedMemes = selectedMemes.sort {
                 return $0.item > $1.item
             }
             
+            //Remove the memes from our model and then reconfigure the UI:
             for index in sortedMemes {
                 MemeCollection.remove(atIndex: index.item)
             }
-            //Reinitialize the UI back to starting point:
             configureUI()
         }
     }
@@ -135,21 +150,20 @@ extension MemeCollectionViewController {
         //Add actions then present alert:
         ac.addAction(deleteAction)
         ac.addAction(stopAction)
-        
         presentViewController(ac, animated: true, completion: nil)
     }
 }
 
 //#-MARK: Collection View Delegate and Data Source Methods
 extension MemeCollectionViewController {
-
+    
+    //Return number of items in memes array:
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //Return number of items in memes array:
         return MemeCollection.allMemes.count
     }
     
+    //Configure collection view cells for each Meme:
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        //Configure cell and return it:
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MemeCollectionCell", forIndexPath: indexPath) as! MemeCollectionViewCell
         
         let meme = MemeCollection.allMemes[indexPath.item]
@@ -158,15 +172,18 @@ extension MemeCollectionViewController {
         return cell
     }
     
+    //Define behavior when a cell is selected:
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         //If editing, select and add to the array of indexes
         if editingMode {
+            
             let cell = collectionView.cellForItemAtIndexPath(indexPath) as! MemeCollectionViewCell
             
             selectedMemes.append(indexPath)
             cell.isSelected(true)
             addDeleteButton.enabled = true
+            
         } else {
             
             //If not editing, show Meme detail:
@@ -176,44 +193,24 @@ extension MemeCollectionViewController {
             //Pass the data from the selected row to the detail view and present:
             detailVC.meme = MemeCollection.allMemes[indexPath.item]
             navigationController!.pushViewController(detailVC, animated: true)
+            
         }
     }
     
+    //Define behavior when a cell is deselected:
     override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        //Enable delete button if cell is selected, disable if not:
+        navigationItem.rightBarButtonItem?.enabled = (selectedMemes.count > 0)
         
         //If editing, deselect and remove from array of selected memes:
         if editingMode {
+            
             let cell = collectionView.cellForItemAtIndexPath(indexPath) as! MemeCollectionViewCell
             selectedMemes.removeAtIndex(indexPath.item)
             cell.isSelected(false)
+            
         }
-        navigationItem.rightBarButtonItem?.enabled = (selectedMemes.count > 0)
-    }
-}
-
-//#-MARK: Control Flow Layout Delegate Methods:
-extension MemeCollectionViewController : UICollectionViewDelegateFlowLayout {
-    
-    //Set size of each item in collection view:
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        
-        //Set container spacing so that margins are included:
-        let xSpace = sectionInsets.top + sectionInsets.bottom
-        let ySpace = sectionInsets.left + sectionInsets.right
-        
-        //Calculate veiwable height by excluding navigationbar and tabbar:
-        let viewableHeight = view.frame.height - (navigationController?.navigationBar.frame.height)! - tabBarController!.tabBar.frame.height
-        
-        //Calculate x and y dimensions:
-        let xDimension = (viewableHeight - xSpace) / 3.0
-        let yDimension = (view.frame.size.height - ySpace) / 3.0
-        
-        //Return size of each item:
-        return CGSize(width: xDimension, height: yDimension)
     }
     
-    //Set the margins for each item in collection view based on
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return sectionInsets
-    }
 }
