@@ -18,7 +18,6 @@
 		1F230CE11BBF4995007B6B74 /* MemeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F230CE01BBF4995007B6B74 /* MemeCollectionViewCell.swift */; };
 		1F230CE51BBF6CD9007B6B74 /* MemeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F230CE41BBF6CD9007B6B74 /* MemeDetailViewController.swift */; };
 		1F230CE71BC0567F007B6B74 /* MemeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F230CE61BC0567F007B6B74 /* MemeTableViewCell.swift */; };
-		1F5A09A11BBB0B9700B74044 /* ImagePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5A09A01BBB0B9700B74044 /* ImagePickerDelegate.swift */; };
 		1F5A09A31BBB4FC900B74044 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5A09A21BBB4FC900B74044 /* Meme.swift */; };
 		1FA5EEB61BE3E1E2001E611B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FA5EEB51BE3E1E2001E611B /* Assets.xcassets */; };
 		1FBDDCE61BC9E35500CDAAD4 /* SwiftColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBDDCE51BC9E35500CDAAD4 /* SwiftColorPickerViewController.swift */; };
@@ -60,7 +59,6 @@
 		1F230CE01BBF4995007B6B74 /* MemeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeCollectionViewCell.swift; sourceTree = "<group>"; };
 		1F230CE41BBF6CD9007B6B74 /* MemeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemeDetailViewController.swift; path = ../MemeDetailViewController.swift; sourceTree = "<group>"; };
 		1F230CE61BC0567F007B6B74 /* MemeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeTableViewCell.swift; sourceTree = "<group>"; };
-		1F5A09A01BBB0B9700B74044 /* ImagePickerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerDelegate.swift; sourceTree = "<group>"; };
 		1F5A09A21BBB4FC900B74044 /* Meme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
 		1FA5EEB51BE3E1E2001E611B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FBDDCE51BC9E35500CDAAD4 /* SwiftColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftColorPickerViewController.swift; sourceTree = "<group>"; };
@@ -118,7 +116,6 @@
 				1F230CE91BC056A7007B6B74 /* Model */,
 				1F230CE81BC05688007B6B74 /* View */,
 				1F230CEA1BC056B3007B6B74 /* Controller */,
-				1F5A09A01BBB0B9700B74044 /* ImagePickerDelegate.swift */,
 				1F20528C1BB9EEC700776F0A /* AppDelegate.swift */,
 				1FA5EEB51BE3E1E2001E611B /* Assets.xcassets */,
 				1F2052901BB9EEC700776F0A /* Main.storyboard */,
@@ -308,7 +305,6 @@
 			files = (
 				1FBDDCE61BC9E35500CDAAD4 /* SwiftColorPickerViewController.swift in Sources */,
 				1FC149D61BC955C800987A78 /* TextSizePopoverViewController.swift in Sources */,
-				1F5A09A11BBB0B9700B74044 /* ImagePickerDelegate.swift in Sources */,
 				1F5A09A31BBB4FC900B74044 /* Meme.swift in Sources */,
 				1F230CDD1BBF0CD7007B6B74 /* MemeCollectionViewController.swift in Sources */,
 				1F230CDF1BBF0CF9007B6B74 /* MemeTableViewController.swift in Sources */,
