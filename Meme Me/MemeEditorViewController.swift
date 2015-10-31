@@ -16,7 +16,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var bottomText: UITextField!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
-    @IBOutlet weak var topToolbar: UIToolbar!
+    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var bottomToolbar: UIToolbar!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
@@ -71,6 +71,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         //Set the meme to edit if there is an editMeme:
         if let editMeme = editMeme {
+            //Set the title to edit:
+            navBar.topItem?.title = "Edit your Meme"
+            
             topText.text = editMeme.topText
             bottomText.text = editMeme.bottomText
             imageView.image = editMeme.originalImage
@@ -79,6 +82,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             fontAttributes = editMeme.fontAttributes
             configureTextFields(textFieldArray)
         } else {
+            //Set the title if creating a Meme:
+            navBar.topItem?.title = "Create a Meme"
             //Set default text/font attributes if new meme:
             fontAttributes = FontAttributes()
             configureTextFields(textFieldArray)
@@ -208,7 +213,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     private func hideNavItems(hide: Bool){
         navigationController?.setNavigationBarHidden(hide, animated: false)
-        topToolbar.hidden = hide
+        navBar.hidden = hide
         bottomToolbar.hidden = hide
     }
     

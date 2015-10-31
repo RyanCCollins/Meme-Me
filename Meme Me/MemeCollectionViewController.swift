@@ -51,6 +51,9 @@ class MemeCollectionViewController: UICollectionViewController {
         selectedMemes.removeAll()
         memeCollectionView.reloadData()
         
+        //Set editing mode to off:
+        editingMode = false
+        
         //If there are no saved memes, present the meme creator:
         if MemeCollection.allMemes.count == 0 {
             editButton.enabled = false
