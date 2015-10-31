@@ -170,38 +170,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FqR-H5-h0s">
-                            <size key="itemSize" width="150" height="200"/>
+                            <size key="itemSize" width="0.0" height="0.0"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MemeCollectionCell" id="gbG-Rv-q7h" customClass="MemeCollectionViewCell" customModule="Meme_Me" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="100" height="100"/>
+                                <rect key="frame" x="0.0" y="64" width="0.0" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IKV-zD-bAw">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IKV-zD-bAw">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
                                             <animations/>
                                         </imageView>
-                                        <imageView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="3yA-4M-Hph">
-                                            <rect key="frame" x="13" y="12" width="75" height="75"/>
+                                        <imageView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="3yA-4M-Hph">
+                                            <rect key="frame" x="13" y="37" width="75" height="75"/>
                                             <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="75" id="9gZ-N6-S5k"/>
                                                 <constraint firstAttribute="width" constant="75" id="xjQ-bX-vyp"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="d" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPS-zx-uX4">
-                                            <rect key="frame" x="0.0" y="73" width="100" height="19"/>
-                                            <animations/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WZ0-fi-cah">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                             <animations/>
@@ -209,31 +201,19 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                             </variation>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="d" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Nn-J7-o2u">
-                                            <rect key="frame" x="0.0" y="8" width="100" height="21"/>
-                                            <animations/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <animations/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstItem="IKV-zD-bAw" firstAttribute="top" secondItem="6Nn-J7-o2u" secondAttribute="bottom" constant="-29" id="1V2-Nn-fmL"/>
-                                    <constraint firstItem="3yA-4M-Hph" firstAttribute="centerX" secondItem="6Nn-J7-o2u" secondAttribute="centerX" id="9SY-lO-0if"/>
-                                    <constraint firstItem="vPS-zx-uX4" firstAttribute="top" secondItem="IKV-zD-bAw" secondAttribute="bottom" constant="-27" id="HMD-hU-ikM"/>
                                     <constraint firstItem="3yA-4M-Hph" firstAttribute="centerY" secondItem="IKV-zD-bAw" secondAttribute="centerY" id="I5d-hX-7O9"/>
                                     <constraint firstItem="IKV-zD-bAw" firstAttribute="top" secondItem="gbG-Rv-q7h" secondAttribute="topMargin" constant="-8" id="UKA-N5-u6V"/>
-                                    <constraint firstItem="6Nn-J7-o2u" firstAttribute="centerX" secondItem="IKV-zD-bAw" secondAttribute="centerX" id="cu2-Ez-hQ3"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="IKV-zD-bAw" secondAttribute="trailing" constant="-8" id="dxx-Pd-Lfp"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="IKV-zD-bAw" secondAttribute="bottom" constant="-8" id="fXh-1V-H3o"/>
-                                    <constraint firstItem="vPS-zx-uX4" firstAttribute="centerX" secondItem="IKV-zD-bAw" secondAttribute="centerX" id="hyI-K9-JJ5"/>
                                     <constraint firstItem="IKV-zD-bAw" firstAttribute="leading" secondItem="gbG-Rv-q7h" secondAttribute="leadingMargin" constant="-8" id="nlb-fl-toH"/>
+                                    <constraint firstItem="3yA-4M-Hph" firstAttribute="centerX" secondItem="IKV-zD-bAw" secondAttribute="centerX" id="xdN-Qu-OmR"/>
                                 </constraints>
-                                <size key="customSize" width="100" height="100"/>
                                 <variation key="default">
                                     <mask key="subviews">
                                         <exclude reference="WZ0-fi-cah"/>
@@ -245,10 +225,8 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <outlet property="bottomLabel" destination="vPS-zx-uX4" id="AHn-fm-HKa"/>
                                     <outlet property="memeImageView" destination="IKV-zD-bAw" id="Sf8-Z9-yZA"/>
                                     <outlet property="selectedImageView" destination="3yA-4M-Hph" id="LFA-uO-Hiq"/>
-                                    <outlet property="topLabel" destination="6Nn-J7-o2u" id="d9x-d2-U4R"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
