@@ -1,15 +1,17 @@
 # Meme-Me
 ##Meme v2.0 - Udacity iOS Nanodegree
-by [Ryan Collins](mailto:info@techrapport.com) - [http://techrapport.com](http://TechRapport.com)
+by [Ryan Collins](mailto:info@techrapport.com) 
+Project Link: [http://techrapport.com/projects/meme-me](http://TechRapport.com/projects/meme-me)
+GitHub: [https://github.com/TechRapport/Meme-Me](https://github.com/TechRapport/Meme-Me)
 
 Build information
 __________________
-Version: 2.0
-xCode: Version 7.1
-iOS: 9.0
-Swift: 2.0
-iPhone: 4S or later
-iPad: N/A
+- Version: 2.0
+- xCode: Version 7.1
+- iOS: 9.0
+- Swift: 2.0
+- iPhone: 4S or later
+- iPad: N/A
 ____________________
 
 
