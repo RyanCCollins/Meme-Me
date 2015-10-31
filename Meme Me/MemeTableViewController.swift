@@ -77,6 +77,12 @@ class MemeTableViewController: UITableViewController {
         case .Delete:
             MemeCollection.remove(atIndex: indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            //If there are no saved memes, present the meme creator:
+            if MemeCollection.count() == 0 {
+                let object: AnyObject = storyboard!.instantiateViewControllerWithIdentifier("MemeEditorViewController")
+                let memeCreatorVC = object as! MemeEditorViewController
+                presentViewController(memeCreatorVC, animated: false, completion: nil)
+            }
         default:
             return
         }
