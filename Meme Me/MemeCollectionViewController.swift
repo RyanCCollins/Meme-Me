@@ -123,9 +123,7 @@ extension MemeCollectionViewController {
         })
         
         let stopAction = UIAlertAction(title: "Keep Them", style: .Default, handler: {
-            action in self.dismissViewControllerAnimated(true, completion: {
-                self.configureUI()
-            })
+            action in self.configureUI()
         })
         
         //Add actions then present alert:
