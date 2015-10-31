@@ -213,4 +213,11 @@ extension MemeCollectionViewController : UICollectionViewDelegateFlowLayout {
         return CGSize(width: xDimension, height: yDimension)
     }
     
+    //Set margins for collection view:
+    func collectionView(collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+            return sectionInsets
+    }
+    
 }
