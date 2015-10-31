@@ -157,6 +157,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
                 performSegueWithIdentifier("unwindMemeEditor", sender: sender)
             } else {
                 MemeCollection.add(meme)
+                print(MemeCollection.allMemes.indexOf(meme))
                 dismissViewControllerAnimated(true, completion: nil)
             }
         } else {

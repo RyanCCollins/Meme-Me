@@ -11,12 +11,12 @@ import UIKit
 class MemeCollectionViewController: UICollectionViewController {
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
-    @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var memeCollectionView: UICollectionView!
     
-    @IBOutlet weak var addOrDeleteButton: UIBarButtonItem!
     var selectedMemes = [NSIndexPath]()
     var editingMode = false
+    var editButton: UIBarButtonItem!
+    var addDeleteButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,21 +29,34 @@ class MemeCollectionViewController: UICollectionViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
-        collectionView!.reloadData()
         initUI()
     }
 
     func initUI () {
+        //Initialize and add the edit/add buttons:
+        editButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: "didTapEdit:")
+        addDeleteButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "launchEditor:")
+        navigationItem.rightBarButtonItem = addDeleteButton
+        navigationItem.leftBarButtonItem = editButton
         navigationItem.leftBarButtonItem?.enabled = MemeCollection.allMemes.count > 0
-        //If there are no saved memes, present the meme creator:
         
+        //Cycle through each cell and index in selectMemes array to deselect and reinitialize:
+        for index in selectedMemes {
+//            memeCollectionView.deselectItemAtIndexPath(index, animated: true)
+            let cell = memeCollectionView.cellForItemAtIndexPath(index) as! MemeCollectionViewCell
+            cell.isSelected(false)
+        }
+        
+        //Remove all items from the selected Memes array:
+        selectedMemes.removeAll()
+        memeCollectionView.reloadData()
+        
+        //If there are no saved memes, present the meme creator:
         if MemeCollection.allMemes.count == 0 {
             editButton.enabled = false
             launchEditor(self)
-            print("diabled")
         } else {
             editButton.enabled = true
-            print("enable")
         }
     }
     
@@ -58,30 +71,24 @@ class MemeCollectionViewController: UICollectionViewController {
         flowLayout.itemSize = CGSizeMake(dimension, dimension)
     }
     
-    @IBAction func didTapEdit(sender: UIBarButtonItem?) {
+    func didTapEdit(sender: UIBarButtonItem?) {
         editingMode = !editingMode
 
         if editingMode {
-            sender!.title = "Done"
-            
+            editButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "didTapEdit:")
+            navigationItem.leftBarButtonItem = editButton
             //Set right bar button item and disable it until an item is selected:
-            let deleteButton = UIBarButtonItem(barButtonSystemItem: .Trash, target: self, action: "deleteSelectedMemes")
-            navigationItem.rightBarButtonItem = deleteButton
+            addDeleteButton = UIBarButtonItem(barButtonSystemItem: .Trash, target: self, action: "alertBeforeDeleting:")
+            navigationItem.rightBarButtonItem = addDeleteButton
             navigationItem.rightBarButtonItem?.enabled = false
         } else {
             //If no longer editing, remove items from set and refresh view
-            sender!.title = "Edit"
-            let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "launchEditor")
-            navigationItem.rightBarButtonItem = addButton
-            for index in selectedMemes {
-                memeCollectionView.deselectItemAtIndexPath(index, animated: true)
-            }
-            
+            initUI()
         }
     }
     
     
-    @IBAction func launchEditor(sender: AnyObject){
+    func launchEditor(sender: AnyObject){
         let object: AnyObject = storyboard!.instantiateViewControllerWithIdentifier("MemeEditorViewController")
         let editMemeVC = object as! MemeEditorViewController
         presentViewController(editMemeVC, animated: true, completion: {
@@ -105,11 +112,12 @@ extension MemeCollectionViewController {
             }
             
             selectedMemes.removeAll()
-            
-            editingMode = false
+    
+            initUI()
         }
     }
     
+    //Alert the user before deletion:
     func alertBeforeDeleting(sender: AnyObject) {
         let ac = UIAlertController(title: "Delete Selected Memes", message: "Are you SURE that you want to delete the selected Memes?", preferredStyle: .Alert)
         let deleteAction = UIAlertAction(title: "Delete!", style: .Destructive, handler: {
@@ -150,15 +158,16 @@ extension MemeCollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        //Instantiate the Meme Editor VC:
+        //If editing, select and add to the array of indexes
         if editingMode {
-            let cell = collectionView.cellForItemAtIndexPath(indexPath)
-            cell?.highlighted = true
+            let cell = collectionView.cellForItemAtIndexPath(indexPath) as! MemeCollectionViewCell
             
             let index = indexPath
             selectedMemes.append(index)
+            cell.isSelected(true)
+            addDeleteButton.enabled = true
         } else {
-            
+            //If not editing, show Meme detail:
             let object: AnyObject = storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController")
             let detailVC = object as! MemeDetailViewController
             
@@ -171,27 +180,10 @@ extension MemeCollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         if editingMode {
-            if let index = selectedMemes.indexOf(indexPath) {
-                selectedMemes.removeAtIndex(index)
-            }
+            let cell = collectionView.cellForItemAtIndexPath(indexPath) as! MemeCollectionViewCell
+            selectedMemes.removeAtIndex(indexPath.item)
+            cell.isSelected(false)
         }
-        let cell = collectionView.cellForItemAtIndexPath(indexPath)
-        cell?.highlighted = false
-    }
-    
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        if editingMode {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        if editingMode {
-            return true
-        } else {
-            return false
-        }
+        navigationItem.rightBarButtonItem?.enabled = (selectedMemes.count > 0)
     }
 }

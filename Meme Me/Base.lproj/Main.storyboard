@@ -170,32 +170,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FqR-H5-h0s">
-                            <size key="itemSize" width="100" height="100"/>
+                            <size key="itemSize" width="150" height="200"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MemeCollectionCell" id="gbG-Rv-q7h" customClass="MemeCollectionViewCell" customModule="Meme_Me" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="112" height="112"/>
+                                <rect key="frame" x="0.0" y="64" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="112" height="112"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IKV-zD-bAw">
-                                            <rect key="frame" x="8" y="8" width="96" height="96"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                             <animations/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="d" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Nn-J7-o2u">
-                                            <rect key="frame" x="14" y="17" width="84" height="21"/>
+                                        <imageView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="3yA-4M-Hph">
+                                            <rect key="frame" x="13" y="12" width="75" height="75"/>
                                             <animations/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="d" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPS-zx-uX4">
-                                            <rect key="frame" x="14" y="74" width="84" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="75" id="9gZ-N6-S5k"/>
+                                                <constraint firstAttribute="width" constant="75" id="xjQ-bX-vyp"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="d" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPS-zx-uX4">
+                                            <rect key="frame" x="0.0" y="73" width="100" height="19"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -208,18 +209,31 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                             </variation>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="d" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Nn-J7-o2u">
+                                            <rect key="frame" x="0.0" y="8" width="100" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <animations/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstItem="IKV-zD-bAw" firstAttribute="top" secondItem="gbG-Rv-q7h" secondAttribute="topMargin" id="XnH-Sf-CCc"/>
-                                    <constraint firstItem="IKV-zD-bAw" firstAttribute="bottom" secondItem="gbG-Rv-q7h" secondAttribute="bottomMargin" id="ZwH-JJ-PsD"/>
-                                    <constraint firstItem="IKV-zD-bAw" firstAttribute="leading" secondItem="gbG-Rv-q7h" secondAttribute="leadingMargin" id="lno-ZT-CHh"/>
-                                    <constraint firstItem="IKV-zD-bAw" firstAttribute="trailing" secondItem="gbG-Rv-q7h" secondAttribute="trailingMargin" id="tHD-yK-yVi"/>
+                                    <constraint firstItem="IKV-zD-bAw" firstAttribute="top" secondItem="6Nn-J7-o2u" secondAttribute="bottom" constant="-29" id="1V2-Nn-fmL"/>
+                                    <constraint firstItem="3yA-4M-Hph" firstAttribute="centerX" secondItem="6Nn-J7-o2u" secondAttribute="centerX" id="9SY-lO-0if"/>
+                                    <constraint firstItem="vPS-zx-uX4" firstAttribute="top" secondItem="IKV-zD-bAw" secondAttribute="bottom" constant="-27" id="HMD-hU-ikM"/>
+                                    <constraint firstItem="3yA-4M-Hph" firstAttribute="centerY" secondItem="IKV-zD-bAw" secondAttribute="centerY" id="I5d-hX-7O9"/>
+                                    <constraint firstItem="IKV-zD-bAw" firstAttribute="top" secondItem="gbG-Rv-q7h" secondAttribute="topMargin" constant="-8" id="UKA-N5-u6V"/>
+                                    <constraint firstItem="6Nn-J7-o2u" firstAttribute="centerX" secondItem="IKV-zD-bAw" secondAttribute="centerX" id="cu2-Ez-hQ3"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="IKV-zD-bAw" secondAttribute="trailing" constant="-8" id="dxx-Pd-Lfp"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="IKV-zD-bAw" secondAttribute="bottom" constant="-8" id="fXh-1V-H3o"/>
+                                    <constraint firstItem="vPS-zx-uX4" firstAttribute="centerX" secondItem="IKV-zD-bAw" secondAttribute="centerX" id="hyI-K9-JJ5"/>
+                                    <constraint firstItem="IKV-zD-bAw" firstAttribute="leading" secondItem="gbG-Rv-q7h" secondAttribute="leadingMargin" constant="-8" id="nlb-fl-toH"/>
                                 </constraints>
-                                <size key="customSize" width="112" height="112"/>
+                                <size key="customSize" width="100" height="100"/>
                                 <variation key="default">
                                     <mask key="subviews">
                                         <exclude reference="WZ0-fi-cah"/>
@@ -233,6 +247,7 @@
                                 <connections>
                                     <outlet property="bottomLabel" destination="vPS-zx-uX4" id="AHn-fm-HKa"/>
                                     <outlet property="memeImageView" destination="IKV-zD-bAw" id="Sf8-Z9-yZA"/>
+                                    <outlet property="selectedImageView" destination="3yA-4M-Hph" id="LFA-uO-Hiq"/>
                                     <outlet property="topLabel" destination="6Nn-J7-o2u" id="d9x-d2-U4R"/>
                                 </connections>
                             </collectionViewCell>
@@ -242,21 +257,8 @@
                             <outlet property="delegate" destination="oOe-Nq-55D" id="ivG-qh-uxe"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="lTs-tt-EC4">
-                        <barButtonItem key="leftBarButtonItem" title="Edit" id="97l-U3-kbm">
-                            <connections>
-                                <action selector="didTapEdit:" destination="oOe-Nq-55D" id="7Y7-7c-61r"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="S2t-Sf-XVA">
-                            <connections>
-                                <action selector="didPressAdd:" destination="oOe-Nq-55D" id="z40-vB-WV8"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="lTs-tt-EC4"/>
                     <connections>
-                        <outlet property="addOrDeleteButton" destination="S2t-Sf-XVA" id="6BM-n7-oWi"/>
-                        <outlet property="editButton" destination="97l-U3-kbm" id="5cX-wb-8Dc"/>
                         <outlet property="flowLayout" destination="FqR-H5-h0s" id="TxJ-ti-CnG"/>
                         <outlet property="memeCollectionView" destination="YW3-CD-kIM" id="XtT-iZ-d4v"/>
                         <segue destination="Y8j-wr-PfF" kind="show" identifier="showMemeDetail" id="VwV-01-jR1"/>
@@ -312,13 +314,13 @@
                                     <constraint firstAttribute="height" constant="44" id="gyj-vx-uZp"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="eGi-cl-6cg"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="FMw-zP-Zst"/>
                                     <barButtonItem image="camera" id="02Z-Zf-7vQ">
                                         <connections>
                                             <action selector="pickImageFromCamera:" destination="BYZ-38-t0r" id="8Wv-zd-Lll"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="FMw-zP-Zst"/>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="eGi-cl-6cg"/>
                                     <barButtonItem image="photoAlbum" id="ooM-X9-qpj">
                                         <connections>
                                             <action selector="selectImage:" destination="BYZ-38-t0r" id="oJ9-xb-sxe"/>
@@ -335,7 +337,7 @@
                                             </segue>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="bXf-jC-npq"/>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="Iu5-gL-hCR"/>
                                     <barButtonItem image="fontSize" id="xUj-zm-YJ5">
                                         <connections>
                                             <segue destination="U5h-im-qY5" kind="popoverPresentation" identifier="fontPopoverSegue" popoverAnchorBarButtonItem="xUj-zm-YJ5" id="cWp-at-fH0">
@@ -343,7 +345,7 @@
                                             </segue>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="Iu5-gL-hCR"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="bXf-jC-npq"/>
                                 </items>
                                 <connections>
                                     <outlet property="delegate" destination="xUj-zm-YJ5" id="l4K-hw-JnJ"/>
@@ -536,6 +538,7 @@
     </scenes>
     <resources>
         <image name="camera" width="22" height="22"/>
+        <image name="check" width="96" height="96"/>
         <image name="collection" width="30" height="30"/>
         <image name="colorPicker" width="22" height="22"/>
         <image name="fontSize" width="22" height="22"/>
