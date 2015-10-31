@@ -30,60 +30,11 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     var selectedTextField: UITextField?
     var userIsEditing = false
     
-    
+    //#-MARK: Lifecycle methods:
     override func viewDidLoad() {
         super.viewDidLoad()
         //Congifure the UI
         initUIState()
-    }
-    
-    //Hide status bar to avoid bug where status bar shows when imageview pushed up by keyboard
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
-    
-    func initUIState() {
-        
-        //Create an array of text fields for configurations
-        let textFieldArray = [topText, bottomText]
-        
-        //Set delegate of text fields:
-        for textField in textFieldArray {
-            textField.delegate = self
-        }
-    
-        //Set the meme to edit if there is an editMeme:
-        if let editMeme = editMeme {
-            topText.text = editMeme.topText
-            bottomText.text = editMeme.bottomText
-            imageView.image = editMeme.originalImage
-            userIsEditing = true
-            fontAttributes = editMeme.fontAttributes
-            configureTextFields(textFieldArray)
-        } else {
-            //Set default text/font attributes if new meme:
-            fontAttributes = FontAttributes()
-            configureTextFields(textFieldArray)
-    }
-        //Hide/Show the buttons:
-        shareButton.enabled = userIsEditing
-        cancelButton.enabled = userIsEditing
-        saveButton.enabled = userIsEditing
-    }
-    
-    func configureTextFields(textFields: [UITextField!]){
-        for textField in textFields{
-            
-            //Define Default Text Attributes:
-            let memeTextAttributes = [
-                NSStrokeColorAttributeName: UIColor.blackColor(),
-                NSForegroundColorAttributeName: fontAttributes.fontColor,
-                NSFontAttributeName: UIFont(name: fontAttributes.fontName, size: fontAttributes.fontSize)!,
-                NSStrokeWidthAttributeName : -4.0
-            ]
-            textField.defaultTextAttributes = memeTextAttributes
-            textField.textAlignment = .Center
-        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -102,6 +53,57 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         //unsubscribe to keyboard notification:
         unsubsribeToKeyboardNotification()
         unsubsribeToShakeNotification()
+    }
+    
+    //Hide status bar to avoid bug where status bar shows when imageview pushed up by keyboard
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
+    //Initialize the state of the User Interface:
+    func initUIState() {
+        
+        //Set delegate of each text field:
+        let textFieldArray = [topText, bottomText]
+        for textField in textFieldArray {
+            textField.delegate = self
+        }
+        
+        //Set the meme to edit if there is an editMeme:
+        if let editMeme = editMeme {
+            topText.text = editMeme.topText
+            bottomText.text = editMeme.bottomText
+            imageView.image = editMeme.originalImage
+            
+            userIsEditing = true
+            fontAttributes = editMeme.fontAttributes
+            configureTextFields(textFieldArray)
+        } else {
+            //Set default text/font attributes if new meme:
+            fontAttributes = FontAttributes()
+            configureTextFields(textFieldArray)
+        }
+        
+        //Hide or Show the buttons based on whether the user is editing:
+        shareButton.enabled = userIsEditing
+        cancelButton.enabled = userIsEditing
+        saveButton.enabled = userIsEditing
+    }
+    
+    //Pass an array of text fields and set the default text attributes for each:
+    func configureTextFields(textFields: [UITextField!]){
+        for textField in textFields{
+            
+            //Define Default Text Attributes:
+            let memeTextAttributes = [
+                NSStrokeColorAttributeName: UIColor.blackColor(),
+                NSForegroundColorAttributeName: fontAttributes.fontColor,
+                NSFontAttributeName: UIFont(name: fontAttributes.fontName, size: fontAttributes.fontSize)!,
+                NSStrokeWidthAttributeName : -4.0
+            ]
+            textField.defaultTextAttributes = memeTextAttributes
+            textField.textAlignment = .Center
+        }
     }
     
     //Select an image from the photo library:
@@ -126,7 +128,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         presentViewController(imagePickerController, animated: true, completion: nil)
     }
     
-    //Alert the user:
+    //Alert the user if something is missing from the meme when they try to save:
     func alertUser(title: String! = "Title", message: String?, actions: [UIAlertAction]) {
         let ac = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         for action in actions {
@@ -142,25 +144,33 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         bottomText.text = nil
     }
     
-    //Save the meme:
+    //Create the meme and save it to our Meme Model:
     @IBAction func save(sender: AnyObject) -> Void {
-        //Create the meme and save it to our Meme Model:
         
-        //If all items are filled out:
+        //Check If all items are filled out:
         if userCanSave() {
-            //If you are editing a meme, update it, if new, save it:
+            
+            //Initialize a new meme to save or update:
             let meme = Meme(topText: topText.text, bottomText: bottomText.text, originalImage: imageView.image, memedImage: generateMemedImage(), fontAttributes: fontAttributes)
+            
+            //If you are editing a meme, update it, if new, save it:
             if userIsEditing {
+                
+                //Update the meme if there is one to update:
                 if let editMeme = editMeme {
                         MemeCollection.update(atIndex: MemeCollection.indexOf(editMeme), withMeme: meme)
                     }
+                //Unwind to table view once meme is updated:
                 performSegueWithIdentifier("unwindMemeEditor", sender: sender)
+                
+            //Add the Meme if user is not editing:
             } else {
                 MemeCollection.add(meme)
-                print(MemeCollection.allMemes.indexOf(meme))
                 dismissViewControllerAnimated(true, completion: nil)
             }
+        //Alert user if something is missing and you can't save:
         } else {
+            
             let okAction = UIAlertAction(title: "Save", style: .Default, handler: { Void in
                 self.topText.text = ""
                 self.bottomText.text = ""
@@ -343,17 +353,20 @@ extension MemeEditorViewController {
     }
 }
 
-//#-- Extend the UITextFieldDelegate Methods for MemeEditorViewController
+//#-MARK: Extend the UITextFieldDelegate Methods for MemeEditorViewController
 extension MemeEditorViewController {
-    //# -- MARK: UITextFieldDelegate Methods:
+    
+    //Set selected text field:
     func textFieldDidBeginEditing(textField: UITextField) {
         selectedTextField = textField
     }
     
+    //Let the textfield end editing:
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {
         return true
     }
     
+    //Configure and deselect text fields when return is pressed:
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         selectedTextField = nil
         configureTextFields([textField])
@@ -368,17 +381,20 @@ extension MemeEditorViewController {
 }
 
 
-//#--Shake to reset Extension:
+//#-MARK:Shake to reset Extension:
 extension UIViewController {
-    //#--MARK: Subsribe to shake notifications:
+    
+    //Subsribe to shake notifications:
     func subscribeToShakeNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "alertForReset", name: "shake", object: nil)
     }
     
+    //Unsubsribe to shake notifications:
     func unsubsribeToShakeNotification() {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "shake", object: nil)
     }
     
+    //Allow view to become first responder:
     override public func canBecomeFirstResponder() -> Bool {
         return true
     }

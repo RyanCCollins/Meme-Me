@@ -64,23 +64,24 @@ class MemeCollectionViewController: UICollectionViewController {
         }
     }
     
-    func setControlFlowLayout() {
-        //Set container spacing so that margins are included:
-        let xSpace = sectionInsets.left + sectionInsets.right
-        let ySpace = sectionInsets.top + sectionInsets.bottom
-        
-        //Calculate veiwable height by excluding navigationbar and tabbar:
-        let viewableHeight = view.frame.height - (navigationController?.navigationBar.frame.height)! - tabBarController!.tabBar.frame.height
-        
-        //Calculate x and y dimensions:
-        let xDimension = (view.frame.size.width - xSpace) / 3.0
-        let yDimension = (viewableHeight - ySpace) / 3.0
-        
-        flowLayout.minimumLineSpacing = minimumSpacing
-        flowLayout.sectionInset = sectionInsets
-        //Return size of each item:
-        flowLayout.itemSize = CGSizeMake(xDimension, yDimension)
-    }
+//    func setControlFlowLayout() {
+//        //Set container spacing so that margins are included:
+//        let xSpace = sectionInsets.left + sectionInsets.right
+//        let ySpace = sectionInsets.top + sectionInsets.bottom
+//        
+//        //Calculate veiwable height by excluding navigationbar and tabbar:
+//        let viewableHeight = view.frame.size.height - (navigationController?.navigationBar.frame.height)! - tabBarController!.tabBar.frame.height
+//        let viewWidth = view.frame.size.width
+//        
+//        //Calculate x and y dimensions:
+//        let xDimension = (view.frame.size.width - xSpace) / 3.0
+//        let yDimension = (viewableHeight - ySpace) / 3.0
+//        
+//        flowLayout.minimumLineSpacing = minimumSpacing
+//        flowLayout.sectionInset = sectionInsets
+//        //Return size of each item:
+//        flowLayout.itemSize = CGSizeMake(xDimension, yDimension)
+//    }
     
     func didTapEdit(sender: UIBarButtonItem?) {
         editingMode = !editingMode
@@ -213,4 +214,24 @@ extension MemeCollectionViewController {
         }
     }
     
+}
+
+extension MemeCollectionViewController : UICollectionViewDelegateFlowLayout {
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        //Set container spacing so that margins are included:
+        let xSpace = sectionInsets.left + sectionInsets.right
+        let ySpace = sectionInsets.top + sectionInsets.bottom
+        
+        //Calculate veiwable height by excluding navigationbar and tabbar:
+        let viewableHeight = view.frame.size.height - (navigationController?.navigationBar.frame.height)! - tabBarController!.tabBar.frame.height
+        
+        //Calculate x and y dimensions:
+        let xDimension = (view.frame.size.width - xSpace) / 3.0
+        let yDimension = (viewableHeight - ySpace) / 3.0
+        
+//        flowLayout.minimumLineSpacing = minimumSpacing
+//        flowLayout.sectionInset = sectionInsets
+        //Return size of each item:
+        return CGSize(width: xDimension, height: yDimension)
+    }
 }
