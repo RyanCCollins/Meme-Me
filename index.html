@@ -34,10 +34,28 @@
         <h1>
 <a id="meme-me" class="anchor" href="#meme-me" aria-hidden="true"><span class="octicon octicon-link"></span></a>Meme-Me</h1>
 
-<p>Meme v2.0 - Udacity iOS nanodegree
-by TechRapport -<a href="http://TechRapport.com">http://TechRapport.com</a></p>
+<h2>
+<a id="meme-v20---udacity-ios-nanodegree" class="anchor" href="#meme-v20---udacity-ios-nanodegree" aria-hidden="true"><span class="octicon octicon-link"></span></a>Meme v2.0 - Udacity iOS Nanodegree</h2>
 
-<p>This app was created as a project for the Udacity iOS Nanodegree. Before taking the course, I took a month long course on UIKit Fundamentals through Udacity. This course firmed up my working knowledge of Apple's UIKit framework, which is used extensively for UI design, control and navigation. </p>
+<p>by <a href="mailto:info@techrapport.com">Ryan Collins</a> 
+Project Link: <a href="http://TechRapport.com/projects/meme-me">http://techrapport.com/projects/meme-me</a>
+GitHub: <a href="https://github.com/TechRapport/Meme-Me">https://github.com/TechRapport/Meme-Me</a></p>
+
+<p>Build information</p>
+
+<hr>
+
+<ul>
+<li>Version: 2.0</li>
+<li>xCode: Version 7.1</li>
+<li>iOS: 9.0</li>
+<li>Swift: 2.0</li>
+<li>iPhone: 4S or later</li>
+<li>iPad: N/A
+_________________</li>
+</ul>
+
+<p>This app was created as a project for the Udacity iOS Nanodegree. Before creating this app, I took a month long course on UIKit Fundamentals through Udacity. This course firmed up my working knowledge of Apple's UIKit framework, which is used extensively for UI design, control and navigation. </p>
 
 <p>The app offers the following features:</p>
 
@@ -49,6 +67,7 @@ by TechRapport -<a href="http://TechRapport.com">http://TechRapport.com</a></p>
 <li>View saved Memes in a UITableView and a UICollectionView</li>
 <li>View a saved Meme</li>
 <li>Edit a saved Meme</li>
+<li>Delete saved Memes</li>
 </ul>
 
 <p>See the extra credit features and what I intend to add next below. </p>
@@ -56,30 +75,45 @@ by TechRapport -<a href="http://TechRapport.com">http://TechRapport.com</a></p>
 <h4>
 <a id="technologies-and-best-practices-used" class="anchor" href="#technologies-and-best-practices-used" aria-hidden="true"><span class="octicon octicon-link"></span></a>Technologies and best practices used</h4>
 
-<p>Some of the more notable technologies and best practices I used in this app are shown below. I also wrote about some of these subjects in <a href="http://TechRapport.com/blog/">my blog</a> in the Swift development section.</p>
+<p>Some of the more notable technologies and best practices I used in this app are listed below. I also wrote about some of these subjects in <a href="http://TechRapport.com/blog/">my blog</a> in the Swift development section. </p>
 
 <ul>
-<li>UIKit
+<li>
+<p>UIKit</p>
 
 <ul>
 <li>UINavigationControllers</li>
 <li>UITableViews</li>
-<li>UICollectionViews</li>
+<li>UICollectionViews
+
+<ul>
+<li>UICollectionViewFlowLayout</li>
+<li>UICollectionViewCell</li>
 </ul>
 </li>
-<li>MotionKit</li>
+</ul>
+</li>
+<li><p>MotionKit</p></li>
 <li>Delegation</li>
-<li>MVC</li>
+<li>MVC (Model View Controller)</li>
 <li>NSNotifications</li>
 <li>Extensions</li>
 </ul>
 
-<p>As I stated above, I developed this application using several important design paradigms and best practices. Most notably, I used Model View Controller (MVC) extensively. I created a Model object for storing and processing Memes, several View Controllers for controlling navigation, writing to the model and updating the display. I also utilized extensions, <a href="http://techrapport.com/blog/">NSNotifications</a>, the delegate design pattern and more. I really enjoyed using Swift 2.0 and found that I was able to add a lot of functionality very easily using extensions. </p>
+<p>As I stated above, I developed this application using several important design paradigms and best practices. Most notably, I used Model View Controller (MVC) extensively. I created a Meme struct model object, a font attributes struct model and a MemeCollection Struct Model for storing and processing Memes.  At this point, the app does not use Core Data to persist the data, but it will in the next version.</p>
+
+<p>All Model, View and Controller components are completely separate of one another and Model and View objects only talk to one another through the view controller.  I used delegation &amp; data source methods and key-value observation to insure this.  It will be very easy to utilize Core Data and networked data within this app since the Model is abstracted away from the View &amp; View Controllers.  </p>
+
+<p>I used optionals and unwrapped them when necesarry.  To avoid bugs, I only used implicitly unwrapped optionals on values that I knew would never be null, otherwise I was safe and unwrapped optionals.</p>
+
+<p>I created several View Controllers for controlling navigation, writing to the model and updating the display. I also utilized extensions, <a href="http://techrapport.com/blog/">NSNotifications</a>, the delegate design pattern and more. I really enjoyed using Swift 2.0 and found that I was able to add a lot of functionality very easily using extensions. </p>
+
+<p>I used storyboard on many occasions, but also built a some of the user interface in code.  I found that doing both helped to cement the ideas and to understand what is going on behind the scenes.  I used segues throughout my project, most of the time configured in storyboard, but also in code.  I used unwind segues to unwind to the main view after editing a saved meme.</p>
 
 <h3>
 <a id="git--github" class="anchor" href="#git--github" aria-hidden="true"><span class="octicon octicon-link"></span></a>Git &amp; GitHub</h3>
 
-<p>although, I have been using Git and other version control systems for many years, I have never used github professionally because my professional work has been private. I used best practices when using Git and github. I used separate branches for the two versions, wrote commit messages that were clear and concise, used Git to debug and I commit at logical points. </p>
+<p>Although I have been using Git and other version control systems for many years, I have never used Github professionally because my professional work has been private. I used best practices when using Git and Github. I used separate branches for the two versions, wrote commit messages that were clear and concise, used Git to debug and I chose logical points to commit.</p>
 
 <h3>
 <a id="extra-credit" class="anchor" href="#extra-credit" aria-hidden="true"><span class="octicon octicon-link"></span></a>Extra Credit</h3>
@@ -97,20 +131,44 @@ by TechRapport -<a href="http://TechRapport.com">http://TechRapport.com</a></p>
 <p>I added a shake to reset feature, which greatly improved the experience by allowing the user to shake the phone to reset the font back to default. I did this using a single extension, which extends UIViewController. </p>
 
 <h4>
-<a id="extensions-for-delegates" class="anchor" href="#extensions-for-delegates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Extensions for delegates</h4>
+<a id="class-extensions" class="anchor" href="#class-extensions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Class extensions</h4>
 
-<p>As I was developing this app, I realized that my code was getting a bit complex, especially after I added delegate functions for the text fields, UITableViews, UICollectionViews, and other UIKit compononents. In order to make the code more readable and manageable, I once again used UIViewController extensions in order to add the delegate functions. I find that this is good practice as long as you contain the extensions in one file, preferably in the same file of the view controller that utilizes them. I would recommend utilizing extensions for basic delegate functionality that will be shared throughout your app. </p>
+<p>As I was developing this app, I realized that my code was getting a bit complex, especially after I added delegate functions for the text fields, UITableViews, UICollectionViews, and other UIKit compononents. In order to make the code more readable and manageable, I once again used UIViewController extensions in order to add the delegate functions for various UIKit components. I find that this is good practice as long as you contain the extensions in one file, preferably in the same file of the view controller that utilizes them. I would recommend utilizing extensions for basic delegate functionality that will be shared throughout your app. </p>
+
+<h4>
+<a id="other" class="anchor" href="#other" aria-hidden="true"><span class="octicon octicon-link"></span></a>Other</h4>
+
+<p>To make this project more professional, I added a launch screen with a small loading indicator, following <a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/LaunchImages.html">Apple's iOS Human Interface Guidelines</a>.  I also made the interface look good while still following their guidelines.  </p>
+
+<p>I added helpful text to show the user what each view does and I used icons (see below for credit) to show what each button does.  Each icon used has all size classes in the xCode Assets file, so they will show nicely on any iPhone.</p>
+
+<h4>
+<a id="wrap-up" class="anchor" href="#wrap-up" aria-hidden="true"><span class="octicon octicon-link"></span></a>Wrap up</h4>
+
+<p>All in all, this project helped me to learn a tremendous amount about developing for the iOS platform.  I feel that I have mastered UIKit, that I can do just about anything on the iOS platform now that I know how to navigate the user documentation, and I feel that I am building on my programming knowledge by utilizing best practices.  I am also taking the Stanford iOS development courses, which complements this course tremendously.  I am extremely confident that I will be developing professionally for the iOS platform in no time. </p>
 
 <h4>
 <a id="more-features" class="anchor" href="#more-features" aria-hidden="true"><span class="octicon octicon-link"></span></a>More features</h4>
 
-<p>Well, you'd think that I would be done with this app, but I am not. In the next iteration, I will be including Flickr images and randomly generated Memes. Keep a watch out for the next revision. </p>
+<p>Well, you'd think that I would be done with this app, but I am not. In the next iteration, I will be including Core Data to persist data, Flickr images and randomly generated Memes. Keep a watch out for the next revision as I plan to release it to the App Store.</p>
 
 <p>A special thanks goes to: "Christian Zimmermann" who wrote the code for the SwiftColorPicker. You can view his GitHub page here: <a href="https://github.com/Christian1313/iOS_Swift_ColorPicker">https://github.com/Christian1313/iOS_Swift_ColorPicker</a>.</p>
 
 <p>Please take a look at my blog to learn about how Udacity has helped me succeed: <a href="http://TechRapport.com/blog/">Tech Rapport's Blog</a></p>
 
-<p>&amp;copy Tech Rapport 2015 - <a href="http://TechRapport.com">http://TechRapport.com</a></p>
+<p>Credit for the app icon goes to Udacity.</p>
+
+<div>Icons made by <a href="http://www.flaticon.com/authors/zurb" title="Zurb">Zurb</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>             is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>
+</div>
+
+<div>Icons made by <a href="http://www.flaticon.com/authors/picol" title="Picol">Picol</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>             is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>
+</div>
+
+<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>             is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>
+</div>
+
+<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>             is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>
+</div>
       </section>
     </div>
 
