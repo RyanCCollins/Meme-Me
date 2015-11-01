@@ -12,7 +12,7 @@ __________________
 - Swift: 2.0
 - iPhone: 4S or later
 - iPad: N/A
-____________________
+_________________
 
 
 This app was created as a project for the Udacity iOS Nanodegree. Before creating this app, I took a month long course on UIKit Fundamentals through Udacity. This course firmed up my working knowledge of Apple's UIKit framework, which is used extensively for UI design, control and navigation. 
