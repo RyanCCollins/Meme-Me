@@ -1,7 +1,8 @@
 # Meme-Me
 ##Meme v2.0 - Udacity iOS Nanodegree
 by [Ryan Collins](mailto:info@techrapport.com) 
-Project Link: [http://techrapport.com/projects/meme-me](http://TechRapport.com/projects/meme-me)
+Project Link: [http://techrapport.com/Meme-Me](http://TechRapport.com/projects/meme-me)
+
 GitHub: [https://github.com/TechRapport/Meme-Me](https://github.com/TechRapport/Meme-Me)
 
 Build information
@@ -12,7 +13,6 @@ __________________
 - Swift: 2.0
 - iPhone: 4S or later
 - iPad: N/A
-_________________
 
 
 This app was created as a project for the Udacity iOS Nanodegree. Before creating this app, I took a month long course on UIKit Fundamentals through Udacity. This course firmed up my working knowledge of Apple's UIKit framework, which is used extensively for UI design, control and navigation. 
@@ -27,7 +27,7 @@ The app offers the following features:
 - Edit a saved Meme
 - Delete saved Memes
 
-See the extra credit features and what I intend to add next below. 
+See the extra credit features and what I intend to add next at the end of this article. 
 
 ####Technologies and best practices used
 Some of the more notable technologies and best practices I used in this app are listed below. I also wrote about some of these subjects in [my blog](http://TechRapport.com/blog/) in the Swift development section. 
@@ -44,21 +44,21 @@ Some of the more notable technologies and best practices I used in this app are 
 - NSNotifications
 - Extensions
 
-As I stated above, I developed this application using several important design paradigms and best practices. Most notably, I used Model View Controller (MVC) extensively. I created a Meme struct model object, a font attributes struct model and a MemeCollection Struct Model for storing and processing Memes.  At this point, the app does not use Core Data to persist the data, but it will in the next version.
+As I stated above, I developed this application using several important design paradigms and best practices. Most notably, I used Model View Controller (MVC) extensively. I created a Meme struct model object, a font attributes struct model and a MemeCollection struct model for storing and processing Memes.  At this point, the app does not use Core Data to persist the data, but it will in the next version.
 
-All Model, View and Controller components are completely separate of one another and Model and View objects only talk to one another through the view controller.  I used delegation & data source methods and key-value observation to insure this.  It will be very easy to utilize Core Data and networked data within this app since the Model is abstracted away from the View & View Controllers.  
+All model, view and controller components are completely separate of one another and Model and View objects only talk to one another through the view controller.  I used delegation & data source methods and key-value observation to insure this.  It will be very easy to utilize Core Data and networked data within this app since the Model is abstracted away from the View & View Controllers.  
 
 I used optionals and unwrapped them when necesarry.  To avoid bugs, I only used implicitly unwrapped optionals on values that I knew would never be null, otherwise I was safe and unwrapped optionals.
 
 I created several View Controllers for controlling navigation, writing to the model and updating the display. I also utilized extensions, [NSNotifications](http://techrapport.com/blog/), the delegate design pattern and more. I really enjoyed using Swift 2.0 and found that I was able to add a lot of functionality very easily using extensions. 
 
-I used storyboard on many occasions, but also built a some of the user interface in code.  I found that doing both helped to cement the ideas and to understand what is going on behind the scenes.  I used segues throughout my project, most of the time configured in storyboard, but also in code.  I used unwind segues to unwind to the main view after editing a saved meme.
+I used storyboard on many occasions, but also built some of the user interface in code.  I found that doing both helped to cement the ideas and to understand what is going on behind the scenes.  I used segues throughout my project, most of the time configured in storyboard, but also in code.  I used unwind segues to unwind to the main view after editing a saved meme.
 
 ###Git & GitHub
 Although I have been using Git and other version control systems for many years, I have never used Github professionally because my professional work has been private. I used best practices when using Git and Github. I used separate branches for the two versions, wrote commit messages that were clear and concise, used Git to debug and I chose logical points to commit.
 
 ###Extra Credit
-In order to receive extra credit and to receive Exceeds Specifications, I added additional functionality to v2.0 of Meme-Me. Some of the functionality that I added are shown below:
+In order to receive extra credit and to receive Exceeds Specifications, I added additional functionality to v2.0 of Meme-Me. Some of the functionality that I added are listed below.
 
 ####Color and font picker, which both show as UIPopoverViews. 
 
@@ -70,7 +70,10 @@ I added a shake to reset feature, which greatly improved the experience by allow
 
 ####Class extensions
 
-As I was developing this app, I realized that my code was getting a bit complex, especially after I added delegate functions for the text fields, UITableViews, UICollectionViews, and other UIKit compononents. In order to make the code more readable and manageable, I once again used UIViewController extensions in order to add the delegate functions for various UIKit components. I find that this is good practice as long as you contain the extensions in one file, preferably in the same file of the view controller that utilizes them. I would recommend utilizing extensions for basic delegate functionality that will be shared throughout your app. 
+As I was developing this app, I realized that my code was getting a bit complex, especially after I added delegate functions for the text fields, UITableViews, UICollectionViews, and other UIKit compononents. In order to make the code more readable and manageable, I once again used UIViewController extensions in order to add the delegate functions for various UIKit components. I find that this is good practice as long as you contain the extensions in one file, preferably in the same file of the view controller that utilizes them. I would recommend utilizing extensions for basic delegate functionality that will be shared throughout your app.
+
+####Collection View Features
+I added some custom functionality to the collection view in this app.  I added the ability to select a Meme in the collection view to edit it, add a new Meme and I added functionality to delete multiple memes at once.  To handle this, I tracked an array of indecies that corresponded to the selected Memes.  When the delete button is pressed, the view controller sorts the array, then asks the model to delete the Memes at the index collected in the array, deletes the corrseponding cells and then updates the view.
 
 ####Other
 To make this project more professional, I added a launch screen with a small loading indicator, following [Apple's iOS Human Interface Guidelines](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/LaunchImages.html).  I also made the interface look good while still following their guidelines.  
