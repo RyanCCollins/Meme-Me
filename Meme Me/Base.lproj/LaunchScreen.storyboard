@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
+                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lrr-cH-0u3">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="MVb-Xp-4P5"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="mJ1-3s-CZr"/>
+                                    <barButtonItem enabled="NO" image="camera" id="cMr-Gz-zFp"/>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="8x2-a9-3Os"/>
+                                    <barButtonItem enabled="NO" image="photoAlbum" id="8Fw-67-c33"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="aM8-sI-FOH"/>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="fkr-9C-Ols"/>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="gj7-lV-amw"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="283-pY-ATe"/>
+                                    <barButtonItem enabled="NO" image="colorPicker" id="eyH-0L-C2r"/>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="1XM-YY-nOw"/>
+                                    <barButtonItem enabled="NO" image="fontSize" id="6E5-Zi-nA6"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="WHM-FO-ipj"/>
+                                </items>
+                                <connections>
+                                    <outlet property="delegate" destination="6E5-Zi-nA6" id="Qj2-K1-Puh"/>
+                                </connections>
+                            </toolbar>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OWN-lj-v0Y">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <animations/>
+                                <items>
+                                    <navigationItem title="Create a Meme" id="uAw-Wz-bW8">
+                                        <barButtonItem key="leftBarButtonItem" enabled="NO" systemItem="action" id="QOf-hG-k8r"/>
+                                        <rightBarButtonItems>
+                                            <barButtonItem enabled="NO" title="Item" systemItem="save" id="UVh-vS-ESg"/>
+                                            <barButtonItem enabled="NO" systemItem="cancel" id="F7s-vP-zom"/>
+                                        </rightBarButtonItems>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Ow2-tk-dV6">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                                <animations/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y8Q-eI-Bkf">
+                                <rect key="frame" x="263" y="318" width="75" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OWN-lj-v0Y" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="1Rg-bT-1Er"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Lrr-cH-0u3" secondAttribute="bottom" id="E3A-on-Hva"/>
+                            <constraint firstItem="Lrr-cH-0u3" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="Rpk-VI-g8w"/>
+                            <constraint firstItem="Lrr-cH-0u3" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-20" id="YcT-AG-3B9"/>
+                            <constraint firstItem="Lrr-cH-0u3" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ZdU-hw-owU"/>
+                            <constraint firstItem="y8Q-eI-Bkf" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="b4r-FE-JpY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Lrr-cH-0u3" secondAttribute="trailing" constant="-20" id="jCv-Co-ufe"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="OWN-lj-v0Y" secondAttribute="trailing" constant="-20" id="kur-w7-LOA"/>
+                            <constraint firstItem="OWN-lj-v0Y" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-20" id="mCb-S6-NuV"/>
+                            <constraint firstItem="Ow2-tk-dV6" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="mgF-fq-kEo"/>
+                            <constraint firstItem="y8Q-eI-Bkf" firstAttribute="top" secondItem="Ow2-tk-dV6" secondAttribute="bottom" constant="8" id="yMA-uV-G6S"/>
+                            <constraint firstItem="Ow2-tk-dV6" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="zI7-jd-03W"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="camera" width="22" height="22"/>
+        <image name="colorPicker" width="22" height="22"/>
+        <image name="fontSize" width="22" height="22"/>
+        <image name="photoAlbum" width="22" height="22"/>
+    </resources>
+</document>
