@@ -38,8 +38,9 @@
 <a id="meme-v20---udacity-ios-nanodegree" class="anchor" href="#meme-v20---udacity-ios-nanodegree" aria-hidden="true"><span class="octicon octicon-link"></span></a>Meme v2.0 - Udacity iOS Nanodegree</h2>
 
 <p>by <a href="mailto:info@techrapport.com">Ryan Collins</a> 
-Project Link: <a href="http://TechRapport.com/projects/meme-me">http://techrapport.com/projects/meme-me</a>
-GitHub: <a href="https://github.com/TechRapport/Meme-Me">https://github.com/TechRapport/Meme-Me</a></p>
+Project Link: <a href="http://TechRapport.com/projects/meme-me">http://techrapport.com/Meme-Me</a></p>
+
+<p>GitHub: <a href="https://github.com/TechRapport/Meme-Me">https://github.com/TechRapport/Meme-Me</a></p>
 
 <p>Build information</p>
 
@@ -51,8 +52,7 @@ GitHub: <a href="https://github.com/TechRapport/Meme-Me">https://github.com/Tech
 <li>iOS: 9.0</li>
 <li>Swift: 2.0</li>
 <li>iPhone: 4S or later</li>
-<li>iPad: N/A
-_________________</li>
+<li>iPad: N/A</li>
 </ul>
 
 <p>This app was created as a project for the Udacity iOS Nanodegree. Before creating this app, I took a month long course on UIKit Fundamentals through Udacity. This course firmed up my working knowledge of Apple's UIKit framework, which is used extensively for UI design, control and navigation. </p>
@@ -70,7 +70,7 @@ _________________</li>
 <li>Delete saved Memes</li>
 </ul>
 
-<p>See the extra credit features and what I intend to add next below. </p>
+<p>See the extra credit features and what I intend to add next at the end of this article. </p>
 
 <h4>
 <a id="technologies-and-best-practices-used" class="anchor" href="#technologies-and-best-practices-used" aria-hidden="true"><span class="octicon octicon-link"></span></a>Technologies and best practices used</h4>
@@ -100,15 +100,15 @@ _________________</li>
 <li>Extensions</li>
 </ul>
 
-<p>As I stated above, I developed this application using several important design paradigms and best practices. Most notably, I used Model View Controller (MVC) extensively. I created a Meme struct model object, a font attributes struct model and a MemeCollection Struct Model for storing and processing Memes.  At this point, the app does not use Core Data to persist the data, but it will in the next version.</p>
+<p>As I stated above, I developed this application using several important design paradigms and best practices. Most notably, I used Model View Controller (MVC) extensively. I created a Meme struct model object, a font attributes struct model and a MemeCollection struct model for storing and processing Memes.  At this point, the app does not use Core Data to persist the data, but it will in the next version.</p>
 
-<p>All Model, View and Controller components are completely separate of one another and Model and View objects only talk to one another through the view controller.  I used delegation &amp; data source methods and key-value observation to insure this.  It will be very easy to utilize Core Data and networked data within this app since the Model is abstracted away from the View &amp; View Controllers.  </p>
+<p>All model, view and controller components are completely separate of one another and Model and View objects only talk to one another through the view controller.  I used delegation &amp; data source methods and key-value observation to insure this.  It will be very easy to utilize Core Data and networked data within this app since the Model is abstracted away from the View &amp; View Controllers.  </p>
 
 <p>I used optionals and unwrapped them when necesarry.  To avoid bugs, I only used implicitly unwrapped optionals on values that I knew would never be null, otherwise I was safe and unwrapped optionals.</p>
 
 <p>I created several View Controllers for controlling navigation, writing to the model and updating the display. I also utilized extensions, <a href="http://techrapport.com/blog/">NSNotifications</a>, the delegate design pattern and more. I really enjoyed using Swift 2.0 and found that I was able to add a lot of functionality very easily using extensions. </p>
 
-<p>I used storyboard on many occasions, but also built a some of the user interface in code.  I found that doing both helped to cement the ideas and to understand what is going on behind the scenes.  I used segues throughout my project, most of the time configured in storyboard, but also in code.  I used unwind segues to unwind to the main view after editing a saved meme.</p>
+<p>I used storyboard on many occasions, but also built some of the user interface in code.  I found that doing both helped to cement the ideas and to understand what is going on behind the scenes.  I used segues throughout my project, most of the time configured in storyboard, but also in code.  I used unwind segues to unwind to the main view after editing a saved meme.</p>
 
 <h3>
 <a id="git--github" class="anchor" href="#git--github" aria-hidden="true"><span class="octicon octicon-link"></span></a>Git &amp; GitHub</h3>
@@ -118,7 +118,7 @@ _________________</li>
 <h3>
 <a id="extra-credit" class="anchor" href="#extra-credit" aria-hidden="true"><span class="octicon octicon-link"></span></a>Extra Credit</h3>
 
-<p>In order to receive extra credit and to receive Exceeds Specifications, I added additional functionality to v2.0 of Meme-Me. Some of the functionality that I added are shown below:</p>
+<p>In order to receive extra credit and to receive Exceeds Specifications, I added additional functionality to v2.0 of Meme-Me. Some of the functionality that I added are listed below.</p>
 
 <h4>
 <a id="color-and-font-picker-which-both-show-as-uipopoverviews" class="anchor" href="#color-and-font-picker-which-both-show-as-uipopoverviews" aria-hidden="true"><span class="octicon octicon-link"></span></a>Color and font picker, which both show as UIPopoverViews.</h4>
@@ -133,7 +133,12 @@ _________________</li>
 <h4>
 <a id="class-extensions" class="anchor" href="#class-extensions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Class extensions</h4>
 
-<p>As I was developing this app, I realized that my code was getting a bit complex, especially after I added delegate functions for the text fields, UITableViews, UICollectionViews, and other UIKit compononents. In order to make the code more readable and manageable, I once again used UIViewController extensions in order to add the delegate functions for various UIKit components. I find that this is good practice as long as you contain the extensions in one file, preferably in the same file of the view controller that utilizes them. I would recommend utilizing extensions for basic delegate functionality that will be shared throughout your app. </p>
+<p>As I was developing this app, I realized that my code was getting a bit complex, especially after I added delegate functions for the text fields, UITableViews, UICollectionViews, and other UIKit compononents. In order to make the code more readable and manageable, I once again used UIViewController extensions in order to add the delegate functions for various UIKit components. I find that this is good practice as long as you contain the extensions in one file, preferably in the same file of the view controller that utilizes them. I would recommend utilizing extensions for basic delegate functionality that will be shared throughout your app.</p>
+
+<h4>
+<a id="collection-view-features" class="anchor" href="#collection-view-features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Collection View Features</h4>
+
+<p>I added some custom functionality to the collection view in this app.  I added the ability to select a Meme in the collection view to edit it, add a new Meme and I added functionality to delete multiple memes at once.  To handle this, I tracked an array of indecies that corresponded to the selected Memes.  When the delete button is pressed, the view controller sorts the array, then asks the model to delete the Memes at the index collected in the array, deletes the corrseponding cells and then updates the view.</p>
 
 <h4>
 <a id="other" class="anchor" href="#other" aria-hidden="true"><span class="octicon octicon-link"></span></a>Other</h4>
