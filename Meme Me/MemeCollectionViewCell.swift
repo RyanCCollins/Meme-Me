@@ -8,12 +8,12 @@
 
 import UIKit
 
+/* Define outlets and methods for collection view cell */
 class MemeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var memeImageView: UIImageView!
-
     @IBOutlet weak var selectedImageView: UIImageView!
     
-
+    /* Show or hide the checkmark if cell is selected */
     func isSelected(selected: Bool) {
         if selected {
             selectedImageView.hidden = false

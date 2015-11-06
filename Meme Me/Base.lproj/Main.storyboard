@@ -307,7 +307,7 @@
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="eGi-cl-6cg"/>
                                     <barButtonItem image="photoAlbum" id="ooM-X9-qpj">
                                         <connections>
-                                            <action selector="selectImage:" destination="BYZ-38-t0r" id="oJ9-xb-sxe"/>
+                                            <action selector="selectImageFromCameraRoll:" destination="BYZ-38-t0r" id="dOs-HF-QfH"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="vxp-5Y-BvW"/>
